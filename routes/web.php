@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\RecipeController;
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
@@ -28,42 +29,22 @@ use Illuminate\Support\Facades\Route;
 
 	Route::group(['middleware' => 'auth'], function () {
 
-		Route::get('/', [HomeController::class, 'home']);
-		Route::get('dashboard', function () {
-			return view('dashboard');
-		})->name('dashboard');
-	
-		Route::get('billing', function () {
-			return view('billing');
-		})->name('billing');
-	
-		Route::get('profile', function () {
-			return view('profile');
-		})->name('profile');
-	
-		Route::get('rtl', function () {
-			return view('rtl');
-		})->name('rtl');
-	
+		Route::get('/', [AdminController::class, 'home']);
+		
+		Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+		Route::get('recipes', [RecipeController::class, 'index'])->name('recipes');
+		Route::get('recipe/add', [RecipeController::class, 'add'])->name('add-recipe');
+		
+		Route::get('user-recipes', [AdminController::class, 'user-recipes'])->name('user-recipes');
+		Route::get('banners', [AdminController::class, 'banners'])->name('banners');
+		
 		Route::get('user-management', function () {
 			return view('laravel-examples/user-management');
 		})->name('user-management');
 	
-		Route::get('tables', function () {
-			return view('tables');
-		})->name('tables');
-	
-		Route::get('virtual-reality', function () {
-			return view('virtual-reality');
-		})->name('virtual-reality');
-	
 		Route::get('static-sign-in', function () {
 			return view('static-sign-in');
 		})->name('sign-in');
-	
-		Route::get('static-sign-up', function () {
-			return view('static-sign-up');
-		})->name('sign-up');
 	
 		Route::get('/logout', [SessionsController::class, 'destroy']);
 		Route::get('/user-profile', [InfoUserController::class, 'create']);

@@ -73,7 +73,8 @@
 
       
       <li class="nav-item">
-        <a class="nav-link {{ (Request::is('virtual-reality') ? 'active' : '') }}" href="{{ url('virtual-reality') }}">
+        <a class="nav-link {{ ( ( request()->route()->getName() == 'recipes' || request()->route()->getName() == 'add-recipe' ) ? 'active' : '') }}" 
+          href="{{ route('recipes') }}">
           <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             {{-- <i class="fas fa-cutlery"></i> --}}
             <i class="fas fa-utensils"></i>
