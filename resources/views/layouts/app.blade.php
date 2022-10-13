@@ -21,6 +21,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     @if (env('IS_DEMO'))
         <x-demo-metas></x-demo-metas>
@@ -39,6 +40,8 @@
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+
     <!-- CSS Files -->
     <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
 </head>
@@ -57,6 +60,7 @@
             <p class="m-0">{{ session('success') }}</p>
         </div>
     @endif
+
     <!--   Core JS Files   -->
     <script src="../assets/js/core/popper.min.js"></script>
     <script src="../assets/js/core/bootstrap.min.js"></script>
@@ -65,10 +69,24 @@
     <script src="../assets/js/plugins/fullcalendar.min.js"></script>
     <script src="../assets/js/plugins/chartjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
     @stack('rtl')
     @stack('dashboard')
     <script>
+
+        $(document).ready(function() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // Summernote Textarea
+            $('#summernote').summernote();
+        });
+
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
             var options = {
@@ -84,13 +102,12 @@
     <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
 
     <script>
-        $(document).ready(function() {
             $('#new-recipe-btn').on('click', function() {
-              
             });
-        });
+
     </script>
 
+    @yield('end-script')
 
 </body>
 

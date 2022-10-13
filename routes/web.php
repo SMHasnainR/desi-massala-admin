@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-	
+
 
 
 // Route::prefix('admin')->group(function(){
@@ -30,22 +30,24 @@ use Illuminate\Support\Facades\Route;
 	Route::group(['middleware' => 'auth'], function () {
 
 		Route::get('/', [AdminController::class, 'home']);
-		
+
 		Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 		Route::get('recipes', [RecipeController::class, 'index'])->name('recipes');
 		Route::get('recipe/add', [RecipeController::class, 'add'])->name('add-recipe');
-		
-		Route::get('user-recipes', [AdminController::class, 'user-recipes'])->name('user-recipes');
+		Route::post('recipe/add', [RecipeController::class, 'save'])->name('save-recipe');
+		// Route::post('recipe/upload', [RecipeController::class, 'uploadImage'])->name('upload-image');
+
+		Route::get('user-recipes', [RecipeController::class, 'userRecipes'])->name('user-recipes');
 		Route::get('banners', [AdminController::class, 'banners'])->name('banners');
-		
+
 		Route::get('user-management', function () {
 			return view('laravel-examples/user-management');
 		})->name('user-management');
-	
+
 		Route::get('static-sign-in', function () {
 			return view('static-sign-in');
 		})->name('sign-in');
-	
+
 		Route::get('/logout', [SessionsController::class, 'destroy']);
 		Route::get('/user-profile', [InfoUserController::class, 'create']);
 		Route::post('/user-profile', [InfoUserController::class, 'store']);
@@ -53,7 +55,7 @@ use Illuminate\Support\Facades\Route;
 			return view('dashboard');
 		})->name('sign-up');
 	});
-	
+
 	Route::group(['middleware' => 'guest'], function () {
 		Route::get('/register', [RegisterController::class, 'create']);
 		Route::post('/register', [RegisterController::class, 'store']);
@@ -63,9 +65,9 @@ use Illuminate\Support\Facades\Route;
 		Route::post('/forgot-password', [ResetController::class, 'sendEmail']);
 		Route::get('/reset-password/{token}', [ResetController::class, 'resetPass'])->name('password.reset');
 		Route::post('/reset-password', [ChangePasswordController::class, 'changePassword'])->name('password.update');
-	
+
 	});
-	
+
 	Route::get('/login', function () {
 		return view('session/login-session');
 	})->name('login');

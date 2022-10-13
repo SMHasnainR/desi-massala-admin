@@ -71,9 +71,12 @@
         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Settings</h6>
       </li>
 
-      
+      @php
+        $routeName = request()->route()->getName();
+      @endphp
+
       <li class="nav-item">
-        <a class="nav-link {{ ( ( request()->route()->getName() == 'recipes' || request()->route()->getName() == 'add-recipe' ) ? 'active' : '') }}" 
+        <a class="nav-link {{ (( $routeName == 'recipes' ||  $routeName == 'add-recipe' ) ? 'active' : '') }}" 
           href="{{ route('recipes') }}">
           <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             {{-- <i class="fas fa-cutlery"></i> --}}
@@ -84,11 +87,12 @@
       </li>
       
       <li class="nav-item">
-        <a class="nav-link {{ (Request::is('virtual-reality') ? 'active' : '') }}" href="{{ url('virtual-reality') }}">
+        <a class="nav-link {{ (( $routeName == 'user-recipes' ||  $routeName == 'add-user-recipe' ) ? 'active' : '') }}" 
+        href="{{ url('user-recipes') }}">
           <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-utensils"></i>
           </div>
-          <span class="nav-link-text ms-1">Featured Recipes</span>
+          <span class="nav-link-text ms-1">Users Recipes</span>
         </a>
       </li>
       

@@ -19,6 +19,7 @@ class AdminController extends Controller
 
     public function userRecipes()
     {
+
         return view('user-recipes');
     }
 
