@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Route;
 		Route::post('recipe/add', [RecipeController::class, 'save'])->name('save-recipe');
 		// Route::post('recipe/upload', [RecipeController::class, 'uploadImage'])->name('upload-image');
 
-		Route::get('user-recipes', [RecipeController::class, 'userRecipes'])->name('user-recipes');
+		Route::get('user-recipes', [RecipeController::class, 'userRecipe'])->name('user-recipes');
 		Route::get('banners', [AdminController::class, 'banners'])->name('banners');
 
 		Route::get('user-management', function () {

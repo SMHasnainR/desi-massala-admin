@@ -5,7 +5,6 @@
 
         <div class="container-fluid py-4">
             <div class="d-flex justify-content-end">
-                
             </div>
             <div class="row">
                 <div class="col-12">
@@ -18,14 +17,11 @@
                                 {{-- <a href="#" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New User</a> --}}
                                 <a href="{{ route('add-recipe') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">
                                     +&nbsp; Add New Recipe
-                                </a> 
-
+                                </a>
                             </div>
                         </div>
-                        <div class="card-body px-0 pt-0 pb-2">
-                            <div class="table-responsive p-0">
-
-                                <table class="table align-items-center mb-0">
+                        <div class="card-body pb-2">
+                                {{-- <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -46,7 +42,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
                                         <tr>
                                             <td>
                                                 <div class="d-flex px-2 py-1">
@@ -208,13 +203,69 @@
                                         </tr>
 
                                     </tbody>
+                                </table> --}}
+                                <table class="table align-items-center mb-0 data-table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            No</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Image</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Name</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Author</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Time</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Category</th>
+                                        <th
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Status</th>
+                                        <th
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Action</th>
+                                        {{-- <th
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Category</th> --}}
+                                        {{-- <th class="text-secondary opacity-7"></th> --}}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
                                 </table>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
+@endsection
+
+@section('end-script')
+    <script>
+        $(function(){
+            let table = $('.data-table').DataTable({
+                responsive: true,
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('recipes') }}",
+                columns:[
+                    {data: 'id', name: 'id'},
+                    {data: 'image', name: 'image'},
+                    {data: 'name', name: 'name'},
+                    {data: 'author', name: 'author'},
+                    {data: 'time', name: 'time'},
+                    {data: 'category', name: 'category'},
+                    {data: 'status', name: 'status'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            })
+        })
+    </script>
 @endsection
