@@ -8,7 +8,7 @@
                     <h4 class="mb-0">{{ __('Add Recipe') }}</h4>
                 </div>
                 <div class="card-body pt-4 p-3">
-                    <form action="{{ route('save-recipe') }}" method="POST" role="form text-left" enctype="multipart/form-data">
+                    <form action="{{ isset($recipe) ? route('recipes.update',$recipe->id) : route('recipes.store') }}" method="POST" role="form text-left" enctype="multipart/form-data">
                         @csrf
                         @if ($errors->any())
                             <div class="mt-3  alert alert-danger alert-dismissible fade show" role="alert">
@@ -34,7 +34,7 @@
                                 <div class="form-group">
                                     <label for="name" class="form-control-label"> Recipe Name: </label>
                                     <div class="@error('name')border border-danger rounded-3 @enderror">
-                                        <input class="form-control" value="" type="text" placeholder="Recipe Name"
+                                        <input class="form-control" value="{{ isset($recipe) ? $recipe->name : '' }}" type="text" placeholder="Recipe Name"
                                             id="name" name="name" required>
                                         @error('name')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
@@ -48,7 +48,7 @@
                                         <select class="form-control" id="category" name="category_id" required >
                                             <option disabled selected>-- Select Category --</option>
                                             @foreach($categories as $category)
-                                                <option class='' value="{{$category->id}}">{{$category->name}}</option>
+                                                <option class='' value="{{$category->id}}" {{ isset($recipe) ? ($recipe->category_id == $category->id ? 'selected' : '' ) : ''}} >{{$category->name}}</option>
                                             @endforeach
                                         </select>
                                         @error('category_id')
@@ -62,9 +62,9 @@
                                     <div
                                         class="d-flex justify-content-between align-items-center @error('time_from', 'time_to') border border-danger rounded-3 @enderror">
                                         <input class="form-control w-25" type="number" id="time_from" name="time_from"
-                                            value="" required> -
+                                            value="{{ isset($recipe) ? $recipe->time_from : ''}}" required> -
                                         <input class="form-control w-25" type="number" id="time_to" name="time_to"
-                                            value=""required> mins
+                                            value="{{ isset($recipe) ? $recipe->time_to : ''}}"required> mins
                                     </div>
                                 </div>
 
@@ -79,7 +79,7 @@
                                     </div>
                                 </div>
                                 <div class='form-group mx-5'>
-                                    <img id='img-preview' src="#" class="img-thumbnail" alt="">
+                                    <img id='img-preview' src="{{ isset($recipe) ? asset('assets/img/recipe').'/'.$recipe->image_url : '#'}}" class="img-thumbnail" alt="">
                                 </div>
                             </div>
                         </div>
@@ -89,9 +89,8 @@
                         <div class="form-group">
                             <label for="summernote">Recipe: </label>
                             <div class="@error('details')border border-danger rounded-3 @enderror">
-                                <textarea class="form-control" id="summernote" rows="4" placeholder="Recipe Details..." name="details"></textarea>
+                                <textarea class="form-control" id="summernote" rows="4" placeholder="Recipe Details..." name="details">{!! isset($recipe) ? $recipe->details : '' !!}</textarea>
                             </div>
-                            {{-- <textarea name="" id="summernote" cols="0" rows="10"></textarea> --}}
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="submit"

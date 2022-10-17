@@ -15,7 +15,7 @@
                                     <h5 class="mb-0">Recipe's table</h5>
                                 </div>
                                 {{-- <a href="#" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New User</a> --}}
-                                <a href="{{ route('add-recipe') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">
+                                <a href="{{ route('recipes.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">
                                     +&nbsp; Add New Recipe
                                 </a>
                             </div>
@@ -250,22 +250,73 @@
 @section('end-script')
     <script>
         $(function(){
+
+            // DataTable Config
             let table = $('.data-table').DataTable({
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('recipes') }}",
+                ajax: "{{ route('recipes.index') }}",
                 columns:[
                     {data: 'id', name: 'id'},
-                    {data: 'image', name: 'image'},
+                    {data: 'image', name: 'image', orderable: false, searchable: false},
                     {data: 'name', name: 'name'},
                     {data: 'author', name: 'author'},
-                    {data: 'time', name: 'time'},
-                    {data: 'category', name: 'category'},
+                    {data: 'time', name: 'time',orderable: false, searchable: false },
+                    {data: 'category', name: 'category', orderable: false, searchable: false},
                     {data: 'status', name: 'status'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
-            })
+            });
+
+            // Delete Confirmation
+            $(document).on('click','.delete',function() {
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        let id = $(this).data('id');
+
+                        // Ajax Call to delete the recipe
+                        let url = "{{ route('recipe.destroy',':id') }}";
+                        url = url.replace(':id',id);
+
+                        $.ajax({
+                            url:url ,
+                            method:"post",
+                            dataType:'JSON',
+                            success:function(data)
+                            {
+                                if(data.success)
+                                {
+                                    table.rows($(this).closest('tr')).remove().draw();
+                                    Swal.fire(
+                                    'Deleted!',
+                                    data.success,
+                                    'success'
+                                    )
+                                }
+                                if (data.error){
+                                    Swal.fire(
+                                    'Cancelled',
+                                    data.error,
+                                    'error');
+                                }
+                            }
+                        });
+
+                    }
+                });
+            });
+
         })
     </script>
 @endsection

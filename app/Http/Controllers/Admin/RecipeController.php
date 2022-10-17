@@ -16,18 +16,17 @@ class RecipeController extends Controller
     public function index(Request $request)
     {
 
+        // Load Data through Ajax
         if ($request->ajax()) {
             $data = Recipe::select('*');
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->editColumn('name', '<h6 class="mb-0 text-sm">{{$name}}</h6>')
-                    ->editColumn('image', function($query){
-                        return '<img src="../assets/img/recipe/'. $query->image_url .'" class="avatar avatar-sm me-3" alt="xd">';
-                    })
+                    ->editColumn('image','<img src="../assets/img/recipe/{{ $image_url }}" class="avatar avatar-sm me-3" alt="xd">')
                     ->editColumn('author','<span class="text-xs font-weight-bold">{{$author}}</span>')
                     ->editColumn('author','<span class="text-sm font-weight-bold">{{$author}}</span>')
                     ->editColumn('status', function($query){
-                        return $query->status == 1 ? 
+                        return $query->status == 1 ?
                         '<span class="badge badge-sm bg-gradient-success">Active</span>' :
                         '<span class="badge badge-sm bg-gradient-secondary">Un-Active</span>';
                     })
@@ -37,28 +36,31 @@ class RecipeController extends Controller
                         return '<span class="text-sm font-weight-bold">'.$category->name.'</span>';
                     })
                     ->addColumn('action', function($row){
-                            $editBtn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm mx-1">Edit </a>';
-                            $delBtn = '<a href="javascript:void(0)" class="edit btn btn-danger btn-sm mx-1">Delete </a>';
+                            $editBtn = '<a href="'.route('recipes.edit',$row->id).'" class="edit btn btn-primary btn-sm mx-1">Edit </a>';
+                            $delBtn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="delete btn btn-danger btn-sm mx-1">Delete </a>';
                             return $editBtn .$delBtn;
                     })
                     ->rawColumns(['image','name','author','category','status',"time",'action'])
                     ->make(true);
         }
+
         return view('admin.recipe.index');
     }
 
-    public function add()
+    public function create()
     {
         $categories = Category::all();
 
         return view('admin.recipe.add',compact('categories'));
     }
 
-    public function save(Request $request){
+    public function store(Request $request){
         $request->validate([
             'name' =>'required',
             'category_id' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'time_from' => 'required|max:300',
+            'time_to' => 'required|max:300',
             'details' => 'required|min:10'
         ]);
 
@@ -78,23 +80,59 @@ class RecipeController extends Controller
         // Storing Image data into DB
         try{
             Recipe::create($extraData + $request->all());
-        } catch(Exception){
-            return redirect()->route('recipes')->with('error','Error creating recipe !');
+        } catch(Exception $e){
+            return redirect()->route('recipes.index')->with('error','Error creating recipe:'.$e->getMessage());
         }
 
-        return redirect()->route('recipes')->with('success','Recipe has been created successfully');
+        return redirect()->route('recipes.index')->with('success','Recipe has been created successfully');
     }
 
-    // public function uploadImage(Request $request){
-    //     request()->validate([
-    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    //     ]);
 
-    //     $imageName = time().'.'.request()->image->getClientOriginalExtension();
-    //     request()->image->move(public_path('images'), $imageName);
-    //     // dd($request->image_url);
-    // }
+    public function edit(Recipe $recipe){
+        $categories = Category::all();
+        return view('admin.recipe.add',compact('categories','recipe'));
+    }
 
+    public function update(Request $request, Recipe $recipe){
+        $request->validate([
+            'name' =>'required',
+            'category_id' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'time_from' => 'required|max:300',
+            'time_to' => 'required|max:300',
+            'details' => 'required|min:10'
+        ]);
+
+        // Uploading Image file
+        $extraData = [];
+        if($request->image){
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('assets/img/recipe'), $imageName);
+            $extraData['image_url'] =  $imageName;
+        }
+
+        // Storing Image data into DB
+        try{
+            $recipe->update($extraData + $request->all());
+            $recipe->save();
+        } catch(Exception $e){
+            return redirect()->route('recipes.index')->with('error','Error updating recipe :'.$e->getMessage());
+        }
+
+        return redirect()->route('recipes.index')->with('success','Recipe has been updated successfully');
+    }
+
+    public function destroy(Recipe $recipe){
+        $response = [];
+        try{
+            $recipe->delete();
+            $response['success'] = 'Recipe has been deleted successfully;';
+
+        }catch(Exception $e){
+            $response['error'] = $e->getMessage();
+        }
+        return $response;
+    }
 
     public function userRecipe()
     {

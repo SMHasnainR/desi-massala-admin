@@ -3,7 +3,7 @@
   <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="align-items-center d-flex m-0 navbar-brand text-wrap" href="{{ route('dashboard') }}">
-        <img src="../assets/img/dallas_logo.png" class="col-4 navbar-brand-img h-100" alt="...">
+        <img src="{{ asset('assets/img/dallas_logo.png') }}" class="col-4 navbar-brand-img h-100" alt="...">
         <span class="ms-3 font-weight-bold col-8">Dallas Desi Masala </span>
     </a>
   </div>
@@ -76,8 +76,8 @@
       @endphp
 
       <li class="nav-item">
-        <a class="nav-link {{ (( $routeName == 'recipes' ||  $routeName == 'add-recipe' ) ? 'active' : '') }}" 
-          href="{{ route('recipes') }}">
+        <a class="nav-link {{ (( $routeName == 'recipes.index' ||  $routeName == 'recipes.create' ) ? 'active' : '') }}"
+          href="{{ route('recipes.index') }}">
           <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             {{-- <i class="fas fa-cutlery"></i> --}}
             <i class="fas fa-utensils"></i>
@@ -85,9 +85,9 @@
           <span class="nav-link-text ms-1">Recipes</span>
         </a>
       </li>
-      
+
       <li class="nav-item">
-        <a class="nav-link {{ (( $routeName == 'user-recipes' ||  $routeName == 'add-user-recipe' ) ? 'active' : '') }}" 
+        <a class="nav-link {{ (( $routeName == 'user-recipes' ||  $routeName == 'add-user-recipe' ) ? 'active' : '') }}"
         href="{{ url('user-recipes') }}">
           <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-utensils"></i>
@@ -95,7 +95,7 @@
           <span class="nav-link-text ms-1">Users Recipes</span>
         </a>
       </li>
-      
+
       <li class="nav-item">
         <a class="nav-link {{ (Request::is('virtual-reality') ? 'active' : '') }}" href="{{ url('virtual-reality') }}">
           <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -104,7 +104,7 @@
           <span class="nav-link-text ms-1">Banners</span>
         </a>
       </li>
-      
+
     </ul>
   </div>
 

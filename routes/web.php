@@ -32,9 +32,15 @@ use Illuminate\Support\Facades\Route;
 		Route::get('/', [AdminController::class, 'home']);
 
 		Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-		Route::get('recipes', [RecipeController::class, 'index'])->name('recipes');
-		Route::get('recipe/add', [RecipeController::class, 'add'])->name('add-recipe');
-		Route::post('recipe/add', [RecipeController::class, 'save'])->name('save-recipe');
+
+        // Recipe's Contorller
+        Route::get('recipes', [RecipeController::class, 'index'])->name('recipes.index');
+		Route::get('recipes/create', [RecipeController::class, 'create'])->name('recipes.create');
+		Route::post('recipes', [RecipeController::class, 'store'])->name('recipes.store');
+		Route::get('recipes/{recipe}/edit', [RecipeController::class, 'edit'])->name('recipes.edit');
+		Route::post('recipe/{recipe}/update', [RecipeController::class, 'update'])->name('recipes.update');
+		Route::post('recipe/{recipe}/delete', [RecipeController::class, 'destroy'])->name('recipe.destroy');
+
 		// Route::post('recipe/upload', [RecipeController::class, 'uploadImage'])->name('upload-image');
 
 		Route::get('user-recipes', [RecipeController::class, 'userRecipe'])->name('user-recipes');
