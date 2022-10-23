@@ -23,8 +23,12 @@ class RecipeController extends Controller
                     ->addIndexColumn()
                     ->editColumn('name', '<h6 class="mb-0 text-sm">{{$name}}</h6>')
                     ->editColumn('image','<img src="../assets/img/recipe/{{ $image_url }}" class="avatar avatar-sm me-3" alt="xd">')
-                    ->editColumn('author','<span class="text-xs font-weight-bold">{{$author}}</span>')
-                    ->editColumn('author','<span class="text-sm font-weight-bold">{{$author}}</span>')
+                    ->editColumn('author', '<span class="text-sm font-weight-bold">{{ $author }}</span>')
+                    ->editColumn('type', function($query){
+                        return $query->type == 'admin' ?
+                        '<span class="badge badge-sm bg-gradient-success">Admin</span>' :
+                        '<span class="badge badge-sm bg-gradient-secondary">User</span>';
+                    })
                     ->editColumn('status', function($query){
                         return $query->status == 1 ?
                         '<span class="badge badge-sm bg-gradient-success">Active</span>' :
@@ -40,7 +44,7 @@ class RecipeController extends Controller
                             $delBtn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="delete btn btn-danger btn-sm mx-1">Delete </a>';
                             return $editBtn .$delBtn;
                     })
-                    ->rawColumns(['image','name','author','category','status',"time",'action'])
+                    ->rawColumns(['image','name','author','type','category','status',"time",'action'])
                     ->make(true);
         }
 

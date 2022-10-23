@@ -220,6 +220,9 @@
                                             Author</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Type</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Time</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
@@ -262,6 +265,7 @@
                     {data: 'image', name: 'image', orderable: false, searchable: false},
                     {data: 'name', name: 'name'},
                     {data: 'author', name: 'author'},
+                    {data: 'type', name: 'type'},
                     {data: 'time', name: 'time',orderable: false, searchable: false },
                     {data: 'category', name: 'category', orderable: false, searchable: false},
                     {data: 'status', name: 'status'},
