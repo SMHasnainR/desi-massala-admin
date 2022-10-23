@@ -1,4 +1,4 @@
-@extends('layouts.user_type.auth')
+@extends('admin.layouts.user_type.auth')
 
 @section('content')
     <div class="row">
@@ -126,7 +126,7 @@
 
                     </div>
                 </div>
-                <div class="card-body px-0 pb-2">
+                <div class="card-body px-4 pb-2">
                     <div class="table-responsive">
 
                         <table class="table align-items-center mb-0 data-table">

@@ -66,7 +66,7 @@
               </div>
             </div>
             <div class="card-body">
-              <form role="form text-left" method="POST" action="/register">
+              <form role="form text-left" method="POST" action="{{route('register')}}">
                 @csrf
                 <div class="mb-3">
                   <input type="text" class="form-control" placeholder="Name" name="name" id="name" aria-label="Name" aria-describedby="name" value="{{ old('name') }}">

@@ -1,4 +1,4 @@
-@extends('layouts.user_type.guest')
+@extends('admin.layouts.user_type.guest')
 
 @section('content')
     <main class="main-content  mt-0">
@@ -12,7 +12,7 @@
                                     <h3 class="font-weight-bolder text-info text-gradient">Welcome Admin</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form role="form" method="POST" action="/session">
+                                    <form role="form" method="POST" action="{{route('session')}}">
                                         @csrf
                                         <label>Email</label>
                                         <div class="mb-3">

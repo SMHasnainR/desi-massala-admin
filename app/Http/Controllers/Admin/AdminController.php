@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function home()
     {
-        return redirect('dashboard');
+        return redirect()->route('dashboard');
     }
 
     public function dashboard(Request $request)
@@ -49,7 +49,7 @@ class AdminController extends Controller
                     ->make(true);
         }
 
-        return view('dashboard', compact('categoryCount', 'adminRecipeCount', 'userRecipeCount'));
+        return view('admin.dashboard', compact('categoryCount', 'adminRecipeCount', 'userRecipeCount'));
     }
 
     public function userRecipes()
