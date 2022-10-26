@@ -270,7 +270,62 @@
                     {data: 'category', name: 'category', orderable: false, searchable: false},
                     {data: 'status', name: 'status'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                ]
+                ],
+                drawCallback: function (settings) {
+                    var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+                    if (elems) {
+                        elems.forEach(function (html) {
+                        var switchery = new Switchery(html, {
+                            color: '#49C47C'
+                            , secondaryColor: '#dfdfdf'
+                            , jackColor: '#fff'
+                            , jackSecondaryColor: null
+                            , className: 'switchery'
+                            , disabled: false
+                            , disabledOpacity: 0.5
+                            , speed: '0.1s'
+                            , size: 'small'
+                        });
+
+                        });
+                    }
+                    $('.js-switch').on('change', function(){
+                        let switchInpuEl = $(this);
+                        switchInpuEl.siblings().addClass('disabled');
+
+                        let id = $(this).data('id');
+                        console.log(id);
+
+                        // Ajax Call to delete the recipe
+                        let url = "{{ route('recipe.status',':id') }}";
+                        url = url.replace(':id',id);
+
+                        $.ajax({
+                            url:url ,
+                            method:"post",
+                            dataType:'JSON',
+                            success:function(data)
+                            {
+                                if(data.success)
+                                {
+                                    switchInpuEl.siblings().removeClass('disabled');
+                                    Swal.fire(
+                                    'Status Updated!',
+                                    data.success,
+                                    'success'
+                                    )
+                                }
+                                if (data.error){
+                                    Swal.fire(
+                                    'Failed to update status !',
+                                    data.error,
+                                    'error');
+                                }
+                            }
+                        });
+
+                    });
+                }
             });
 
             // Delete Confirmation
@@ -319,7 +374,15 @@
 
                     }
                 });
+
             });
+
+            // Toggle Status
+            // $(document).on('click', '.switchery',function(){
+            //     console.log('Disabled Input');
+            //     $(this).attr('disabled', true);
+            // })
+
 
         })
     </script>

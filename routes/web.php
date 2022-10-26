@@ -41,6 +41,7 @@ Route::prefix('admin')->group(function(){
 		Route::get('recipes/{recipe}/edit', [RecipeController::class, 'edit'])->name('recipes.edit');
 		Route::post('recipe/{recipe}/update', [RecipeController::class, 'update'])->name('recipes.update');
 		Route::post('recipe/{recipe}/delete', [RecipeController::class, 'destroy'])->name('recipe.destroy');
+		Route::post('recipe/{recipe}/status', [RecipeController::class, 'updateStatus'])->name('recipe.status');
 
 		// Route::post('recipe/upload', [RecipeController::class, 'uploadImage'])->name('upload-image');
 
@@ -83,6 +84,8 @@ Route::prefix('admin')->group(function(){
 });
 
 
-
-
-Route::get('', [HomeController::class, 'index'])->name('recipes.index');
+Route::get('', [HomeController::class, 'home'])->name('home');
+Route::get('about', [HomeController::class, 'about'])->name('about');
+Route::get('recipes', [HomeController::class, 'recipes'])->name('recipes');
+Route::get('veg-recipes', [HomeController::class, 'vegRecipes'])->name('veg-recipes');
+Route::get('healthy-living', [HomeController::class, 'healthyLiving'])->name('healthy-living');

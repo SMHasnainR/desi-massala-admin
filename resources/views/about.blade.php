@@ -1,44 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="zxx">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Tasty Recipes</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="img/dallas_logo.png">
-
-    <title>Dallas Desi Masalla</title>
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- CSS Packages/Library -->
-    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url('') }}/css/style.css">
-
-    {{-- <link rel="stylesheet" href="{{ url('') }}/css/slick.css">
-    <link rel="stylesheet" href="{{ url('') }}/css/slicknav.css">
-    <link rel="stylesheet" href="{{ url('') }}/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="{{ url('') }}/css/magnific-popup.css">
-    <link rel="stylesheet" href="{{ url('') }}/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ url('') }}/css/themify-icons.css">
-    <link rel="stylesheet" href="{{ url('') }}/css/nice-select.css">
-    <link rel="stylesheet" href="{{ url('') }}/css/flaticon.css">
-    <link rel="stylesheet" href="{{ url('') }}/css/gijgo.css">
-    <link rel="stylesheet" href="{{ url('') }}/css/animate.min.css">
-    <link rel="stylesheet" href="{{ url('') }}/css/slick.css">
-    <link rel="stylesheet" href="{{ url('') }}/css/slicknav.css"> --}}
-
-    <link rel="stylesheet" href="{{ url('') }}/css/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/gijgo.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/slicknav.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
 <body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
 
     <!-- header-start -->
     <header>
@@ -50,7 +42,7 @@
                             <div class="logo">
                                 <a href="index.html">
                                     <!-- <img src="img/logo.png" alt=""> -->
-                                    <img src="{{url('')}}/assets/img/logos/dallas_logo.png" height="80" width="80" alt="">
+                                    <img src="img/dallas_logo.png" height="80" width="80" alt="">
                                 </a>
                             </div>
                         </div>
@@ -59,7 +51,7 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a href="index.html">home</a></li>
-                                        <li><a href="{{route('about')}}">about</a></li>
+                                        <li><a href="about.html">about</a></li>
                                         <li><a href="Recipes.html">Recipes</a></li>
                                         <li><a href="vegrecipes.html">Veg Recipes</i></a></li>
                                         <li><a href="healthyliving.html">Healthy Living</a></li>
@@ -87,7 +79,43 @@
     <!-- header-end -->
 
 
-    @yield('content')
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>About Us</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /bradcam_area  -->
+
+    <!-- recepie_header_area  -->
+    <div class="recepie_header_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="recepie_text text-center">
+                        <h3>Recipe videos that never <br>
+                            misses any portion</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed
+                            ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+                            architecto beatae vitae dicta sunt explicabo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ recepie_header_area  -->
+
 
     <!-- footer  -->
     <footer class="footer">
@@ -173,10 +201,12 @@
                     <div class="col-xl-8 col-md-8">
                         <p class="copy_right">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>
+                            Copyright &copy;
+                            <script>
                                 document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            </script> All rights reserved | This template is made with <i
+                                class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>
@@ -212,13 +242,8 @@
     </footer>
     <!--/ footer  -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="{{ url('') }}/js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- JS here -->
-    <!-- <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -235,15 +260,16 @@
     <script src="js/jquery.slicknav.min.js"></script>
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/plugins.js"></script>
-    <script src="js/gijgo.min.js"></script> -->
+    <script src="js/gijgo.min.js"></script>
 
     <!--contact js-->
-    <!-- <script src="js/contact.js"></script>
+    <script src="js/contact.js"></script>
     <script src="js/jquery.ajaxchimp.min.js"></script>
     <script src="js/jquery.form.js"></script>
     <script src="js/jquery.validate.min.js"></script>
-    <script src="js/mail-script.js"></script> -->
+    <script src="js/mail-script.js"></script>
 
+    <script src="js/main.js"></script>
 </body>
 
 </html>

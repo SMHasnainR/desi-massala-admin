@@ -31,8 +31,8 @@ class RecipeController extends Controller
                     })
                     ->editColumn('status', function($query){
                         return $query->status == 1 ?
-                        '<span class="badge badge-sm bg-gradient-success">Active</span>' :
-                        '<span class="badge badge-sm bg-gradient-secondary">Un-Active</span>';
+                        '<input type="checkbox" data-id="'.$query->id.'" class="js-switch" checked />' :
+                        '<input type="checkbox" data-id="'.$query->id.'" class="js-switch" />';
                     })
                     ->editColumn('time', '<span class="text-xs font-weight-bold">{{ $time_from }} - {{ $time_to }} mins</span>')
                     ->editColumn('category', function($query){
@@ -62,7 +62,7 @@ class RecipeController extends Controller
         $request->validate([
             'name' =>'required',
             'category_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120|dimensions:max_width=1000,max_height=1000',
             'time_from' => 'required|max:300',
             'time_to' => 'required|max:300',
             'details' => 'required|min:10'
@@ -101,7 +101,7 @@ class RecipeController extends Controller
         $request->validate([
             'name' =>'required',
             'category_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120|dimensions:max_width=1000,max_height=1000',
             'time_from' => 'required|max:300',
             'time_to' => 'required|max:300',
             'details' => 'required|min:10'
@@ -124,6 +124,20 @@ class RecipeController extends Controller
         }
 
         return redirect()->route('recipes.index')->with('success','Recipe has been updated successfully');
+    }
+
+    public function updateStatus(Recipe $recipe){
+        $response = [];
+        try{
+            $updatedValue = $recipe->status == 1 ? 0 : 1;
+            $recipe->status = $updatedValue;
+            $recipe->save();
+            $response['success'] = 'Recipe status has been updated successfully;';
+
+        }catch(Exception $e){
+            $response['error'] = $e->getMessage();
+        }
+        return $response;
     }
 
     public function destroy(Recipe $recipe){

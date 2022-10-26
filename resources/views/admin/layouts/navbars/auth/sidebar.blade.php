@@ -1,4 +1,3 @@
-
 @php
 $routeName = request()->route()->getName();
 @endphp
@@ -6,7 +5,7 @@ $routeName = request()->route()->getName();
   <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="align-items-center d-flex m-0 navbar-brand text-wrap" href="{{ route('dashboard') }}">
-        <img src="{{ asset('assets/img/dallas_logo.png') }}" class="col-4 navbar-brand-img h-100" alt="...">
+        <img src="{{ url('') }}/assets/img/logos/dallas_logo.png" class="col-4 navbar-brand-img h-100" alt="...">
         <span class="ms-3 font-weight-bold col-8">Dallas Desi Masala </span>
     </a>
   </div>

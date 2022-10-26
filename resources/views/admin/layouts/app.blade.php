@@ -112,7 +112,6 @@
     <script>
             $('#new-recipe-btn').on('click', function() {
             });
-
     </script>
 
     @yield('end-script')

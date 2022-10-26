@@ -8,10 +8,22 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     //
-    public function index(){
+    public function home(){
 
-        $reicpes = Recipe::where('status',1)->get()->take(6);
+        $recipes = Recipe::where('status',1)->get()->take(6);
 
-        return view('home', compact('reicpes'));
+        return view('home', compact('recipes'));
+    }
+
+    //
+    public function about(){
+
+        return view('about');
+    }
+
+    //
+    public function contact(){
+
+        return view('contact');
     }
 }

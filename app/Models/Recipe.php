@@ -15,4 +15,9 @@ class Recipe extends Model
         'image_url' => 'url',
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
 }

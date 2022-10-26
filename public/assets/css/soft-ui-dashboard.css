@@ -24700,9 +24700,14 @@ screen and (-ms-high-contrast:active) {
     text-align: center;
 }
 
-/* 
+.disabled{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/*
 .paginate_button.previous a{
-    visibility: hidden;
+        visibility: hidden;
 }
 
 .paginate_button.previous a:after{
