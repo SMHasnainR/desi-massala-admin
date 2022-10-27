@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-7">
-                            <div class="main-menu   d-none d-lg-block">
+                            <div class="main-menu d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
                                         <li><a href="index.html">home</a></li>
@@ -68,10 +68,13 @@
                                 </nav>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="search_icon">
+                        <div>
+                            <a href="#" class="line_btn" data-toggle="modal" data-target="#exampleModalLong" role='button' >Add Your Recipe</a>
+                        </div>
+                        <div class="col-1 d-none d-lg-block">
+                            <div class="search_icon m-0 w-100">
                                 <a href="#">
-                                    <i class="ti-search"></i>
+                                    <i class="fa fa-search"></i>
                                 </a>
                             </div>
                         </div>
@@ -86,6 +89,110 @@
     </header>
     <!-- header-end -->
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Your Recipe</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pt-4 p-3">
+            <form action="{{ route('recipes.store') }}" method="POST" role="form text-left" enctype="multipart/form-data">
+                @csrf
+                @if ($errors->any())
+                    <div class="mt-3  alert alert-danger alert-dismissible fade show" role="alert">
+                        <span class="alert-text text-white">
+                            {{ $errors->first() }}</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            <i class="fa fa-close" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                @endif
+                @if (session('success'))
+                    <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success"
+                        role="alert">
+                        <span class="alert-text text-white">
+                            {{ session('success') }}</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            <i class="fa fa-close" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                @endif
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name" class="form-control-label"> Recipe Name: </label>
+                            <div class="@error('name')border border-danger rounded-3 @enderror">
+                                <input class="form-control" value="" type="text" placeholder="Recipe Name"
+                                    id="name" name="name" required>
+                                @error('name')
+                                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category" class="form-control-label">Category: </label>
+                            <div class="@error('category_id')border border-danger rounded-3 @enderror">
+                                <select class="form-control" id="category" name="category_id" required >
+                                    <option disabled selected>-- Select Category --</option>
+                                    @foreach($categories as $category)
+                                        <option class='' value="{{$category->id}}" >{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('category_id')
+                                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="time" class="form-control-label">Time: </label>
+                            <div
+                                class="d-flex justify-content-between align-items-center @error('time_from', 'time_to') border border-danger rounded-3 @enderror">
+                                <input class="form-control w-25" type="number" id="time_from" name="time_from"
+                                    value="" required> -
+                                <input class="form-control w-25" type="number" id="time_to" name="time_to"
+                                    value=""required> mins
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="image" class="form-control-label">Main Image: </label>
+                            <div
+                                class="d-flex justify-content-between align-items-center @error('image') border border-danger rounded-3 @enderror">
+                                <input class="form-control" type="file" id="image" name="image"
+                                    value=""> -
+                            </div>
+                        </div>
+                        <div class='form-group mx-5'>
+                            <img id='img-preview' src="#" class="img-thumbnail" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                </div>
+                <div class="form-group">
+                    <label for="summernote">Recipe: </label>
+                    <div class="@error('details')border border-danger rounded-3 @enderror">
+                        <textarea class="form-control" id="summernote" rows="4" placeholder="Recipe Details..." name="details"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
     @yield('content')
 

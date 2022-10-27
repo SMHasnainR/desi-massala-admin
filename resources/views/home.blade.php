@@ -32,7 +32,7 @@
                             <div class="recepie_thumb" >
                                 <img src="{{url('')}}/assets/img/recipe/{{$recipe->image_url}}" class="recepie_thumb" alt="">
                             </div>
-                            <h3 class="title pointer" data-toggle="modal" data-target="#exampleModalLong" role='button'> {{$recipe->name}}</h3>
+                            <h3 class="title pointer" data-toggle="modal" data-target="#exampleModalshort" role='button'> {{$recipe->name}}</h3>
                             <span>{{$recipe->category->name}}</span>
                             <p>Time Needs: {{$recipe->time_from}} - {{$recipe->time_to}} mins</p>
                             <a href="#" class="line_btn">View Full Recipe</a>
@@ -80,7 +80,7 @@
     <!-- /recepie_area_start  -->
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal fade" id="exampleModalshort" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
