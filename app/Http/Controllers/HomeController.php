@@ -20,6 +20,19 @@ class HomeController extends Controller
 
         return view('about');
     }
+    //
+    public function recipes(){
+
+        $recipes =  Recipe::where('status', 1)->get()->take(9);
+
+        return view('recipes', compact('recipes'));
+    }
+
+    //
+    public function vegRecipes(){
+
+        return view('vegrecipes');
+    }
 
     //
     public function contact(){

@@ -15,9 +15,11 @@
                                     <h5 class="mb-0">Recipe's table</h5>
                                 </div>
                                 {{-- <a href="#" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New User</a> --}}
-                                <a href="{{ route('recipes.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">
-                                    +&nbsp; Add New Recipe
-                                </a>
+                                @if ($route == "recipes.index")
+                                    <a href="{{ route('recipes.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">
+                                        +&nbsp; Add New Recipe
+                                    </a>
+                                @endif
                             </div>
                         </div>
                         <div class="card-body pb-2">
@@ -259,7 +261,7 @@
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('recipes.index') }}",
+                ajax: "{{ route($route) }}",
                 columns:[
                     {data: 'id', name: 'id'},
                     {data: 'image', name: 'image', orderable: false, searchable: false},
