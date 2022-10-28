@@ -70,12 +70,12 @@
                             </div>
                         </div>
                         <div>
-                            <a href="#" class="line_btn" data-toggle="modal" data-target="#exampleModalLong" role='button' >Add Your Recipe</a>
+                            <a href="#" class="line_btn text-white" data-toggle="modal" data-target="#exampleModalLong" role='button' >Add Your Recipe</a>
                         </div>
                         <div class="col-1 d-none d-lg-block">
-                            <div class="search_icon m-0 w-100">
+                            <div class="search_icon m-0 w-100 ">
                                 <a href="#">
-                                    <i class="fa fa-search"></i>
+                                    <i class="fa fa-search text-white"></i>
                                 </a>
                             </div>
                         </div>
