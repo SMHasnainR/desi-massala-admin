@@ -921,7 +921,7 @@ h3 {
   color: #000 !important; }
 
 .slider_bg_1 {
-  background-image: url(../img/banner/banner.png); 
+  background-image: url(../img/banner/banner.png);
   animation: changeImage 5s alternate infinite;
 }
 @keyframes changeImage {
@@ -933,7 +933,7 @@ h3 {
   }
   100%{
     background-image:url(../img/banner/img-3.jpg); ;
- 
+
   }
 }
 
@@ -2529,7 +2529,7 @@ h3 {
       border-radius: 50%;
       overflow: hidden;
       margin: auto;
-      animation: spin 3s;
+      /* animation: spin 3s; */
  }
 
  @keyframes spin{
@@ -4880,10 +4880,28 @@ h6 {
         font-size: 12px; }
 
         .pointer{
-          cursor: pointer; 
+          cursor: pointer;
         }
 
 
 
 
 
+
+
+        .fade-in {
+            opacity: 1;
+            animation-name: fadeInOpacity;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in;
+            animation-duration: 0.5s;
+        }
+
+        @keyframes fadeInOpacity {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }

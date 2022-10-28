@@ -28,7 +28,7 @@
                 @foreach ($recipes as $recipe)
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="single_recepie text-center">
-                            <div class="recepie_thumb">
+                            <div class="recipe_img recepie_thumb">
                                 <img src="{{ url('') }}/assets/img/recipe/{{ $recipe->image_url }}"
                                     class="recepie_thumb" alt="">
                             </div>
@@ -239,7 +239,7 @@
         $('.modal-open').on('click', function(){
 
             let id =  $(this).data('id');
-            
+
         });
     </script>
 @endsection
