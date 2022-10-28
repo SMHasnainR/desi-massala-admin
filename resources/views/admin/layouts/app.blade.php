@@ -110,8 +110,8 @@
     <script src="{{asset('assets/js/soft-ui-dashboard.min.js?v=1.0.3')}}"></script>
 
     <script>
-            $('#new-recipe-btn').on('click', function() {
-            });
+        $('#new-recipe-btn').on('click', function() {
+        });
     </script>
 
     @yield('end-script')

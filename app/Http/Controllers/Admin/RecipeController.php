@@ -16,9 +16,13 @@ class RecipeController extends Controller
     public function index(Request $request)
     {
 
+
         // Load Data through Ajax
         if ($request->ajax()) {
-            $data = Recipe::select('*');
+
+            $routeName = $request->route()->getName();
+            $data = $routeName == 'recipes.user' ? Recipe::where('type','user') : Recipe::select('*');
+
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->editColumn('name', '<h6 class="mb-0 text-sm">{{$name}}</h6>')
@@ -48,7 +52,8 @@ class RecipeController extends Controller
                     ->make(true);
         }
 
-        return view('admin.recipe.index');
+        $route = $request->route()->getName();
+        return view('admin.recipe.index',compact('route'));
     }
 
     public function create()

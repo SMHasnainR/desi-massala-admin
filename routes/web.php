@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\RecipeController;
+use App\Http\Controllers\Admin\RecipeController as AdminRecipeController;
+use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\HomeController;
@@ -35,13 +36,15 @@ Route::prefix('admin')->group(function(){
 		Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
         // Recipe's Contorller
-        Route::get('recipes', [RecipeController::class, 'index'])->name('recipes.index');
-		Route::get('recipes/create', [RecipeController::class, 'create'])->name('recipes.create');
-		Route::post('recipes', [RecipeController::class, 'store'])->name('recipes.store');
-		Route::get('recipes/{recipe}/edit', [RecipeController::class, 'edit'])->name('recipes.edit');
-		Route::post('recipe/{recipe}/update', [RecipeController::class, 'update'])->name('recipes.update');
-		Route::post('recipe/{recipe}/delete', [RecipeController::class, 'destroy'])->name('recipe.destroy');
-		Route::post('recipe/{recipe}/status', [RecipeController::class, 'updateStatus'])->name('recipe.status');
+        Route::get('recipes', [AdminRecipeController::class, 'index'])->name('recipes.index');
+        Route::get('recipes/user', [AdminRecipeController::class, 'index'])->name('recipes.user');
+
+        Route::get('recipes/create', [AdminRecipeController::class, 'create'])->name('recipes.create');
+		Route::post('recipes', [AdminRecipeController::class, 'store'])->name('recipes.store');
+		Route::get('recipes/{recipe}/edit', [AdminRecipeController::class, 'edit'])->name('recipes.edit');
+		Route::post('recipe/{recipe}/update', [AdminRecipeController::class, 'update'])->name('recipes.update');
+		Route::post('recipe/{recipe}/delete', [AdminRecipeController::class, 'destroy'])->name('recipe.destroy');
+		Route::post('recipe/{recipe}/status', [AdminRecipeController::class, 'updateStatus'])->name('recipe.status');
 
 		// Route::post('recipe/upload', [RecipeController::class, 'uploadImage'])->name('upload-image');
 
@@ -86,6 +89,14 @@ Route::prefix('admin')->group(function(){
 
 Route::get('', [HomeController::class, 'home'])->name('home');
 Route::get('about', [HomeController::class, 'about'])->name('about');
-Route::get('recipes', [HomeController::class, 'recipes'])->name('recipes');
+Route::get('recipes', [RecipeController::class, 'index'])->name('recipes');
+Route::get('recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
+
+
+Route::get('recipe-detail', function(){
+    return view('recipes_details');
+})->name('recipes-details
+');
 Route::get('veg-recipes', [HomeController::class, 'vegRecipes'])->name('veg-recipes');
 Route::get('healthy-living', [HomeController::class, 'healthyLiving'])->name('healthy-living');
+Route::get('contact', [HomeController::class, 'contact'])->name('contact');

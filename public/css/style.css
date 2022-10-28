@@ -1168,19 +1168,20 @@ h3 {
 }
 
 .slider_bg_1 {
-    background-image: url(../img/banner/banner.png);
-    animation: changeImage 5s alternate infinite;
+  background-image: url(../img/banner/banner.png);
+  animation: changeImage 5s alternate infinite;
 }
 @keyframes changeImage {
-    0% {
-        background-image: url(../img/banner/banner.png);
-    }
-    50% {
-        background-image: url(../img/banner/img-2.jpg);
-    }
-    100% {
-        background-image: url(../img/banner/img-3.jpg);
-    }
+  0%{
+    background-image:url(../img/banner/banner.png); ;
+  }
+  50%{
+    background-image:url(../img/banner/img-2.jpg); ;
+  }
+  100%{
+    background-image:url(../img/banner/img-3.jpg); ;
+
+  }
 }
 
 .slider_bg_2 {
@@ -3284,70 +3285,48 @@ h3 {
 }
 @media (min-width: 992px) and (max-width: 1200px) {
     .recepie_area {
-        padding-top: 100px;
-        padding-bottom: 50px;
-    }
-}
-.recepie_area.plus_padding {
-    padding-bottom: 150px;
-}
-@media (min-width: 768px) and (max-width: 991px) {
-    .recepie_area.plus_padding {
-        padding-bottom: 50px;
-    }
-}
-@media (max-width: 767px) {
-    .recepie_area.plus_padding {
-        padding-bottom: 0;
-    }
-}
-.recepie_area.plus_padding .single_recepie {
-    margin-bottom: 80px;
-}
-@media (max-width: 767px) {
+      padding-top: 100px;
+      padding-bottom: 50px; } }
+  .recepie_area.plus_padding {
+    padding-bottom: 150px; }
+    @media (min-width: 768px) and (max-width: 991px) {
+      .recepie_area.plus_padding {
+        padding-bottom: 50px; } }
+    @media (max-width: 767px) {
+      .recepie_area.plus_padding {
+        padding-bottom: 0; } }
     .recepie_area.plus_padding .single_recepie {
-        margin-bottom: 40px;
-    }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-    .recepie_area.plus_padding .single_recepie {
-        margin-bottom: 50px;
-    }
-}
-.recepie_area.inc_padding {
-    padding-bottom: 150px;
-}
-@media (min-width: 992px) and (max-width: 1200px) {
-    .recepie_area.inc_padding {
-        padding-bottom: 100px;
-    }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-    .recepie_area.inc_padding {
-        padding-bottom: 50px;
-    }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-    .recepie_area.inc_padding {
-        padding-bottom: 50px;
-    }
-}
-@media (max-width: 767px) {
-    .recepie_area.inc_padding {
-        padding-bottom: 50px;
-    }
-}
-.recepie_area .single_recepie {
-    margin-bottom: 50px;
-}
-.recepie_area .single_recepie .recepie_thumb {
-    max-width: 300px;
-    max-height: 300px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: auto;
-    animation: spin 3s;
-}
+      margin-bottom: 80px; }
+      @media (max-width: 767px) {
+        .recepie_area.plus_padding .single_recepie {
+          margin-bottom: 40px; } }
+      @media (min-width: 768px) and (max-width: 991px) {
+        .recepie_area.plus_padding .single_recepie {
+          margin-bottom: 50px; } }
+  .recepie_area.inc_padding {
+    padding-bottom: 150px; }
+    @media (min-width: 992px) and (max-width: 1200px) {
+      .recepie_area.inc_padding {
+        padding-bottom: 100px; } }
+    @media (min-width: 768px) and (max-width: 991px) {
+      .recepie_area.inc_padding {
+        padding-bottom: 50px; } }
+    @media (min-width: 768px) and (max-width: 991px) {
+      .recepie_area.inc_padding {
+        padding-bottom: 50px; } }
+    @media (max-width: 767px) {
+      .recepie_area.inc_padding {
+        padding-bottom: 50px; } }
+  .recepie_area .single_recepie {
+    margin-bottom: 50px; }
+    .recepie_area .single_recepie .recepie_thumb {
+      max-width: 300px;
+      max-height: 300px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: auto;
+      animation: spin 3s;
+ }
 
 @keyframes spin {
     from {
@@ -6348,3 +6327,39 @@ h6 {
     z-index: 5;
 }
 
+
+
+        .fade-in {
+            opacity: 1;
+            animation-name: fadeInOpacity;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in;
+            animation-duration: 0.5s;
+        }
+
+        @keyframes fadeInOpacity {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+
+        .fade-in {
+            opacity: 1;
+            animation-name: fadeInOpacity;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in;
+            animation-duration: 0.5s;
+        }
+
+        @keyframes fadeInOpacity {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }

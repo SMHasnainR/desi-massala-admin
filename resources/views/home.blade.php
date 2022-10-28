@@ -29,6 +29,7 @@
             </div>
         </div>
     </div>
+    <!-- slider_area_end -->
 
     <!-- recepie_area_start  -->
     <div class="recepie_area">
@@ -37,11 +38,11 @@
                 @foreach ($recipes as $recipe)
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="single_recepie text-center">
-                            <div class="recepie_thumb">
+                            <div class="recipe_img recepie_thumb">
                                 <img src="{{ url('') }}/assets/img/recipe/{{ $recipe->image_url }}"
                                     class="recepie_thumb" alt="">
                             </div>
-                            <h3 class="title pointer" data-toggle="modal" data-target="#exampleModalshort" role='button'>
+                            <h3 class="title pointer modal-open" data-id="{{ $recipe->id }} "data-toggle="modal" data-target="#exampleModalLong" role='button'>
                                 {{ $recipe->name }}</h3>
                             <span>{{ $recipe->category->name }}</span>
                             <p>Time Needs: {{ $recipe->time_from }} - {{ $recipe->time_to }} mins</p>
@@ -240,4 +241,14 @@
         </div>
     </div>
     <!--/ latest_trand     -->
+@endsection
+
+@section('end-script')
+    <script>
+        $('.modal-open').on('click', function(){
+
+            let id =  $(this).data('id');
+
+        });
+    </script>
 @endsection
