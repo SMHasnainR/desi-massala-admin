@@ -1,21 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- slider_area_start -->
-    <div class="slider_area">
-        <div class="single_slider  d-flex align-items-center slider_bg_1">
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-xl-8 ">
-                        <div class="slider_text text-center">
-                            <div class="text">
-                                <h3>
-                                    Chicken dish with per boiled egg
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+    {{-- Slider --}}
+    <div class="nav-overlay">
+
+    </div>
+    <div class="slider_text text-center w-100">
+        <div class="col-8">
+            <h3>
+                Chicken dish with per boiled egg
+            </h3>
+        </div>
+    </div>
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item ">
+                <img class="d-block w-100" src="{{ url('') }}/assets/img/banner/banner-r.jpg" alt="Third slide">
+            </div>
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="{{ url('') }}/assets/img/banner/shahi-haleem-mix-banner.jpg"
+                    alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100"
+                    src="{{ url('') }}/assets/img/banner/depositphotos_308863016-stock-photo-cooking-banner-food-top-view.jpg"
+                    alt="Second slide">
             </div>
         </div>
     </div>
@@ -81,7 +91,7 @@
     <!-- /recepie_area_start  -->
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    <div class="modal fade" id="exampleModalshort" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -231,7 +241,6 @@
         </div>
     </div>
     <!--/ latest_trand     -->
-
 @endsection
 
 @section('end-script')
