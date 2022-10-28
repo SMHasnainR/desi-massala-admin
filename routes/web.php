@@ -91,6 +91,7 @@ Route::get('', [HomeController::class, 'home'])->name('home');
 Route::get('about', [HomeController::class, 'about'])->name('about');
 Route::get('recipes', [RecipeController::class, 'index'])->name('recipes');
 Route::get('recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
+Route::get('/modal/recipes/{recipe}', [RecipeController::class, 'getModalDetails'])->name('recipes.modal.details');
 
 
 Route::get('recipe-detail', function(){
