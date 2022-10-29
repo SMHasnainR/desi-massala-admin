@@ -1172,6 +1172,10 @@ h3 {
     }
 }
 
+.header-area .main-header-area.sticky .main-menu ul li a {
+    color: #fff;
+}
+
 .header-area .main-header-area.sticky .header_bottom_border {
     border-bottom: none;
 }
@@ -4155,7 +4159,7 @@ h3 {
 }
 
 .latest_trand_area {
-    background-image: url(../assets/img/banner/banner.png);
+    background-image: url(../assets/img/recepie/banner.png);
     padding: 150px 0;
     background-size: cover;
     background-position: center;
