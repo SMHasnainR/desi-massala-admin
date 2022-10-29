@@ -62,7 +62,7 @@
                                         <li><a href="{{route('home')}}">home</a></li>
                                         <li><a href="{{ route('about') }}">about</a></li>
                                         <li><a href="{{ route('recipes') }}">Recipes</a></li>
-                                        <li><a href="{{ route('contact') }}">Veg Recipes</i></a></li>
+                                        <li><a href="{{ route('recipes.vegetables') }}">Veg Recipes</i></a></li>
                                         <li><a href="{{ route('contact') }}">Healthy Living</a></li>
                                         <li><a href="{{ route('contact') }}">Contact</a></li>
                                     </ul>
@@ -73,11 +73,11 @@
                             <a href="#" class="line_btn text-white" data-toggle="modal" data-target="#exampleModalLong" role='button' >Add Your Recipe</a>
                         </div>
                         <div class="col-1 d-none d-lg-block">
-                            <div class="search_icon m-0 w-100 ">
+                            {{-- <div class="search_icon m-0 w-100 ">
                                 <a href="#">
                                     <i class="fa fa-search text-white"></i>
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
@@ -333,12 +333,12 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        }); 
+        });
     </script>
 
 
 
-    @yield('end-script');
+    @yield('end-script')
     <!-- JS here -->
     <!-- <script src="js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="js/vendor/jquery-1.12.4.min.js"></script>

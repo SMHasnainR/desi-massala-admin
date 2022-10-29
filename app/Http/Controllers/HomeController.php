@@ -19,8 +19,9 @@ class HomeController extends Controller
 
     //
     public function about(){
+        $categories = Category::all();
 
-        return view('about');
+        return view('about', compact('categories'));
     }
     //
     public function recipes(){
@@ -38,7 +39,7 @@ class HomeController extends Controller
 
     //
     public function contact(){
-
-        return view('contact');
+        $categories = Category::all();
+        return view('contact',compact('categories'));
     }
 }
