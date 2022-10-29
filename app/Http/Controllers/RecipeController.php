@@ -48,4 +48,5 @@ class RecipeController extends Controller
 
         return response()->json($response);
     }
+
 }

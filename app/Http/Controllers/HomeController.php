@@ -42,4 +42,9 @@ class HomeController extends Controller
         $categories = Category::all();
         return view('contact',compact('categories'));
     }
+
+    public function healthy(){
+
+        return view('healthyliving');
+    }
 }

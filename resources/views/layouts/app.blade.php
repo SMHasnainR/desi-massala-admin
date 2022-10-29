@@ -63,7 +63,7 @@
                                         <li><a href="{{ route('about') }}">about</a></li>
                                         <li><a href="{{ route('recipes') }}">Recipes</a></li>
                                         <li><a href="{{ route('recipes.vegetables') }}">Veg Recipes</i></a></li>
-                                        <li><a href="{{ route('contact') }}">Healthy Living</a></li>
+                                        <li><a href="{{ route('healthy') }}">Healthy Living</a></li>
                                         <li><a href="{{ route('contact') }}">Contact</a></li>
                                     </ul>
                                 </nav>
