@@ -613,6 +613,10 @@ h3 {
     padding-bottom: 2px;
 }
 
+.header-area .line_btn{
+    border: 2px solid var(--primary-color);
+}
+
 .line-button::before {
     position: absolute;
     content: "";
@@ -1064,8 +1068,8 @@ h3 {
     transform: scaleX(1);
 }
 
-.header-area .main-header-area .main-menu ul li a:hover {
-    color: #000;
+.header-area .main-menu ul li a:hover {
+    color: var(--primary-color);
 }
 
 .header-area .main-header-area .main-menu ul li .submenu {
@@ -1167,11 +1171,7 @@ h3 {
         padding: 10px 0px;
     }
 }
-
-.header-area .main-header-area.sticky .main-menu ul li a {
-    color: #fff;
-}
-
+/* g
 .header-area .main-header-area.sticky .header_bottom_border {
     border-bottom: none;
 }
