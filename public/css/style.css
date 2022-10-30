@@ -4,6 +4,7 @@
 :root {
     --primary-color: #ffc000;
     --secondary-color: #52ab98;
+    
 }
 
 .boxed-btn3-text:hover {
@@ -4159,7 +4160,7 @@ h3 {
 }
 
 .latest_trand_area {
-    background-image: url(../assets/img/recepie/banner.png);
+    background-image: url(../assets/img/banner/banner.png);
     padding: 150px 0;
     background-size: cover;
     background-position: center;

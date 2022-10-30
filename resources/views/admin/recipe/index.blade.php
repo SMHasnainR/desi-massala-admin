@@ -258,8 +258,9 @@
 
             // DataTable Config
             let table = $('.data-table').DataTable({
-                responsive: true,
+                // responsive: true,
                 processing: true,
+                scrollX: true,
                 serverSide: true,
                 ajax: "{{ route($route) }}",
                 columns:[
