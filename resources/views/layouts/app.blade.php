@@ -42,6 +42,17 @@
 
 <body>
 
+    @if (session('success'))
+        <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success"
+            role="alert">
+            <span class="alert-text text-white">
+                {{ session('success') }}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <i class="fa fa-close" aria-hidden="true"></i>
+            </button>
+        </div>
+    @endif
+
     <!-- header-start -->
     <header>
         <div class="header-area ">
@@ -72,7 +83,7 @@
                             </div>
                         </div>
                         <div>
-                            <a href="#" class="line_btn text-white" data-toggle="modal"
+                            <a href="#" class="line_btn btn-primary text-white" data-toggle="modal"
                                 data-target="#exampleModalLong" role='button'>Add Your Recipe</a>
                         </div>
                         <div class="col-1 d-none d-lg-block">
@@ -117,7 +128,7 @@
                                 </button>
                             </div>
                         @endif
-                        @if (session('success'))
+                        {{-- @if (session('success'))
                             <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success"
                                 role="alert">
                                 <span class="alert-text text-white">
@@ -126,7 +137,7 @@
                                     <i class="fa fa-close" aria-hidden="true"></i>
                                 </button>
                             </div>
-                        @endif
+                        @endif --}}
                         <div class="row">
 
                             <div class="col-12">
