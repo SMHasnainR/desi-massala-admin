@@ -44,7 +44,7 @@ class HomeController extends Controller
     }
 
     public function healthy(){
-
-        return view('healthyliving');
+        $categories = Category::all();
+        return view('healthyliving', compact('categories'));
     }
 }

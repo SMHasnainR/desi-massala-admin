@@ -22,6 +22,10 @@
     /* IE6-9 */
 }
 
+span, p{
+    color: var(--secondary-color);
+}
+
 /* Normal desktop :1200px. */
 /* Normal desktop :992px. */
 /* Tablet desktop :768px. */
@@ -1746,7 +1750,8 @@ h3 {
 }
 
 .recepie_details_area {
-    padding-top: 200px;
+    /* padding-top: 200px; */
+    padding: 100px 50px;
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
@@ -1794,38 +1799,12 @@ h3 {
 
 .recepie_details_area .recepies_info h3 {
     font-size: 30px;
-    color: #222222;
     margin-bottom: 23px;
 }
 
 .recepie_details_area .recepies_info p {
     color: var(--);
     font-size: 14px;
-}
-
-.recepie_details_area .recepies_info .resepies_details {
-    margin-top: 38px;
-    margin-bottom: 30px;
-}
-
-.recepie_details_area .recepies_info .resepies_details ul li p {
-    color: var(--);
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-}
-
-.recepie_details_area .recepies_info .resepies_details ul li p strong {
-    width: 100px;
-    color: #000000;
-    font-size: 14px;
-    font-weight: 500;
-    display: inline-block;
-}
-
-.recepie_details_area .recepies_info .resepies_details ul li p i {
-    color: #ffcc00;
 }
 
 .recepie_details_area .recepies_info .links a {
@@ -7291,4 +7270,60 @@ h6 {
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    var(--light-secondary-color) !important;
+}
+
+.recipe_img{
+    /* -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1); */
+    /* -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1); */
+    /* box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1); */
+    box-shadow: 2px 5px 5px 2px rgba(0,0,0,0.36);
+}
+
+.recepies_text{
+    color: var(--secondary-color)
+}
+
+.recipe-main-img img{
+    width: 100%;
+    /* height: 100%; */
+    max-height: 400px;
+    min-height: 350px;
+    border-radius: 10px;
+}
+.recipe-main-img{
+    padding: 0px 40px;
+}
+
+.recipe-title h1{
+    font-size: 48px;
+}
+
+.recepie_details_area .recepies_info .resepies_details {
+    margin-top: 38px;
+    margin-bottom: 30px;
+}
+
+.recepies_details ul li p {
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.recepies_details ul li p strong {
+    width: 100px;
+    color: var(--secondary-color);
+    font-weight: 500;
+    display: inline-block;
+}
+.recepies_details ul li p{
+    font-size: 16px !important;
+}
+
+.recepies_details ul li p i {
+    color: var(--secondary-color);
+}
+
+.recepies_details{
+    padding: 30px 0px;
 }

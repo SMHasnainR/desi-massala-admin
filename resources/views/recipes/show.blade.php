@@ -20,34 +20,38 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-6 col-md-6">
-                    <div class="recepies_thumb">
+                    <div class="recipe-main-img">
                         <img src="{{ url('') }}/assets/img/recipe/{{ $recipe->image_url }}" alt="">
                     </div>
                 </div>
                 <div class="col-xl-6 col-md-6">
                     <div class="recepies_info">
-                        <h3>{{$recipe->name}}</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                        <div class="recipe-title">
+                            <h1>
+                                {{$recipe->name}}
+                            </h1>
+                        </div>
 
-                        <div class="resepies_details">
+                        {{-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p> --}}
+
+                        <div class="recepies_details">
                             <ul>
-                                {{-- <li><p><strong>Rating</strong> : <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> </p></li> --}}
                                 <li><p><strong>Time</strong> : {{ $recipe->time_from}} - {{$recipe->time_to}} Mins </p></li>
                                 <li><p><strong>Category</strong> : {{ $recipe->category->name }} </p></li>
-                                {{-- <li><p><strong>Tags</strong> :  Dinner, Main, Chicken, Dragon, Phoenix </p></li> --}}
                             </ul>
                         </div>
-                        <div class="links">
+                        {{-- <div class="links">
                             <a href="#"> <i class="fa fa-facebook"></i> </a>
                             <a href="#"> <i class="fa fa-twitter"></i> </a>
                             <a href="#"> <i class="fa fa-linkedin"></i> </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xl-12">
+            <div class="row mt-5">
+                <div class="col-xl-12 my-5">
                     <div class="recepies_text">
+                        <h1 class='mb-5' >Descirption: </h1>
                         {!! $recipe->details !!}
                     </div>
                 </div>
@@ -56,7 +60,7 @@
     </div>
 
     <!-- recepie_area_start  -->
-    <div class="recepie_area inc_padding">
+    {{-- <div class="recepie_area inc_padding">
         <div class="container">
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -94,7 +98,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- /recepie_area_start  -->
 
 
