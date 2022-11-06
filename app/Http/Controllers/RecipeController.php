@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Category;
 use App\Models\Recipe;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
@@ -48,4 +50,48 @@ class RecipeController extends Controller
 
         return response()->json($response);
     }
+
+
+    public function store(Request $request){
+
+        $isAdmin = Auth::check();
+        
+        $request->validate([
+            'name' =>'required',
+            'category_id' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120|dimensions:max_width=1000,max_height=1000',
+            'time_from' => 'required|max:300',
+            'time_to' => 'required|max:300',
+            'details' => 'required|min:10'
+        ]);
+
+        if(!$isAdmin){
+            $request->validate([
+                'author_name' => 'required|max:100',
+            ]);
+        }
+
+        $extraData = [
+            'author' =>  $isAdmin ? auth()->user()->name : $request->author_name,
+            'type' =>  $isAdmin ? 'admin' : 'user',
+            'status' => $isAdmin ? '1' : '0'
+        ];
+
+        // Uploading Image file
+        if($request->image){
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('assets/img/recipe'), $imageName);
+            $extraData['image_url'] =  $imageName;
+        }
+
+        // Storing Image data into DB
+        try{
+            Recipe::create($extraData + $request->all());
+        } catch(Exception $e){
+            return redirect()->back()->with('error','Error creating recipe:'.$e->getMessage());
+        }
+
+        return redirect()->back()->with('success','Recipe has been created successfully');
+    }
+
 }

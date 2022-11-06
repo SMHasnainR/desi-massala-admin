@@ -26,7 +26,7 @@ class RecipeController extends Controller
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->editColumn('name', '<h6 class="mb-0 text-sm">{{$name}}</h6>')
-                    ->editColumn('image','<img src="../assets/img/recipe/{{ $image_url }}" class="avatar avatar-sm me-3" alt="xd">')
+                    ->editColumn('image','<img src="{{ url("") }}/assets/img/recipe/{{ $image_url }}" class="avatar avatar-sm me-3" alt="xd">')
                     ->editColumn('author', '<span class="text-sm font-weight-bold">{{ $author }}</span>')
                     ->editColumn('type', function($query){
                         return $query->type == 'admin' ?
@@ -61,39 +61,6 @@ class RecipeController extends Controller
         $categories = Category::all();
 
         return view('admin.recipe.add',compact('categories'));
-    }
-
-    public function store(Request $request){
-        $request->validate([
-            'name' =>'required',
-            'category_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120|dimensions:max_width=1000,max_height=1000',
-            'time_from' => 'required|max:300',
-            'time_to' => 'required|max:300',
-            'details' => 'required|min:10'
-        ]);
-
-        $extraData = [
-            'author' => auth()->user()->name,
-            'type' => 'admin',
-            'status' => '1'
-        ];
-
-        // Uploading Image file
-        if($request->image){
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('assets/img/recipe'), $imageName);
-            $extraData['image_url'] =  $imageName;
-        }
-
-        // Storing Image data into DB
-        try{
-            Recipe::create($extraData + $request->all());
-        } catch(Exception $e){
-            return redirect()->route('recipes.index')->with('error','Error creating recipe:'.$e->getMessage());
-        }
-
-        return redirect()->route('recipes.index')->with('success','Recipe has been created successfully');
     }
 
 

@@ -32,29 +32,21 @@ Route::prefix('admin')->group(function(){
 	Route::group(['middleware' => 'auth'], function () {
 
 		Route::get('/', [AdminController::class, 'home']);
-
 		Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
         // Recipe's Contorller
         Route::get('recipes', [AdminRecipeController::class, 'index'])->name('recipes.index');
         Route::get('recipes/user', [AdminRecipeController::class, 'index'])->name('recipes.user');
-
         Route::get('recipes/create', [AdminRecipeController::class, 'create'])->name('recipes.create');
-		Route::post('recipes', [AdminRecipeController::class, 'store'])->name('recipes.store');
 		Route::get('recipes/{recipe}/edit', [AdminRecipeController::class, 'edit'])->name('recipes.edit');
 		Route::post('recipe/{recipe}/update', [AdminRecipeController::class, 'update'])->name('recipes.update');
 		Route::post('recipe/{recipe}/delete', [AdminRecipeController::class, 'destroy'])->name('recipe.destroy');
 		Route::post('recipe/{recipe}/status', [AdminRecipeController::class, 'updateStatus'])->name('recipe.status');
-
-		// Route::post('recipe/upload', [RecipeController::class, 'uploadImage'])->name('upload-image');
-
 		Route::get('user-recipes', [RecipeController::class, 'userRecipe'])->name('user-recipes');
 		Route::get('banners', [AdminController::class, 'banners'])->name('banners');
-
 		Route::get('user-management', function () {
 			return view('laravel-examples/user-management');
 		})->name('user-management');
-
 		Route::get('static-sign-in', function () {
 			return view('static-sign-in');
 		})->name('sign-in');
@@ -83,22 +75,22 @@ Route::prefix('admin')->group(function(){
 		return view('session/login-session');
 	})->name('login');
 
-
 });
 
 
-Route::get('', [HomeController::class, 'home'])->name('home');
-Route::get('about', [HomeController::class, 'about'])->name('about');
-Route::get('recipes', [RecipeController::class, 'index'])->name('recipes');
-Route::get('recipes/vegetables', [RecipeController::class, 'vegRecipes'])->name('recipes.vegetables');
-Route::get('recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
-Route::get('/modal/recipes/{recipe}', [RecipeController::class, 'getModalDetails'])->name('recipes.modal.details');
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('', [HomeController::class, 'home'])->name('home');
+    Route::get('about', [HomeController::class, 'about'])->name('about');
+    Route::get('recipes', [RecipeController::class, 'index'])->name('recipes');
+    Route::get('recipes/vegetables', [RecipeController::class, 'vegRecipes'])->name('recipes.vegetables');
+    Route::get('recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
+    Route::get('modal/recipes/{recipe}', [RecipeController::class, 'getModalDetails'])->name('recipes.modal.details');
+    Route::get('healthy-living', [HomeController::class, 'healthy'])->name('healthy');
+    Route::get('recipe-detail', function(){
+        return view('recipes_details');
+    })->name('recipes-details');
+    Route::get('veg-recipes', [HomeController::class, 'vegRecipes'])->name('veg-recipes');
+    Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+});
 
-
-Route::get('recipe-detail', function(){
-    return view('recipes_details');
-})->name('recipes-details
-');
-Route::get('veg-recipes', [HomeController::class, 'vegRecipes'])->name('veg-recipes');
-Route::get('healthy-living', [HomeController::class, 'healthyLiving'])->name('healthy-living');
-Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+Route::post('recipes', [RecipeController::class, 'store'])->name('recipes.store');

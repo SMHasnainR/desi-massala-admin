@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            <button type="submit" class="button button-contactForm btn_4 boxed-btn">Send Message</button>
+                            <button type="submit" class="button button-contactForm btn_4 boxed-btn btn-secondary">Send Message</button>
                         </div>
                     </form>
                 </div>

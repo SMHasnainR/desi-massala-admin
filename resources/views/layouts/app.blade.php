@@ -19,7 +19,8 @@
 
     <!-- CSS Packages/Library -->
     <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url('') }}/css/style.css">
 
     {{-- <link rel="stylesheet" href="{{ url('') }}/css/slick.css">
@@ -41,6 +42,17 @@
 
 <body>
 
+    @if (session('success'))
+        <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success"
+            role="alert">
+            <span class="alert-text text-white">
+                {{ session('success') }}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <i class="fa fa-close" aria-hidden="true"></i>
+            </button>
+        </div>
+    @endif
+
     <!-- header-start -->
     <header>
         <div class="header-area ">
@@ -51,7 +63,8 @@
                             <div class="logo">
                                 <a href="index.html">
                                     <!-- <img src="img/logo.png" alt=""> -->
-                                    <img src="{{url('')}}/assets/img/logos/dallas_logo.png" height="80" width="80" alt="">
+                                    <img src="{{ url('') }}/assets/img/logos/dallas_logo.png" height="80"
+                                        width="80" alt="">
                                 </a>
                             </div>
                         </div>
@@ -59,18 +72,19 @@
                             <div class="main-menu d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="{{route('home')}}">home</a></li>
+                                        <li><a href="{{ route('home') }}">home</a></li>
                                         <li><a href="{{ route('about') }}">about</a></li>
                                         <li><a href="{{ route('recipes') }}">Recipes</a></li>
                                         <li><a href="{{ route('recipes.vegetables') }}">Veg Recipes</i></a></li>
-                                        <li><a href="{{ route('healthyliving') }}">Healthy Living</a></li>
+                                        <li><a href="{{ route('healthy') }}">Healthy Living</a></li>
                                         <li><a href="{{ route('contact') }}">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                         <div>
-                            <a href="#" class="line_btn text-white" data-toggle="modal" data-target="#exampleModalLong" role='button' >Add Your Recipe</a>
+                            <a href="#" class="line_btn btn-primary text-white" data-toggle="modal"
+                                data-target="#exampleModalLong" role='button'>Add Your Recipe</a>
                         </div>
                         <div class="col-1 d-none d-lg-block">
                             {{-- <div class="search_icon m-0 w-100 ">
@@ -90,110 +104,126 @@
     </header>
     <!-- header-end -->
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog " role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Add Your Recipe</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body pt-4 p-3">
-            <form action="{{ route('recipes.store') }}" method="POST" role="form text-left" enctype="multipart/form-data">
-                @csrf
-                @if ($errors->any())
-                    <div class="mt-3  alert alert-danger alert-dismissible fade show" role="alert">
-                        <span class="alert-text text-white">
-                            {{ $errors->first() }}</span>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                @endif
-                @if (session('success'))
-                    <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success"
-                        role="alert">
-                        <span class="alert-text text-white">
-                            {{ session('success') }}</span>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                @endif
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="name" class="form-control-label"> Recipe Name: </label>
-                            <div class="@error('name')border border-danger rounded-3 @enderror">
-                                <input class="form-control" value="" type="text" placeholder="Recipe Name"
-                                    id="name" name="name" required>
-                                @error('name')
-                                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="category" class="form-control-label">Category: </label>
-                            <div class="@error('category_id')border border-danger rounded-3 @enderror">
-                                <select class="form-control" id="category" name="category_id" required >
-                                    <option disabled selected>-- Select Category --</option>
-                                    @foreach($categories as $category)
-                                        <option class='' value="{{$category->id}}" >{{$category->name}}</option>
-                                    @endforeach
-                                </select>
-                                @error('category_id')
-                                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="time" class="form-control-label">Time: </label>
-                            <div
-                                class="d-flex justify-content-between align-items-center @error('time_from', 'time_to') border border-danger rounded-3 @enderror">
-                                <input class="form-control w-25" type="number" id="time_from" name="time_from"
-                                    value="" required> -
-                                <input class="form-control w-25" type="number" id="time_to" name="time_to"
-                                    value=""required> mins
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="image" class="form-control-label">Main Image: </label>
-                            <div
-                                class="d-flex justify-content-between align-items-center @error('image') border border-danger rounded-3 @enderror">
-                                <input class="form-control" type="file" id="image" name="image"
-                                    value=""> -
-                            </div>
-                        </div>
-                        <div class='form-group mx-5'>
-                            <img id='img-preview' src="#" class="img-thumbnail" alt="">
-                        </div>
-                    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Your Recipe</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <div class="modal-body pt-4 p-3">
+                    <form id='add-recipe-form' action="{{ route('recipes.store') }}" method="POST" role="form text-left"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @if ($errors->any())
+                            <div class="mt-3  alert alert-danger alert-dismissible fade show" role="alert">
+                                <span class="alert-text text-white">
+                                    {{ $errors->first() }}</span>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                    <i class="fa fa-close" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        @endif
+                        {{-- @if (session('success'))
+                            <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success"
+                                role="alert">
+                                <span class="alert-text text-white">
+                                    {{ session('success') }}</span>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                    <i class="fa fa-close" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        @endif --}}
+                        <div class="row">
 
-                <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="author_name" class="form-control-label"> Name: </label>
+                                    <div class="@error('author_name')border border-danger rounded-3 @enderror">
+                                        <input class="form-control" value="" type="text"
+                                            placeholder="Enter Your Name" id="author_name" name="author_name" required>
+                                        @error('author_name')
+                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name" class="form-control-label"> Recipe Name: </label>
+                                    <div class="@error('name')border border-danger rounded-3 @enderror">
+                                        <input class="form-control" value="" type="text"
+                                            placeholder="Recipe Name" id="name" name="name" required>
+                                        @error('name')
+                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="category" class="form-control-label">Category: </label>
+                                    <div class="@error('category_id')border border-danger rounded-3 @enderror">
+                                        <select class="form-control" id="category" name="category_id" required>
+                                            <option disabled selected>-- Select Category --</option>
+                                            @foreach ($categories as $category)
+                                                <option class='' value="{{ $category->id }}">
+                                                    {{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('category_id')
+                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="time" class="form-control-label">Time: </label>
+                                    <div
+                                        class="d-flex justify-content-between align-items-center @error('time_from', 'time_to') border border-danger rounded-3 @enderror">
+                                        <input class="form-control w-25" type="number" id="time_from"
+                                            name="time_from" value="" required> -
+                                        <input class="form-control w-25" type="number" id="time_to"
+                                            name="time_to" value=""required> mins
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="image" class="form-control-label">Main Image: </label>
+                                    <div
+                                        class="d-flex justify-content-between align-items-center @error('image') border border-danger rounded-3 @enderror">
+                                        <input class="form-control" type="file" id="image" name="image"
+                                            value=""> -
+                                    </div>
+                                </div>
+                                <div class='form-group mx-5'>
+                                    <img id='img-preview' src="#" class="img-thumbnail" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                        </div>
+                        <div class="form-group">
+                            <label for="summernote">Recipe: </label>
+                            <div class="@error('details')border border-danger rounded-3 @enderror">
+                                <textarea class="form-control" id="summernote" rows="4" placeholder="Recipe Details..." name="details"></textarea>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="summernote">Recipe: </label>
-                    <div class="@error('details')border border-danger rounded-3 @enderror">
-                        <textarea class="form-control" id="summernote" rows="4" placeholder="Recipe Details..." name="details"></textarea>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="add-recipe-btn" type="button" class="btn btn-primary">Save changes</button>
                 </div>
-            </form>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-  </div>
 
     @yield('content')
 
@@ -281,10 +311,12 @@
                     <div class="col-xl-8 col-md-8">
                         <p class="copy_right">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>
+                            Copyright &copy;
+                            <script>
                                 document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            </script> All rights reserved | This template is made with <i
+                                class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>
@@ -344,8 +376,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="{{ url('') }}/js/main.js"></script>
     {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
 
 
 
@@ -355,6 +391,12 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        $(document).ready(function() {
+            $('#add-recipe-btn').on('click', function(){
+                $('#add-recipe-form').submit();
+            });
+        })
     </script>
 
 
