@@ -63,7 +63,7 @@
                                         <li><a href="{{ route('about') }}">about</a></li>
                                         <li><a href="{{ route('recipes') }}">Recipes</a></li>
                                         <li><a href="{{ route('recipes.vegetables') }}">Veg Recipes</i></a></li>
-                                        <li><a href="{{ route('contact') }}">Healthy Living</a></li>
+                                        <li><a href="{{ route('healthyliving') }}">Healthy Living</a></li>
                                         <li><a href="{{ route('contact') }}">Contact</a></li>
                                     </ul>
                                 </nav>
@@ -198,7 +198,7 @@
     @yield('content')
 
     <!-- footer  -->
-    <footer class="footer">
+    {{-- <footer class="footer">
         <div class="footer_top">
             <div class="container">
                 <div class="row">
@@ -316,6 +316,27 @@
                     </div>
                 </div>
             </div>
+        </div>
+                    <li></li>
+    </footer> --}}
+
+    <footer class="footer ">
+        <div class="d-flex flex-column justify-content-center align-items-center pd-5">
+            <div>
+              <img src="{{url('')}}/assets/img/logos/dallas_logo.png" height="80" width="80" alt="">
+            </div>
+            <div class="d-flex flex-row justify-content-around footer-items pd-5">
+                    <a href="">About us</a>
+                    <a href="">Team</a>
+                    <a href="">Careers</a>
+                    <a href="">Socials</a>
+                    <a href="">Activity</a>
+                    <a href="">License</a>
+                    <a href="">Refunds</a>
+                    <a href="">Cookies</a>
+                </ul>
+            </div>
+            <div class="pd-5"><p>Copyright 2022 Dallas Desi Masala</p></div>
         </div>
     </footer>
     <!--/ footer  -->
