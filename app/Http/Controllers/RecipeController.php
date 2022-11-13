@@ -13,10 +13,10 @@ class RecipeController extends Controller
 {
 
     public function index(){
-        $recipes =  Recipe::where('status', 1)->get()->take(9);
-        $title = 'Vegetable Recipes';
-
-
+        $recipes =  Recipe::whereHas('category', function(Builder $query){
+            $query->where('name','<>','Vegetable');
+        })->where('status', 1)->get()->take(9);
+        $title = 'Our  Recipes';
 
         $categories = Category::all();
         return view('recipes.index', compact('recipes','categories','title'));
@@ -55,7 +55,7 @@ class RecipeController extends Controller
     public function store(Request $request){
 
         $isAdmin = Auth::check();
-        
+
         $request->validate([
             'name' =>'required',
             'category_id' => 'required',

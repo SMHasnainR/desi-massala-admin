@@ -39,6 +39,9 @@ body {
     background-color: var(--light-primary-color);
 }
 
+section{
+    padding: 120px 0px;
+}
 .img {
     max-width: 100%;
     -webkit-transition: 0.3s;
@@ -3662,8 +3665,8 @@ h3 {
 }
 
 .recepie_area {
-    padding-top: 140px;
-    padding-bottom: 50px;
+    /* padding-top: 140px; */
+    /* padding-bottom: 50px; */
 }
 
 @media (max-width: 767px) {
@@ -3757,7 +3760,7 @@ h3 {
     border-radius: 50%;
     overflow: hidden;
     margin: auto;
-    animation: spin 3s;
+    /* animation: spin 3s; */
 }
 
 @keyframes spin {
@@ -7253,6 +7256,16 @@ h6 {
     background-color: var(--primary-color)
 }
 
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: var(--light-primary-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary, .btn-secondary{
+    box-shadow: none !important;
+}
+
 .btn-secondary{
     background-color: transparent;
     border-color: var(--secondary-color);
@@ -7262,6 +7275,12 @@ h6 {
     color: var(--light-secondary-color);
     background-color: var(--secondary-color);
     border-color: var(--secondary-color) !important;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+    color: var(--light-primary-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .text-white{
