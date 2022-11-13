@@ -43,8 +43,7 @@
 <body>
 
     @if (session('success'))
-        <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success"
-            role="alert">
+        <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
             <span class="alert-text text-white">
                 {{ session('success') }}</span>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
@@ -59,7 +58,7 @@
             <div id="sticky-header" class="main-header-area ">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-xl-3 col-lg-2">
+                        <div class="col-xl-2 col-lg-2">
                             <div class="logo">
                                 <a href="index.html">
                                     <!-- <img src="img/logo.png" alt=""> -->
@@ -68,16 +67,18 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-lg-7">
+                        <div class="col-xl-7 col-lg-10 mr-3">
                             <div class="main-menu d-none d-lg-block">
                                 <nav>
-                                    <ul id="navigation">
+                                    <ul id="navigation" class="w-100">
                                         <li><a href="{{ route('home') }}">home</a></li>
                                         <li><a href="{{ route('about') }}">about</a></li>
                                         <li><a href="{{ route('recipes') }}">Recipes</a></li>
                                         <li><a href="{{ route('recipes.vegetables') }}">Veg Recipes</i></a></li>
                                         <li><a href="{{ route('healthy') }}">Healthy Living</a></li>
                                         <li><a href="{{ route('contact') }}">Contact</a></li>
+                                        <li><a href="{{ route('contact') }}">User Recipe</a></li>
+
                                     </ul>
                                 </nav>
                             </div>
@@ -116,8 +117,8 @@
                     </button>
                 </div>
                 <div class="modal-body pt-4 p-3">
-                    <form id='add-recipe-form' action="{{ route('recipes.store') }}" method="POST" role="form text-left"
-                        enctype="multipart/form-data">
+                    <form id='add-recipe-form' action="{{ route('recipes.store') }}" method="POST"
+                        role="form text-left" enctype="multipart/form-data">
                         @csrf
                         @if ($errors->any())
                             <div class="mt-3  alert alert-danger alert-dismissible fade show" role="alert">
@@ -145,7 +146,8 @@
                                     <label for="author_name" class="form-control-label"> Name: </label>
                                     <div class="@error('author_name')border border-danger rounded-3 @enderror">
                                         <input class="form-control" value="" type="text"
-                                            placeholder="Enter Your Name" id="author_name" name="author_name" required>
+                                            placeholder="Enter Your Name" id="author_name" name="author_name"
+                                            required>
                                         @error('author_name')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                         @enderror
@@ -353,22 +355,28 @@
     </footer> --}}
 
     <footer class="footer ">
-        <div class="d-flex flex-column justify-content-center align-items-center pd-5">
+        <div class="d-flex flex-column justify-content-center align-items-center pd-5 footer-col">
             <div>
-              <img src="{{url('')}}/assets/img/logos/dallas_logo.png" height="80" width="80" alt="">
+                <img src="{{ url('') }}/assets/img/logos/dallas_logo.png" height="80" width="80"
+                    alt="">
             </div>
-            <div class="d-flex flex-row justify-content-around footer-items pd-5">
-                    <a href="">About us</a>
-                    <a href="">Team</a>
-                    <a href="">Careers</a>
-                    <a href="">Socials</a>
-                    <a href="">Activity</a>
-                    <a href="">License</a>
-                    <a href="">Refunds</a>
-                    <a href="">Cookies</a>
-                </ul>
+            <div class="footer-items justify-content-center w-100">
+
+                <a href="">About us</a>
+
+                <a href="">Team</a>
+
+                <a href="">Careers</a>
+                <a href="">Socials</a>
+                <a href="">Activity</a>
+                <a href="">License</a>
+                <a href="">Refunds</a>
+                <a href="">Cookies</a>
+
             </div>
-            <div class="pd-5"><p>Copyright 2022 Dallas Desi Masala</p></div>
+            <div class="">
+                <p>Copyright 2022 Dallas Desi Masala</p>
+            </div>
         </div>
     </footer>
     <!--/ footer  -->
@@ -393,7 +401,7 @@
         });
 
         $(document).ready(function() {
-            $('#add-recipe-btn').on('click', function(){
+            $('#add-recipe-btn').on('click', function() {
                 $('#add-recipe-form').submit();
             });
         })

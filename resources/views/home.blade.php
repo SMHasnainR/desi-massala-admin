@@ -89,53 +89,6 @@
     </div>
     <!-- /recepie_area_start  -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="recipeModal" role="dialog" aria-labelledby="exampleModalLongTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-
-            </div>
-        </div>
-    </div>
-
-    <!-- dish_area start  -->
-    <!-- <div class="dish_area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="dish_wrap d-flex">
-                                <div class="single_dish text-center">
-                                    <div class="thumb">
-                                        <img src="img/recepie/recpie_4.png" alt="">
-                                    </div>
-                                    <h3>Birthday Catering</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                </div>
-                                <div class="single_dish text-center">
-                                    <div class="thumb">
-                                        <img src="img/recepie/recpie_5.png" alt="">
-                                    </div>
-                                    <h3>Birthday Catering</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                </div>
-                                <div class="single_dish text-center">
-                                    <div class="thumb">
-                                        <img src="img/recepie/recpie_6.png" alt="">
-                                    </div>
-                                    <h3>Birthday Catering</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-    <!--/ dish_area start  -->
-
 
     <!-- latest_trand     -->
     <div class="latest_trand_area">
@@ -152,18 +105,27 @@
         </div>
     </div>
     <!--/ latest_trand     -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="recipeModal" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('end-script')
     <script>
-
         $('.recipe-modal-open').on('click', function() {
             let id = $(this).data('id');
             console.log(id);
 
             // Ajax Call to delete the recipe
-            let url = "{{ route('recipes.modal.details',':id') }}";
-            url = url.replace(':id',id);
+            let url = "{{ route('recipes.modal.details', ':id') }}";
+            url = url.replace(':id', id);
 
             $.ajax({
                 url: url,
@@ -184,6 +146,5 @@
             });
 
         });
-
     </script>
 @endsection
