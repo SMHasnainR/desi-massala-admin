@@ -1011,6 +1011,9 @@ h3 {
     color: var(--light-primary-color);
 }
 
+.main-menu ul {
+}
+
 @media (min-width: 992px) and (max-width: 1200px) {
     .header-area .main-header-area .Appointment .book_btn a {
         padding: 12px 20px;
@@ -3810,6 +3813,7 @@ h3 {
     color: var(--secondary-color);
     margin-top: 38px;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .recepie_area .single_recepie span {
@@ -4219,7 +4223,7 @@ h3 {
 
 .recepie_header_area .recepie_text h3 {
     font-size: 48px;
-    color: #000000;
+    color: var(--secondary-color);
     line-height: 60px;
     margin-bottom: 40px;
 }
@@ -4227,7 +4231,7 @@ h3 {
 @media (max-width: 767px) {
     .recepie_header_area .recepie_text h3 {
         font-size: 31px;
-        color: #000000;
+        color: var(--secondary-color);
         line-height: 40px;
         margin-bottom: 40px;
     }
@@ -7218,6 +7222,19 @@ h6 {
     height: 300px;
 }
 
+.footer-items{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    padding: 25px;
+}
+.footer-items a{
+    padding: 10px;
+}
+.footer-col{
+    padding: 20px;
+    justify-content: space-between;
+}
 .modal-body, input, textarea, select{
     background-color: var(--light-primary-color) !important;
     border: 1px solid var(--light-secondary-color ) !important;
@@ -7345,4 +7362,8 @@ h6 {
 
 .recepies_details{
     padding: 30px 0px;
+}
+
+footer p, footer a {
+    color: var(--primary-color);
 }
