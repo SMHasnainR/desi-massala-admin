@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="img/dallas_logo.png">
+    <link rel="icon" type="image/x-icon" href="{{ url('') }}/assets/img/logos/dallas_logo.png">
 
     <title>Dallas Desi Masalla</title>
 
@@ -75,10 +75,9 @@
                                         <li><a href="{{ route('about') }}">about</a></li>
                                         <li><a href="{{ route('recipes') }}">Recipes</a></li>
                                         <li><a href="{{ route('recipes.vegetables') }}">Veg Recipes</i></a></li>
+                                        <li><a href="{{ route('contact') }}">User Recipe</a></li>
                                         <li><a href="{{ route('healthy') }}">Healthy Living</a></li>
                                         <li><a href="{{ route('contact') }}">Contact</a></li>
-                                        <li><a href="{{ route('contact') }}">User Recipe</a></li>
-
                                     </ul>
                                 </nav>
                             </div>
