@@ -31,7 +31,7 @@
     <!-- slider_area_end -->
 
     <!-- recepie_area_start  -->
-    <div class="recepie_area">
+    <section class="recepie_area">
         <div class="container">
             <div class="row">
                 @foreach ($recipes as $recipe)
@@ -50,43 +50,8 @@
                     </div>
                 @endforeach
             </div>
-            {{-- <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb" >
-                            <img src="img/recepie/recpie_1.png" alt="">
-                        </div>
-                        <h3>Egg Manchurian</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="#" class="line_btn">View Full Recipe</a>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_2.png" alt="">
-                        </div>
-                        <h3>Pure Vegetable Bowl</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="#" class="line_btn">View Full Recipe</a>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_recepie text-center">
-                        <div class="recepie_thumb">
-                            <img src="img/recepie/recpie_3.png" alt="">
-                        </div>
-                        <h3>Egg Masala Ramen</h3>
-                        <span>Appetizer</span>
-                        <p>Time Needs: 30 Mins</p>
-                        <a href="#" class="line_btn">View Full Recipe</a>
-                    </div>
-                </div>
-            </div> --}}
         </div>
-    </div>
+    </section>
     <!-- /recepie_area_start  -->
 
 

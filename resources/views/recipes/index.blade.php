@@ -17,7 +17,7 @@
     <!-- /bradcam_area  -->
 
     <!-- recepie_area_start  -->
-    <div class="recepie_area plus_padding">
+    <section class="recepie_area">
         <div class="container">
             <div class="row">
                 @foreach ($recipes as $recipe)
@@ -44,7 +44,7 @@
                 </div>
             </div>
         @endif
-    </div>
+    </section>
 
 
     <!-- Modal -->
