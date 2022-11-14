@@ -61,9 +61,9 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="trand_info text-center">
-                        <p>Thousands of recipes are waiting to be watched</p>
+                        <h5>Thousands of recipes are waiting to be watched</h5>
                         <h3>Discover latest trending recipes</h3>
-                        <a href="{{ route('recipes') }}" class="boxed-btn3">View all Recipes</a>
+                        <a href="{{ route('recipes') }}" class="boxed-btn3 latest-btn">View all Recipes</a>
                     </div>
                 </div>
             </div>

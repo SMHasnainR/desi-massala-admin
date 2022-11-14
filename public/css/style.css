@@ -442,7 +442,17 @@ h3 {
 .boxed-btn3:hover {
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
-    background: var(--light-primary-color);
+    background: transparent;
+}
+
+.latest-btn:hover {
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    background: transparent;
+}
+
+.latest-btn{
+    background: var(--secondary-color);
 }
 
 .boxed-btn3:focus {
@@ -4164,7 +4174,7 @@ color: var(--light-primary-color) !important;
 }
 
 .latest_trand_area {
-    background-image: url(../assets/img/banner/banner.png);
+    background-image: url(../assets/img/banner/13.jpg);
     padding: 150px 0;
     background-size: cover;
     background-position: center;
@@ -4184,7 +4194,7 @@ color: var(--light-primary-color) !important;
 }
 
 .latest_trand_area .trand_info h3 {
-    color: #000000;
+    color: var(--secondary-color);
     font-size: 60px;
     margin-top: 14px;
     margin-bottom: 75px;
