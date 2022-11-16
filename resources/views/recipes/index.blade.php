@@ -24,7 +24,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="single_recepie text-center">
                             <div class="recepie_thumb recipe_img">
-                                <img src="{{ url('') }}/assets/img/recipe/{{ $recipe->image_url }}"
+                                <img src="{{ url('') }}/assets/img/recipe/{{ $recipe->image_url ?: 'sample.jpg' }}"
                                     class='recepie_thumb' alt="">
                             </div>
                             <h3 class="title pointer recipe-modal-open" data-id="{{ $recipe->id }}" role='button'>
@@ -37,7 +37,7 @@
                 @endforeach
             </div>
         </div>
-        @if ($recipes->count() > 9)
+        @if ($count > 9)
             <div>
                 <div class="trand_info text-center">
                     <a href="#" class="boxed-btn3">Load More</a>

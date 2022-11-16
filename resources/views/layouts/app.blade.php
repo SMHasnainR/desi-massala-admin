@@ -77,7 +77,7 @@
                                         <li><a href="{{ route('recipes.vegetables') }}">Veg Recipes</i></a></li>
                                         <li><a href="{{ route('healthy') }}">Healthy Living</a></li>
                                         <li><a href="{{ route('contact') }}">Contact</a></li>
-                                        <li><a href="{{ route('contact') }}">User Recipe</a></li>
+                                        <li><a href="{{ route('recipes.users') }}">User Recipe</a></li>
 
                                     </ul>
                                 </nav>

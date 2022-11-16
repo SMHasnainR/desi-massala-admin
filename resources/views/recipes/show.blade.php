@@ -20,24 +20,29 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-6 col-md-6">
-                    <div class="recipe-main-img">
+                    <div class="recipe-main-img px-lg-5">
                         <img src="{{ url('') }}/assets/img/recipe/{{ $recipe->image_url }}" alt="">
                     </div>
                 </div>
                 <div class="col-xl-6 col-md-6">
                     <div class="recepies_info">
-                        <div class="recipe-title">
+                        <div class="recipe-title d-flex justify-content-center">
                             <h1>
                                 {{$recipe->name}}
                             </h1>
                         </div>
 
-                        {{-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p> --}}
+                        <div class='recipe-excerpt'>
+                            <h4>
+                                {{ $recipe->excerpt }}
+                            </h4>
+                        </div>
+
 
                         <div class="recepies_details">
                             <ul>
-                                <li><p><strong>Time</strong> : {{ $recipe->time_from}} - {{$recipe->time_to}} Mins </p></li>
-                                <li><p><strong>Category</strong> : {{ $recipe->category->name }} </p></li>
+                                <li><h5><strong>Time</strong> : {{ $recipe->time_from}} - {{$recipe->time_to}} Mins </h5></li>
+                                <li><h5><strong>Category</strong> : {{ $recipe->category->name }} </h5></li>
                             </ul>
                         </div>
                         {{-- <div class="links">

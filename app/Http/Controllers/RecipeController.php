@@ -15,22 +15,37 @@ class RecipeController extends Controller
     public function index(){
         $recipes =  Recipe::whereHas('category', function(Builder $query){
             $query->where('name','<>','Vegetable');
-        })->where('status', 1)->get()->take(9);
+        })->where('status', 1)->get();
+        $count = $recipes->count();
+        $recipes = $recipes->take(9);
         $title = 'Our  Recipes';
 
         $categories = Category::all();
-        return view('recipes.index', compact('recipes','categories','title'));
+        return view('recipes.index', compact('recipes', 'count','categories','title'));
     }
 
     public function vegRecipes(){
 
         $recipes =  Recipe::whereHas('category', function(Builder $query){
             $query->where('name','Vegetable');
-        })->where('status', 1)->get()->take(9);
+        })->where('status', 1)->get();
+        $count = $recipes->count();
+        $recipes = $recipes->take(9);
         $title = 'Vegetable Recipes';
 
         $categories = Category::all();
-        return view('recipes.index', compact('recipes','categories','title'));
+        return view('recipes.index', compact('recipes', 'count','categories','title'));
+    }
+
+    public function userRecipes(){
+
+        $recipes =  Recipe::where('from','user')->where('status', 1)->get();
+        $count = $recipes->count();
+        $recipes = $recipes->take(9);
+        $title = 'Users Recipes';
+
+        $categories = Category::all();
+        return view('recipes.index', compact('recipes', 'count','categories','title'));
     }
 
     public function show(Recipe $recipe){
@@ -50,7 +65,6 @@ class RecipeController extends Controller
 
         return response()->json($response);
     }
-
 
     public function store(Request $request){
 
@@ -73,7 +87,7 @@ class RecipeController extends Controller
 
         $extraData = [
             'author' =>  $isAdmin ? auth()->user()->name : $request->author_name,
-            'type' =>  $isAdmin ? 'admin' : 'user',
+            'from' =>  $isAdmin ? 'admin' : 'user',
             'status' => $isAdmin ? '1' : '0'
         ];
 

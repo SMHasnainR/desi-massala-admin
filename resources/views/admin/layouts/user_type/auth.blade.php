@@ -31,7 +31,7 @@
 
                     @if (session('success'))
                         <div class="d-flex alert alert-success status-box alert-dismissable fade show justify-content-between" role="alert">
-                            <span>
+                            <span class="alert-text text-white">
                                 {{ session('success') }}
                             </span>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">

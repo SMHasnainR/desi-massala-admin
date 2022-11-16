@@ -12,7 +12,7 @@ class Recipe extends Model
     protected $guarded = ['id'];
 
     protected $attributes = [
-        'image_url' => 'url',
+        // 'image_url' => 'url',
     ];
 
     public function category()
