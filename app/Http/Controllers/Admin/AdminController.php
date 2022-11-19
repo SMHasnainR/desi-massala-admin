@@ -18,8 +18,8 @@ class AdminController extends Controller
     public function dashboard(Request $request)
     {
         $categoryCount = Category::count();
-        $adminRecipeCount =  Recipe::where('type', 'admin')->count();
-        $userRecipeCount = Recipe::where('type', 'user')->count();
+        $adminRecipeCount =  Recipe::where('from', 'admin')->count();
+        $userRecipeCount = Recipe::where('from', 'user')->count();
 
         // Load Data through Ajax
         if ($request->ajax()) {

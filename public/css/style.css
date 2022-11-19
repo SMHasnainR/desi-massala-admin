@@ -6188,6 +6188,8 @@ h6 {
 /*============ blog_left_sidebar css ==============*/
 .blog_item {
     margin-bottom: 50px;
+    max-width: 50%;
+    padding-inline: 30px;
 }
 
 .blog_details {
@@ -7403,4 +7405,8 @@ footer p, footer a {
 }
 .recipe-excerpt h4{
     text-align: center;
+}
+
+.card-img{
+    border-radius: 25px;
 }

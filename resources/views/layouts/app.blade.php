@@ -60,7 +60,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo">
-                                <a href="index.html">
+                                <a href="{{ route('home') }}">
                                     <!-- <img src="img/logo.png" alt=""> -->
                                     <img src="{{ url('') }}/assets/img/logos/dallas_logo.png" height="80"
                                         width="80" alt="">

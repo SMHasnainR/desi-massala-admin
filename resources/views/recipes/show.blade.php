@@ -21,7 +21,7 @@
             <div class="row align-items-center">
                 <div class="col-xl-6 col-md-6">
                     <div class="recipe-main-img px-lg-5">
-                        <img src="{{ url('') }}/assets/img/recipe/{{ $recipe->image_url }}" alt="">
+                        <img src="{{ url('') }}/assets/img/recipe/{{ $recipe->image_url ?: 'sample.jpg'}}" alt="">
                     </div>
                 </div>
                 <div class="col-xl-6 col-md-6">

@@ -19,7 +19,7 @@
     <!-- recepie_area_start  -->
     <section class="recepie_area">
         <div class="container">
-            <div class="row">
+            <div class="row recipe-list">
                 @foreach ($recipes as $recipe)
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="single_recepie text-center">
@@ -37,10 +37,11 @@
                 @endforeach
             </div>
         </div>
-        @if ($count > 9)
+
+        @if ($recipes->hasMorePages())
             <div>
-                <div class="trand_info text-center">
-                    <a href="#" class="boxed-btn3">Load More</a>
+                <div class="text-center">
+                    <button id='load-more-btn' href="#" class="boxed-btn3">Load More</button>
                 </div>
             </div>
         @endif
@@ -60,9 +61,60 @@
 
 @section('end-script')
     <script>
-        $('.recipe-modal-open').on('click', function() {
+
+        // Loading Recipe Data
+        var page = 1;
+        function loadData(page){
+            let url = "{{ route($routeName) }}" ;
+            console.log(url);
+
+            $.ajax({
+                url: url+'?page='+page,
+                method: "GET",
+                dataType: 'JSON',
+                success: function(response) {
+                    console.log(response);
+                    let route = '{{route("recipes.show",[":id"])}}';
+
+                    // Append data to the recipe list
+                    response.data.forEach(function(recipe){
+                        route = route.replace(':id',recipe.id);
+
+                        $('.recipe-list').append(`
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <div class="single_recepie text-center">
+                                <div class="recepie_thumb recipe_img">
+                                    <img src="{{url('')}}/assets/img/recipe/${ recipe.image_url ?? 'sample.jpg' }"
+                                        class='recepie_thumb' alt="">
+                                </div>
+                                <h3 class="title pointer recipe-modal-open" data-id="${ recipe.id }" role='button'>
+                                        ${ recipe.name }</h3>
+                                <span>${ recipe.category.name }</span>
+                                <p>Time Needs: ${ recipe.time_from } - ${ recipe.time_to } mins</p>
+                                <a href="${route}" class="line_btn">View Full Recipe</a>
+                            </div>
+                        </div>
+                        `);
+                    });
+
+                    // If there are no more data available then hide load more btn
+                    if(!response.next_page_url){
+                        $('#load-more-btn').hide();
+                    }
+                }
+            });
+        }
+
+        $('#load-more-btn').on('click',function(){
+            page++;
+            console.log('btn clicked');
+            loadData(page);
+
+        });
+
+        // Show Recipes Details on Modal when click on recipe title
+        $(document).on('click','.recipe-modal-open', function() {
             let id = $(this).data('id');
-            console.log(id);
 
             // Ajax Call to delete the recipe
             let url = "{{ route('recipes.modal.details', ':id') }}";
@@ -73,9 +125,7 @@
                 method: "GET",
                 dataType: 'JSON',
                 success: function(data) {
-                    console.log(data)
                     if (data.success) {
-                        console.log('ups')
                         $('#recipeModal .modal-content').html(data.modal);
                         $('#recipeModal').modal('show');
                     }
@@ -87,5 +137,6 @@
             });
 
         });
+
     </script>
 @endsection

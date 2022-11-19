@@ -25,7 +25,7 @@ class RecipeController extends Controller
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->editColumn('name', '<h6 class="mb-0 text-sm">{{$name}}</h6>')
-                    ->editColumn('image','<img src="{{ url("") }}/assets/img/recipe/{{ $image_url }}" class="avatar avatar-sm me-3" alt="xd">')
+                    ->editColumn('image','<img src="{{ url("") }}/assets/img/recipe/{{ !empty($image_url) ? $image_url : `sample.jpg` }}" class="avatar avatar-sm me-3" alt="xd">')
                     ->editColumn('author', '<span class="text-sm font-weight-bold">{{ $author }}</span>')
                     ->editColumn('status', function($query){
                         return $query->status == 1 ?
