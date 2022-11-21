@@ -6190,7 +6190,24 @@ h6 {
     margin-bottom: 50px;
     max-width: 50%;
     padding-inline: 30px;
+    /* box-shadow: 0px 10px 20px 0px rgb(221 221 221 / 30%) */
 }
+
+.blog_item > div {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.blog_item > div:first-child{
+    border-radius: 10px 10px 0px 0px !important;
+}
+
+.blog_item > div:last-child{
+    border-radius: 0px 0px 10px 10px ;
+}
+.blog_item .card-img{
+    border-radius: 10px 10px 0px 0px;
+}
+
 
 .blog_details {
     padding: 30px 0 20px 10px;
