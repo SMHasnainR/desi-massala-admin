@@ -19,7 +19,7 @@
                                 </button>
                             </div>
                         @endif
-                        @if (session('success'))
+                        {{-- @if (session('success'))
                             <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success"
                                 role="alert">
                                 <span class="alert-text text-white">
@@ -28,7 +28,8 @@
                                     <i class="fa fa-close" aria-hidden="true"></i>
                                 </button>
                             </div>
-                        @endif
+                        @endif --}}
+                        <input type="hidden" name="type" value='admin'>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -85,6 +86,11 @@
                         </div>
 
                         <div class="row">
+                            <div class="form-group">
+                                <label for="summernote">Recipe Excerpt: </label>
+                                {{-- <input type="text" class="form-control" name='excerpt' value='{{ isset($recipe) ? $recipe->excerpt : ''}}'> --}}
+                                <textarea class='form-control' name="excerpt" ></textarea>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="summernote">Recipe: </label>

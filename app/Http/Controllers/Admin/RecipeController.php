@@ -16,23 +16,17 @@ class RecipeController extends Controller
     public function index(Request $request)
     {
 
-
         // Load Data through Ajax
         if ($request->ajax()) {
 
             $routeName = $request->route()->getName();
-            $data = $routeName == 'recipes.user' ? Recipe::where('type','user') : Recipe::select('*');
+            $data = $routeName == 'recipes.user' ? Recipe::where('from','user') : Recipe::select('*');
 
             return DataTables::of($data)
                     ->addIndexColumn()
                     ->editColumn('name', '<h6 class="mb-0 text-sm">{{$name}}</h6>')
-                    ->editColumn('image','<img src="{{ url("") }}/assets/img/recipe/{{ $image_url }}" class="avatar avatar-sm me-3" alt="xd">')
+                    ->editColumn('image','<img src="{{ url("") }}/assets/img/recipe/{{ !empty($image_url) ? $image_url : `sample.jpg` }}" class="avatar avatar-sm me-3" alt="xd">')
                     ->editColumn('author', '<span class="text-sm font-weight-bold">{{ $author }}</span>')
-                    ->editColumn('type', function($query){
-                        return $query->type == 'admin' ?
-                        '<span class="badge badge-sm bg-gradient-success">Admin</span>' :
-                        '<span class="badge badge-sm bg-gradient-secondary">User</span>';
-                    })
                     ->editColumn('status', function($query){
                         return $query->status == 1 ?
                         '<input type="checkbox" data-id="'.$query->id.'" class="js-switch" checked />' :
@@ -63,7 +57,6 @@ class RecipeController extends Controller
         return view('admin.recipe.add',compact('categories'));
     }
 
-
     public function edit(Recipe $recipe){
         $categories = Category::all();
         return view('admin.recipe.add',compact('categories','recipe'));
@@ -76,8 +69,10 @@ class RecipeController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120|dimensions:max_width=1000,max_height=1000',
             'time_from' => 'required|max:300',
             'time_to' => 'required|max:300',
-            'details' => 'required|min:10'
+            'excerpt' => 'required|min:10|max:200',
+            'details' => 'required|min:20'
         ]);
+
 
         // Uploading Image file
         $extraData = [];
@@ -124,9 +119,9 @@ class RecipeController extends Controller
         return $response;
     }
 
-    public function userRecipe()
-    {
-        return view('tables');
-    }
+    // public function userRecipe()
+    // {
+    //     return view('tables');
+    // }
 
 }

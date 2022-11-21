@@ -12,25 +12,39 @@ use Illuminate\Support\Facades\Auth;
 class RecipeController extends Controller
 {
 
-    public function index(){
-        $recipes =  Recipe::whereHas('category', function(Builder $query){
-            $query->where('name','<>','Vegetable');
-        })->where('status', 1)->get()->take(9);
-        $title = 'Our  Recipes';
+    public function index(Request $request){
+
+        // Identifying the type of recipe reqeusted
+        $routeName = $request->route()->getName();
+        $title = $routeName === 'recipes' ? 'Our  Recipes' : ($routeName === 'recipes.users' ? 'Users Recipes' : 'Vegetable Recipes');
+
+        //  Querying recipes wrt requested url
+        $recipes = Recipe::with('category');
+        if($routeName === 'recipes'){
+            $recipes->whereHas('category', function(Builder $query){
+                $query->where('name','<>','Vegetable');
+            })->where('status', 1);
+        }elseif($routeName === 'recipes.vegetables'){
+            $recipes->whereHas('category', function(Builder $query){
+                $query->where('name','Vegetable');
+            })->where('status', 1);
+        }elseif($routeName === 'recipes.users'){
+            $recipes->where('from','user')->where('status', 1);
+        }
+        $recipes = $recipes->simplePaginate(3);
+
+        // If Load More button is clicked then return recipes only
+        if($request->ajax()){
+            return $recipes;
+        }
 
         $categories = Category::all();
-        return view('recipes.index', compact('recipes','categories','title'));
+        return view('recipes.index', compact('recipes','categories','title','routeName'));
     }
 
-    public function vegRecipes(){
+    public function loadRecipe(Request $request){
+        // dd()
 
-        $recipes =  Recipe::whereHas('category', function(Builder $query){
-            $query->where('name','Vegetable');
-        })->where('status', 1)->get()->take(9);
-        $title = 'Vegetable Recipes';
-
-        $categories = Category::all();
-        return view('recipes.index', compact('recipes','categories','title'));
     }
 
     public function show(Recipe $recipe){
@@ -50,7 +64,6 @@ class RecipeController extends Controller
 
         return response()->json($response);
     }
-
 
     public function store(Request $request){
 
@@ -73,7 +86,7 @@ class RecipeController extends Controller
 
         $extraData = [
             'author' =>  $isAdmin ? auth()->user()->name : $request->author_name,
-            'type' =>  $isAdmin ? 'admin' : 'user',
+            'from' =>  $isAdmin ? 'admin' : 'user',
             'status' => $isAdmin ? '1' : '0'
         ];
 

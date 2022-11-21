@@ -60,7 +60,7 @@
                     <div class="row  align-items-center flex-nowrap flex-md-wrap">
                         <div class="col-xl-2 col-md-1 col-2">
                             <div class="logo">
-                                <a href="index.html">
+                                <a href="{{ route('home') }}">
                                     <!-- <img src="img/logo.png" alt=""> -->
                                     <img src="{{ url('') }}/assets/img/logos/dallas_logo.png" height="80"
                                         width="80" alt="">
@@ -75,7 +75,7 @@
                                         <li><a href="{{ route('about') }}">about</a></li>
                                         <li><a href="{{ route('recipes') }}">Recipes</a></li>
                                         <li><a href="{{ route('recipes.vegetables') }}">Veg Recipes</i></a></li>
-                                        <li><a href="{{ route('contact') }}">User Recipe</a></li>
+                                        <li><a href="{{ route('recipes.users') }}">User Recipe</a></li>
                                         <li><a href="{{ route('healthy') }}">Healthy Living</a></li>
                                         <li><a href="{{ route('contact') }}">Contact</a></li>
                                     </ul>

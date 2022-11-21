@@ -10,42 +10,30 @@
             <div class="row align-items-center">
                 <div class="col-xl-6 col-md-6">
                     <div class="recepies_thumb">
-                        <img src="{{url('')}}/assets/img/recipe/{{ $recipe->image_url }}" class='recipe-img-modal' alt="">
+                        <img src="{{url('')}}/assets/img/recipe/{{ $recipe->image_url ?: 'sample.jpg'}}" class='recipe-img-modal' alt="">
                     </div>
                 </div>
                 <div class="col-xl-6 col-md-6">
                     <div class="recepies_info">
-                        <h1>{{$recipe->name}}</h1>
-                        {{-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation.</p> --}}
+                        <div class="recipe-title d-flex justify-content-center">
+                            <h1>
+                                {{$recipe->name}}
+                            </h1>
+                        </div>
 
-                        <div class="resepies_details">
+                        <div class='recipe-excerpt'>
+                            <h4>
+                                {{ $recipe->excerpt }}
+                            </h4>
+                        </div>
+
+
+                        <div class="recepies_details">
                             <ul>
-                                {{-- <li>
-                                    <p><strong>Rating</strong> : <i class="fa fa-star"></i><i
-                                            class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                            class="fa fa-star"></i><i class="fa fa-star"></i> </p>
-                                </li> --}}
-                                <li>
-                                    <p><strong>Time</strong> : {{ $recipe->time_from }} - {{ $recipe->time_to }} Mins </p>
-                                </li>
-                                <li>
-                                    <p><strong>Category</strong> : {{ $recipe->category->name }} </p>
-                                </li>
-                                <li>
-                                    <p><strong>Author</strong> : {{ $recipe->author }} </p>
-                                </li>
-                                {{-- <li>
-                                    <p><strong>Tags</strong> : Dinner, Main, Chicken, Dragon, Phoenix </p>
-                                </li> --}}
+                                <li><h5><strong>Time</strong> : {{ $recipe->time_from}} - {{$recipe->time_to}} Mins </h5></li>
+                                <li><h5><strong>Category</strong> : {{ $recipe->category->name }} </h5></li>
                             </ul>
                         </div>
-                        {{-- <div class="links">
-                            <a href="#"> <i class="fa fa-facebook"></i> </a>
-                            <a href="#"> <i class="fa fa-twitter"></i> </a>
-                            <a href="#"> <i class="fa fa-linkedin"></i> </a>
-                        </div> --}}
                     </div>
                 </div>
             </div>

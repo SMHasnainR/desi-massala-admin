@@ -79,18 +79,20 @@ Route::prefix('admin')->group(function(){
 
 
 Route::group(['middleware' => 'guest'], function () {
+
+    // Routes Pages
     Route::get('', [HomeController::class, 'home'])->name('home');
     Route::get('about', [HomeController::class, 'about'])->name('about');
     Route::get('recipes', [RecipeController::class, 'index'])->name('recipes');
-    Route::get('recipes/vegetables', [RecipeController::class, 'vegRecipes'])->name('recipes.vegetables');
+    Route::get('recipes/vegetables', [RecipeController::class, 'index'])->name('recipes.vegetables');
+    Route::get('recipes/users', [RecipeController::class, 'index'])->name('recipes.users');
     Route::get('recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
-    Route::get('modal/recipes/{recipe}', [RecipeController::class, 'getModalDetails'])->name('recipes.modal.details');
     Route::get('healthy-living', [HomeController::class, 'healthy'])->name('healthy');
-    Route::get('recipe-detail', function(){
-        return view('recipes_details');
-    })->name('recipes-details');
-    Route::get('veg-recipes', [HomeController::class, 'vegRecipes'])->name('veg-recipes');
     Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+
+    // Ajax Routes
+    Route::get('modal/recipes/{recipe}', [RecipeController::class, 'getModalDetails'])->name('recipes.modal.details');
+    Route::get('load-recipe',[RecipeController::class, 'getModalDetails']);
 });
 
 Route::post('recipes', [RecipeController::class, 'store'])->name('recipes.store');
