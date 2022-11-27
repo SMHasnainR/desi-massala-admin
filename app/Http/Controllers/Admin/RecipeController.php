@@ -20,7 +20,7 @@ class RecipeController extends Controller
         if ($request->ajax()) {
 
             $routeName = $request->route()->getName();
-            $data = $routeName == 'recipes.user' ? Recipe::where('from','user') : Recipe::select('*');
+            $data = $routeName == 'recipes.user' ? Recipe::where('type','recipe')->where('from','user') : ($routeName == 'recipes.index' ? Recipe::where('type','recipe') : Recipe::where('type','blog') ) ;
 
             return DataTables::of($data)
                     ->addIndexColumn()
@@ -50,16 +50,20 @@ class RecipeController extends Controller
         return view('admin.recipe.index',compact('route'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $categories = Category::all();
+        $routeName = $request->route()->getName();
+        $categories = $routeName == 'recipes.blog.create' ? Category::where('id',3)->get() : Category::where('name','<>','Healthy')->get();
 
-        return view('admin.recipe.add',compact('categories'));
+        return view('admin.recipe.add',compact('categories','routeName'));
     }
 
-    public function edit(Recipe $recipe){
+    public function edit(Recipe $recipe, Request $request){
+        $routeName = $request->route()->getName();
         $categories = Category::all();
-        return view('admin.recipe.add',compact('categories','recipe'));
+        // $categories = $routeName == 'recipes.blog.create' ? Category::where('id',3)->get() : Category::where('name','<>','Healthy')->get();
+
+        return view('admin.recipe.add',compact('categories','recipe','routeName'));
     }
 
     public function update(Request $request, Recipe $recipe){

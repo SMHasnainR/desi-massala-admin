@@ -45,6 +45,8 @@ class HomeController extends Controller
 
     public function healthy(){
         $categories = Category::all();
-        return view('healthyliving', compact('categories'));
+        $blogs = Recipe::where('type','blog')->where('status',1)->get();
+        // dd($blogs);
+        return view('healthyliving', compact('categories','blogs'));
     }
 }
