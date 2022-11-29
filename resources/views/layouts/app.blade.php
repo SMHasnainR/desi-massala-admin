@@ -304,15 +304,6 @@
             }
         });
 
-        $(document).ready(function() {
-            $('#add-recipe-btn').on('click', function() {
-                $('#add-recipe-form').submit();
-            });
-
-            var navigation = document.getElementById("navigation");
-
-        })
-
         function showMenu() {
             $('#navigation').toggleClass('d-none');
             $('#navigation').toggleClass('mob-nav');
@@ -321,6 +312,14 @@
             $('body').toggleClass('scroll-off');
             document.getElementById("navigation").style.transition = "all 1s";
         }
+
+        $(document).ready(function() {
+            $('#add-recipe-btn').on('click', function() {
+                $('#add-recipe-form').submit();
+            });
+
+            var navigation = document.getElementById("navigation");
+
 
             // On Choosing the file, Display the file
             $('#image').on('change', function(){
@@ -347,6 +346,7 @@
 
 
         })
+
 
     </script>
 

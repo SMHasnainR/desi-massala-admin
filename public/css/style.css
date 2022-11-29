@@ -7513,15 +7513,16 @@ footer a {
     .mob-nav {
         position:fixed;
         inset: 0% 0% 0% 0%;
-        background: hsl(0% 0% 100%/ 0.1);
+        /* background: hsl(0% 0% 100%/ 0.1); */
         backdrop-filter: blur(2rem);
-        /* background: var(--secondary-color); */
+        background: var(--secondary-color);
         display: flex;
         flex-direction: column !important;
         padding: 80px 0px;
         justify-content: start;
         text-align: center;
         font-family: "Satisfy", cursive !important;
+        height: 900px;
 
         /* transform: translateX(0%); */
         transition:1s;
@@ -7696,4 +7697,3 @@ to {
   .close:focus {
     outline: none;
   }
-  
