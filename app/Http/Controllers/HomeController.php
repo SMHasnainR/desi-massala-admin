@@ -12,14 +12,14 @@ class HomeController extends Controller
     public function home(){
 
         $recipes = Recipe::where('status',1)->get()->take(6);
-        $categories = Category::all();
+        $categories = Category::where('name','<>','Healthy')->get();
 
         return view('home', compact('recipes','categories'));
     }
 
     //
     public function about(){
-        $categories = Category::all();
+        $categories = Category::where('name','<>','Healthy')->get();
 
         return view('about', compact('categories'));
     }
@@ -39,12 +39,14 @@ class HomeController extends Controller
 
     //
     public function contact(){
-        $categories = Category::all();
+        $categories = Category::where('name','<>','Healthy')->get();
         return view('contact',compact('categories'));
     }
 
     public function healthy(){
-        $categories = Category::all();
-        return view('healthyliving', compact('categories'));
+
+        $blogs = Recipe::where('type','blog')->where('status',1)->get();
+        $categories = Category::where('name','<>','Healthy')->get();
+        return view('healthyliving', compact('categories','blogs'));
     }
 }
