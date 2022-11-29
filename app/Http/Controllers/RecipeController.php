@@ -22,7 +22,7 @@ class RecipeController extends Controller
         $recipes = Recipe::with('category');
         if($routeName === 'recipes'){
             $recipes->whereHas('category', function(Builder $query){
-                $query->where('name','<>','Vegetable');
+                $query->where('name','Non-Vegetable');
             })->where('status', 1);
         }elseif($routeName === 'recipes.vegetables'){
             $recipes->whereHas('category', function(Builder $query){
@@ -38,7 +38,7 @@ class RecipeController extends Controller
             return $recipes;
         }
 
-        $categories = Category::all();
+        $categories = Category::where('name','<>','Healthy')->get();
         return view('recipes.index', compact('recipes','categories','title','routeName'));
     }
 
@@ -51,7 +51,7 @@ class RecipeController extends Controller
         if($recipe->status == 0){
             // Return 404 Not Found
         }
-        $categories = Category::all();
+        $categories = Category::where('name','<>','Healthy')->get();
         return view('recipes.show', compact('recipe','categories'));
     }
 
@@ -66,7 +66,6 @@ class RecipeController extends Controller
     }
 
     public function store(Request $request){
-
         $isAdmin = Auth::check();
 
         $request->validate([
@@ -75,7 +74,8 @@ class RecipeController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120|dimensions:max_width=1000,max_height=1000',
             'time_from' => 'required|max:300',
             'time_to' => 'required|max:300',
-            'details' => 'required|min:10'
+            'excerpt' => 'required|min:10',
+            'details' => 'required|min:20'
         ]);
 
         if(!$isAdmin){
@@ -89,6 +89,10 @@ class RecipeController extends Controller
             'from' =>  $isAdmin ? 'admin' : 'user',
             'status' => $isAdmin ? '1' : '0'
         ];
+
+        if(!$isAdmin){
+            $extraData['type'] =  'recipe';
+        }
 
         // Uploading Image file
         if($request->image){

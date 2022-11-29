@@ -43,13 +43,28 @@
 <body>
 
     @if (session('success'))
-        <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
-            <span class="alert-text text-white">
-                {{ session('success') }}</span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                <i class="fa fa-close" aria-hidden="true"></i>
-            </button>
+    {{-- @props(['type', 'message']) --}}
+
+    <div class='flash_message'>
+        <div class='container'>
+            <div class='flash-success alert p-0 d-flex justify-content-between align-items-center' >
+                <div class='icon ion-happy-outline h-100'>
+                    <i class='fa fa-check'></i>
+                </div>
+                <div class='message mx-2'> {{ session('success') }}</div>
+                <button type="button" class="close text-success mx-2" data-dismiss="alert">x</button>    
+            </div>
         </div>
+    </div>
+
+{{-- 
+        <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
+            <span class="alert-text ">
+                </span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <i class="fa fa-close" aria-hidden="true"></i>
+            </button>
+        </div> --}}
     @endif
 
     <!-- header-start -->
@@ -84,7 +99,7 @@
                         </div>
                         <div>
                             <a href="#" class="line_btn btn-primary text-white" data-toggle="modal"
-                                data-target="#exampleModalLong" role='button'>Add Your Recipe</a>
+                                data-target="#addRecipeModal" role='button'>Add Your Recipe</a>
                         </div>
                         <div class="col-1 d-none d-lg-block">
                             {{-- <div class="search_icon m-0 w-100 ">
@@ -105,15 +120,16 @@
     <!-- header-end -->
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    <div class="modal fade" id="addRecipeModal" tabindex="-1" role="dialog" aria-labelledby="addRecipeModalTitle"
         aria-hidden="true">
-        <div class="modal-dialog " role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Add Your Recipe</h5>
+                    <h5 class="modal-title" id="addRecipeModalTitle">Add Your Recipe</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    
                 </div>
                 <div class="modal-body pt-4 p-3">
                     <form id='add-recipe-form' action="{{ route('recipes.store') }}" method="POST"
@@ -121,30 +137,21 @@
                         @csrf
                         @if ($errors->any())
                             <div class="mt-3  alert alert-danger alert-dismissible fade show" role="alert">
-                                <span class="alert-text text-white">
-                                    {{ $errors->first() }}</span>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                                    <i class="fa fa-close" aria-hidden="true"></i>
-                                </button>
+                                <span class="alert-text ">
+                                    {{ $errors->first() }}
+                                </span>
+                                <button type="button" class="close text-danger mx-2" data-dismiss="alert">x</button>    
+
                             </div>
                         @endif
-                        {{-- @if (session('success'))
-                            <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success"
-                                role="alert">
-                                <span class="alert-text text-white">
-                                    {{ session('success') }}</span>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                                    <i class="fa fa-close" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        @endif --}}
+                  
                         <div class="row">
 
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="author_name" class="form-control-label"> Name: </label>
-                                    <div class="@error('author_name')border border-danger rounded-3 @enderror">
-                                        <input class="form-control" value="" type="text"
+                                    <div class="@error('author_name') border border-danger rounded-3 @enderror">
+                                        <input class="form-control" value="{{ old('author_name') ?: '' }}" type="text"
                                             placeholder="Enter Your Name" id="author_name" name="author_name"
                                             required>
                                         @error('author_name')
@@ -158,7 +165,7 @@
                                 <div class="form-group">
                                     <label for="name" class="form-control-label"> Recipe Name: </label>
                                     <div class="@error('name')border border-danger rounded-3 @enderror">
-                                        <input class="form-control" value="" type="text"
+                                        <input class="form-control" value="{{ old('name') ?: '' }}" type="text"
                                             placeholder="Recipe Name" id="name" name="name" required>
                                         @error('name')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
@@ -168,7 +175,7 @@
 
                                 <div class="form-group">
                                     <label for="category" class="form-control-label">Category: </label>
-                                    <div class="@error('category_id')border border-danger rounded-3 @enderror">
+                                    <div class="@error('category_id') border border-danger rounded-3 @enderror">
                                         <select class="form-control" id="category" name="category_id" required>
                                             <option disabled selected>-- Select Category --</option>
                                             @foreach ($categories as $category)
@@ -186,9 +193,17 @@
                                     <div
                                         class="d-flex justify-content-between align-items-center @error('time_from', 'time_to') border border-danger rounded-3 @enderror">
                                         <input class="form-control w-25" type="number" id="time_from"
-                                            name="time_from" value="" required> -
+                                            name="time_from" value="{{ old('time_from') ?: '' }}" required>
+                                            @error('time_from')
+                                                <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                             -
                                         <input class="form-control w-25" type="number" id="time_to"
-                                            name="time_to" value=""required> mins
+                                            name="time_to" value="{{ old('time_to') ?: '' }}" required>
+                                            @error('time_to')
+                                                <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                            mins
                                     </div>
                                 </div>
                             </div>
@@ -207,13 +222,23 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row">
+                        <div class="form-group">
+                            <label for="excerpt">Recipe Excerpt: </label>
+                            {{-- <input type="text" class="form-control" name='excerpt' value='{{ isset($recipe) ? $recipe->excerpt : ''}}'> --}}
+                            <textarea class='@error('excerpt')border border-danger rounded-3 @enderror form-control' id="excerpt" name="excerpt">{{ old('excerpt') ?: '' }}</textarea>
+                            @error('excerpt')
+                                <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="summernote">Recipe: </label>
                             <div class="@error('details')border border-danger rounded-3 @enderror">
-                                <textarea class="form-control" id="summernote" rows="4" placeholder="Recipe Details..." name="details"></textarea>
+                                <textarea class="form-control" id="summernote" rows="4" placeholder="Recipe Details..." name="details">
+                                    {{ old('details') ?: '' }}
+                                </textarea>
+                                @error('details')
+                                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                     </form>
@@ -227,131 +252,6 @@
     </div>
 
     @yield('content')
-
-    <!-- footer  -->
-    {{-- <footer class="footer">
-        <div class="footer_top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Top Products
-                            </h3>
-                            <ul>
-                                <li><a href="#">Managed Website</a></li>
-                                <li><a href="#"> Manage Reputation</a></li>
-                                <li><a href="#">Power Tools</a></li>
-                                <li><a href="#">Marketing Service</a></li>
-                            </ul>
-
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Quick Links
-                            </h3>
-                            <ul>
-                                <li><a href="#">Jobs</a></li>
-                                <li><a href="#">Brand Assets</a></li>
-                                <li><a href="#">Investor Relations</a></li>
-                                <li><a href="#">Terms of Service</a></li>
-                            </ul>
-
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Features
-                            </h3>
-                            <ul>
-                                <li><a href="#">Jobs</a></li>
-                                <li><a href="#">Brand Assets</a></li>
-                                <li><a href="#">Investor Relations</a></li>
-                                <li><a href="#">Terms of Service</a></li>
-                            </ul>
-
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Resources
-                            </h3>
-                            <ul>
-                                <li><a href="#">Guides</a></li>
-                                <li><a href="#">Research</a></li>
-                                <li><a href="#">Experts</a></li>
-                                <li><a href="#">Agencies</a></li>
-                            </ul>
-
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 col-lg-4">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Subscribe
-                            </h3>
-                            <p class="newsletter_text">You can trust us. we only send promo offers,</p>
-                            <form action="#" class="newsletter_form">
-                                <input type="text" placeholder="Enter your mail">
-                                <button type="submit"> <i class="ti-arrow-right"></i> </button>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copy-right_text">
-            <div class="container">
-                <div class="footer_border"></div>
-                <div class="row align-items-center">
-                    <div class="col-xl-8 col-md-8">
-                        <p class="copy_right">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;
-                            <script>
-                                document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i
-                                class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>
-                    </div>
-                    <div class="col-xl-4 col-md-4">
-                        <div class="socail_links">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <i class="ti-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ti-twitter-alt"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-dribbble"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-behance"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-                    <li></li>
-    </footer> --}}
 
     <footer class="footer ">
         <div class="d-flex flex-column justify-content-center align-items-center pd-5 footer-col">
@@ -403,7 +303,33 @@
             $('#add-recipe-btn').on('click', function() {
                 $('#add-recipe-form').submit();
             });
+
+            // On Choosing the file, Display the file
+            $('#image').on('change', function(){
+                let image_file = $('#image')[0];
+                let imgPrev = $('#img-preview')[0];
+                let [file] = image_file.files
+                if (file) {
+                    imgPrev.src = URL.createObjectURL(file)
+                }
+            });
+
+            @if (Session::has('success'))
+                console.log('{{session("success")}}')    
+            @endif
+
+            @if (Session::has('error'))
+                console.log('{{session("error")}}')    
+            @endif
+
+            @if ($errors->any())
+                console.log("{{$errors->first()}}");
+                $('#addRecipeModal').modal('show');
+            @endif
+
+
         })
+
     </script>
 
 
