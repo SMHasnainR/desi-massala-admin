@@ -261,25 +261,22 @@
     <footer class="footer ">
         <div class="d-flex flex-column justify-content-center align-items-center pd-5 footer-col">
             <div>
-                <img src="{{ url('') }}/assets/img/logos/dallas_logo.png" height="80" width="80"
-                    alt="">
+                <a href="{{ route('home') }}">
+                    <img src="{{ url('') }}/assets/img/logos/dallas_logo.png" height="80" width="80" alt="">
+                </a>
             </div>
             <div class="footer-items justify-content-center w-100 flex-wrap">
 
-                <a href="">About us</a>
-
-                <a href="">Team</a>
-
-                <a href="">Careers</a>
-                <a href="">Socials</a>
-                <a href="">Activity</a>
-                <a href="">License</a>
-                <a href="">Refunds</a>
-                <a href="">Cookies</a>
+                <a href="{{ route('about') }}">About us</a>
+                <a href="{{ route('recipes') }}">Recipes</a>
+                <a href="{{ route('recipes.vegetables') }}">Veg Recipes</i></a>
+                <a href="{{ route('recipes.users') }}">Users Recipes</a>
+                <a href="{{ route('healthy') }}">Healthy Living</a>
+                <a href="{{ route('contact') }}">Contact Us</a>
 
             </div>
             <div class="">
-                <p>Copyright 2022 Dallas Desi Masala</p>
+                <p>&#169; Copyright 2022 Dallas Desi Masala</p>
             </div>
         </div>
     </footer>

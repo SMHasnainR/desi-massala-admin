@@ -28,7 +28,7 @@ class RecipeController extends Controller
             $recipes->whereHas('category', function(Builder $query){
                 $query->where('name','Vegetable');
             })->where('status', 1);
-        }elseif($routeName === 'recipes.users'){
+        }elseif($routeName === 'recipes.users') {
             $recipes->where('from','user')->where('status', 1);
         }
         $recipes = $recipes->simplePaginate(3);

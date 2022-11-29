@@ -7448,6 +7448,7 @@ select {
 
 .recipe-title h1 {
     font-size: 48px;
+    text-align: center;
 }
 
 .recepie_details_area .recepies_info .resepies_details {
@@ -7588,6 +7589,9 @@ to {
 }
 
 
+.modal .recepie_details_area .recepies_info {
+    padding-left: 30px;
+}
 
 /* FLASH MESSAGE CSS */
 .flash_message {
