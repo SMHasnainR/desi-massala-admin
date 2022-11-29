@@ -52,12 +52,12 @@
                     <i class='fa fa-check'></i>
                 </div>
                 <div class='message mx-2'> {{ session('success') }}</div>
-                <button type="button" class="close text-success mx-2" data-dismiss="alert">x</button>    
+                <button type="button" class="close text-success mx-2" data-dismiss="alert">x</button>
             </div>
         </div>
     </div>
 
-{{-- 
+{{--
         <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
             <span class="alert-text ">
                 </span>
@@ -70,10 +70,10 @@
     <!-- header-start -->
     <header>
         <div class="header-area ">
-            <div id="sticky-header" class="main-header-area ">
+            <div id="sticky-header" class="main-header-area">
                 <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-xl-2 col-lg-2">
+                    <div class="row  align-items-center flex-nowrap flex-md-wrap">
+                        <div class="col-xl-2 col-md-1 col-2">
                             <div class="logo">
                                 <a href="{{ route('home') }}">
                                     <!-- <img src="img/logo.png" alt=""> -->
@@ -82,10 +82,10 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xl-7 col-lg-10 mr-3">
-                            <div class="main-menu d-none d-lg-block">
+                        <div class="col-xl-7 col-md-8 mr-3">
+                            <div class="main-menu" id="mainMenu">
                                 <nav>
-                                    <ul id="navigation" class="w-100">
+                                    <ul id="navigation" class="w-100  d-none d-lg-block">
                                         <li><a href="{{ route('home') }}">home</a></li>
                                         <li><a href="{{ route('about') }}">about</a></li>
                                         <li><a href="{{ route('recipes') }}">Recipes</a></li>
@@ -97,24 +97,29 @@
                                 </nav>
                             </div>
                         </div>
-                        <div>
-                            <a href="#" class="line_btn btn-primary text-white" data-toggle="modal"
-                                data-target="#addRecipeModal" role='button'>Add Your Recipe</a>
+                        <div class="flex-wrap">
+                            <a href="#" class="line_btn btn-primary text-white d-none d-lg-block"
+                                data-toggle="modal" data-target="#exampleModalLong" role='button'>Add Your Recipe</a>
                         </div>
-                        <div class="col-1 d-none d-lg-block">
+                        <div class="col-2 w-100 m-0 fa-2x text-white d-flex justify-content-center bar-icon ">
+                            <i id="bar" class="fa fa-bars " aria-hidden="true" onclick="showMenu()" ></i>
+                            <i id='cross' class="fa fa-times d-none" id="fa-cross" onclick="showMenu()"></i>
+                        </div>
+
+                        {{-- <div class="col-1 d-none d-lg-block">
                             {{-- <div class="search_icon m-0 w-100 ">
                                 <a href="#">
                                     <i class="fa fa-search text-white"></i>
                                 </a>
                             </div> --}}
-                        </div>
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
-                        </div>
                     </div>
-
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
                 </div>
+
             </div>
+        </div>
         </div>
     </header>
     <!-- header-end -->
@@ -129,7 +134,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    
+
                 </div>
                 <div class="modal-body pt-4 p-3">
                     <form id='add-recipe-form' action="{{ route('recipes.store') }}" method="POST"
@@ -140,11 +145,11 @@
                                 <span class="alert-text ">
                                     {{ $errors->first() }}
                                 </span>
-                                <button type="button" class="close text-danger mx-2" data-dismiss="alert">x</button>    
+                                <button type="button" class="close text-danger mx-2" data-dismiss="alert">x</button>
 
                             </div>
                         @endif
-                  
+
                         <div class="row">
 
                             <div class="col-12">
@@ -260,7 +265,7 @@
                     <img src="{{ url('') }}/assets/img/logos/dallas_logo.png" height="80" width="80" alt="">
                 </a>
             </div>
-            <div class="footer-items justify-content-center w-100">
+            <div class="footer-items justify-content-center w-100 flex-wrap">
 
                 <a href="{{ route('about') }}">About us</a>
                 <a href="{{ route('recipes') }}">Recipes</a>
@@ -301,6 +306,19 @@
                 $('#add-recipe-form').submit();
             });
 
+            var navigation = document.getElementById("navigation");
+
+        })
+
+        function showMenu() {
+            $('#navigation').toggleClass('d-none');
+            $('#navigation').toggleClass('mob-nav');
+            $('#bar').toggleClass('d-none');
+            $('#cross').toggleClass('d-none');
+            $('body').toggleClass('scroll-off');
+            document.getElementById("navigation").style.transition = "all 1s";
+        }
+
             // On Choosing the file, Display the file
             $('#image').on('change', function(){
                 let image_file = $('#image')[0];
@@ -312,11 +330,11 @@
             });
 
             @if (Session::has('success'))
-                console.log('{{session("success")}}')    
+                console.log('{{session("success")}}')
             @endif
 
             @if (Session::has('error'))
-                console.log('{{session("error")}}')    
+                console.log('{{session("error")}}')
             @endif
 
             @if ($errors->any())
