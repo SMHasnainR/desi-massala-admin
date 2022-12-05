@@ -5,8 +5,10 @@
     --primary-color: #fbbc3c;
     --secondary-color: #b43c2c;
     --light-primary-color: #f5e2d3;
+    --mid-color: #ff9082;
     --light-secondary-color: #d17d79;
 }
+
 
 .boxed-btn3-text:hover {
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff008c+0,ff6357+100 */
@@ -121,10 +123,11 @@ p {
 }
 
 label {
-    color: #7e7e7e;
+    color: var(--secondary-color);
     cursor: pointer;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 19px;
+    font-weight: 200;
+    font-family: "Satisfy", cursive !important;
 }
 
 *::-moz-selection {
@@ -1076,7 +1079,7 @@ h3 {
 
 .main-header-area .text-white {
     color: white !important;
-    font-size: 18px !important;
+    font-size: 14px !important;
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
@@ -4547,7 +4550,7 @@ h3 {
     font-size: 16px;
     margin-bottom: 0;
     font-size: 16px;
-    color: #2a2a2a;
+    color: var(--secondary-color);
 }
 
 .contact-info .media-body h3 a:hover {
@@ -4555,7 +4558,7 @@ h3 {
 }
 
 .contact-info .media-body p {
-    color: #8a8a8a;
+    color: var(--secondary-color);
 }
 
 /*=================== contact banner end ====================*/
@@ -4617,6 +4620,7 @@ h3 {
     border-bottom: none;
     padding-top: 50px;
     padding-bottom: 50px;
+    border-radius:200px;
 }
 
 .modal-message .modal-dialog .modal-content .modal-header .close {
@@ -7341,7 +7345,7 @@ h6 {
     padding: 20px;
     justify-content: space-between;
 }
-.modal-body,
+
 input,
 textarea,
 select {
@@ -7349,13 +7353,27 @@ select {
     border: 1px solid var(--light-secondary-color) !important;
 }
 
+.modal-body{
+    background-color: var(--light-primary-color) !important;
+}
+
+.form-control{
+}
+
 .modal-header,
 .modal-footer {
-    background-color: var(--light-secondary-color) !important;
+    background-color: var(--secondary-color) !important;
 }
 .modal-title {
-    font-weight: 900;
+    font-weight: 300;
+    color: var(--primary-color);
+    font-size: 32px;
 }
+.modal-header span{
+    color: var(--primary-color);
+    font-size: 42px;
+}
+
 
 .text-primary {
     color: var(--primary-color);
@@ -7397,7 +7415,7 @@ select {
 }
 
 .btn-secondary {
-    background-color: transparent;
+    background-color: var(--primary-color);
     border-color: var(--secondary-color);
     color: var(--secondary-color) !important;
 }
