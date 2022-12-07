@@ -99,7 +99,7 @@
                         </div>
                         <div class="flex-wrap">
                             <a href="#" class="line_btn btn-primary text-white d-none d-lg-block"
-                                data-toggle="modal" data-target="#exampleModalLong" role='button'>Add Your Recipe</a>
+                                data-toggle="modal" data-target="#addRecipeModal" role='button'>Add Your Recipe</a>
                         </div>
                         <div class="col-2 w-100 m-0 fa-2x text-white d-flex justify-content-center bar-icon ">
                             <i id="bar" class="fa fa-bars " aria-hidden="true" onclick="showMenu()" ></i>
@@ -301,15 +301,6 @@
             }
         });
 
-        $(document).ready(function() {
-            $('#add-recipe-btn').on('click', function() {
-                $('#add-recipe-form').submit();
-            });
-
-            var navigation = document.getElementById("navigation");
-
-        })
-
         function showMenu() {
             $('#navigation').toggleClass('d-none');
             $('#navigation').toggleClass('mob-nav');
@@ -318,6 +309,14 @@
             $('body').toggleClass('scroll-off');
             document.getElementById("navigation").style.transition = "all 1s";
         }
+
+        $(document).ready(function() {
+            $('#add-recipe-btn').on('click', function() {
+                $('#add-recipe-form').submit();
+            });
+
+            var navigation = document.getElementById("navigation");
+
 
             // On Choosing the file, Display the file
             $('#image').on('change', function(){
@@ -344,6 +343,7 @@
 
 
         })
+
 
     </script>
 
