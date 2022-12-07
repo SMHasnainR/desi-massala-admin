@@ -7433,6 +7433,7 @@ select {
 
 .recepies_text {
     color: var(--secondary-color);
+    margin-block: 40px;
 }
 
 .recipe-main-img img {

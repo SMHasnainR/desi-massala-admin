@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-6 col-md-6">
-                    <div class="recepies_thumb">
+                    <div class="recipe-main-img">
                         <img src="{{url('')}}/assets/img/recipe/{{ $recipe->image_url ?: 'sample.jpg'}}" class='recipe-img-modal' alt="">
                     </div>
                 </div>
