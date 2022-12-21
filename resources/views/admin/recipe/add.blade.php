@@ -99,7 +99,7 @@
                         <div class="form-group">
                             <label for="summernote">Recipe: </label>
                             <div class="@error('details')border border-danger rounded-3 @enderror">
-                                <textarea class="form-control" id="summernote" rows="4" placeholder="Recipe Details..." name="details">{!! old('recipe') ?: (isset($recipe) ? $recipe->details : '') !!}</textarea>
+                                <textarea class="form-control" id="summernote" rows="4" placeholder="Recipe Details..." name="details">{!! old('details') ?: (isset($recipe) ? $recipe->details : '') !!}</textarea>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">

@@ -34,7 +34,7 @@
     <section class="recepie_area">
         <div class="container">
             <div class="row">
-                @foreach ($recipes as $recipe)
+                @forelse ($recipes as $recipe)
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="single_recepie text-center">
                             <div class="recipe_img recepie_thumb">
@@ -48,7 +48,11 @@
                             <a href="{{ route('recipes.show', $recipe->id) }}" class="line_btn">View Full Recipe</a>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <h2 class="w-100 text-center">
+                        Sorry, there are no recipes to show.
+                    </h2>
+                @endforelse
             </div>
         </div>
     </section>
