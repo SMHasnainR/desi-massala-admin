@@ -11,7 +11,7 @@ class HomeController extends Controller
     //
     public function home(){
 
-        $recipes = Recipe::where('status',1)->get()->take(6);
+        $recipes = Recipe::where('status',1)->where('type','recipe')->get()->take(6);
         $categories = Category::where('name','<>','Healthy')->get();
 
         return view('home', compact('recipes','categories'));
