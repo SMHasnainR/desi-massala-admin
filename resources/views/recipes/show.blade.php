@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text text-center">
-                        <h3>Recipe Details</h3>
+                        <h3>{{ $recipe->name }}</h3>
                     </div>
                 </div>
             </div>

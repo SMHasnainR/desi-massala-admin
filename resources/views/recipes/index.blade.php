@@ -70,14 +70,12 @@
         var page = 1;
         function loadData(page){
             let url = "{{ route($routeName) }}" ;
-            console.log(url);
 
             $.ajax({
                 url: url+'?page='+page,
                 method: "GET",
                 dataType: 'JSON',
                 success: function(response) {
-                    console.log(response);
                     let route = '{{route("recipes.show",[":id"])}}';
 
                     // Append data to the recipe list
@@ -111,7 +109,7 @@
 
         $('#load-more-btn').on('click',function(){
             page++;
-            console.log('btn clicked');
+            // console.log('btn clicked');
             loadData(page);
 
         });
@@ -120,7 +118,7 @@
         $(document).on('click','.recipe-modal-open', function() {
             let id = $(this).data('id');
 
-            // Ajax Call to delete the recipe
+            // Ajax Call to show the recipe
             let url = "{{ route('recipes.modal.details', ':id') }}";
             url = url.replace(':id', id);
 

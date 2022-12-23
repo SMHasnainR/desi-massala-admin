@@ -53,6 +53,8 @@ class HomeController extends Controller
         if($blog->type !== 'blog' || $blog->status !== 1){
             abort(404);
         }
-        return view('blogs.show', compact('categories','blog'));
+
+        $otherBlogs = Recipe::where('type','blog')->where('id','<>',$blog->id)->get();
+        return view('blogs.show', compact('categories','blog','otherBlogs'));
     }
 }

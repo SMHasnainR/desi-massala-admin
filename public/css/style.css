@@ -7720,3 +7720,9 @@ to {
   .close:focus {
     outline: none;
   }
+
+  .mini-img{
+    /* mini img size */
+    width: 70px;
+    height: 70px;
+  }

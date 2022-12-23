@@ -26,8 +26,8 @@
                         <div class="blog_item_img">
                             <img class="card-img" src="{{url('')}}/assets/img/recipe/{{$blog->image_url}}" alt="">
                             <a href="#" class="blog_item_date">
-                                <h3>15</h3>
-                                <p>Jan</p>
+                                <h3>{{ date('d',strtotime($blog->created_at)) }}</h3>
+                                <p>{{ date('M',strtotime($blog->created_at)) }}</p>
                             </a>
                         </div>
 
@@ -39,8 +39,8 @@
                                 {{ $blog->excerpt }}
                             </p>
                             <ul class="blog-info-link">
-                                <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                <li><a href="#"><i class="fa fa-user"></i> {{ $blog->category->name }}, Lifestyle</a></li>
+                                {{-- <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li> --}}
                             </ul>
                         </div>
                     </article>
@@ -52,14 +52,14 @@
 
             </div>
         </div>
-
+{{-- 
         @if ($blogs->hasMorePages())
             <div>
                 <div class="text-center">
                     <button id='load-more-btn' href="#" class="boxed-btn3">Load More</button>
                 </div>
             </div>
-        @endif
+        @endif --}}
     </section>
     <!--================Blog Area =================-->
 @endsection
