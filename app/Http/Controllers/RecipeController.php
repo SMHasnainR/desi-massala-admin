@@ -71,10 +71,10 @@ class RecipeController extends Controller
         $request->validate([
             'name' =>'required',
             'category_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120|dimensions:max_width=1000,max_height=1000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120|dimensions:max_width=1280,max_height=1000',
             'time_from' => 'required|max:300',
             'time_to' => 'required|max:300',
-            'excerpt' => 'required|min:10',
+            'excerpt' => 'required|min:10|max:255',
             'details' => 'required|min:20'
         ]);
 

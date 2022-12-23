@@ -89,6 +89,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('recipes/users', [RecipeController::class, 'index'])->name('recipes.users');
     Route::get('recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
     Route::get('healthy-living', [HomeController::class, 'healthy'])->name('healthy');
+    Route::get('healthy-living/{blog}', [HomeController::class, 'showBlog'])->name('healthy.show');
     Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 
     // Ajax Routes

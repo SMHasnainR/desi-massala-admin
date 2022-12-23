@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text text-center">
-                        <h3>Recipe Details</h3>
+                        <h3>{{ $recipe->name }}</h3>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-6 col-md-6">
-                    <div class="recipe-main-img px-lg-5">
+                    <div class="recipe-main-img px-xl-5">
                         <img src="{{ url('') }}/assets/img/recipe/{{ $recipe->image_url ?: 'sample.jpg'}}" alt="">
                     </div>
                 </div>
@@ -53,8 +53,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
-                <div class="col-xl-12 my-5">
+            <div class="row ">
+                <div class="col-xl-12">
                     <div class="recepies_text">
                         <h1 class='mb-5' >Descirption: </h1>
                         {!! $recipe->details !!}

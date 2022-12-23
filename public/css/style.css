@@ -7451,6 +7451,7 @@ select {
 
 .recepies_text {
     color: var(--secondary-color);
+    margin-block: 40px;
 }
 
 .recipe-main-img img {
@@ -7718,4 +7719,10 @@ to {
   }
   .close:focus {
     outline: none;
+  }
+
+  .mini-img{
+    /* mini img size */
+    width: 70px;
+    height: 70px;
   }

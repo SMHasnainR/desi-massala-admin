@@ -11,7 +11,7 @@ class HomeController extends Controller
     //
     public function home(){
 
-        $recipes = Recipe::where('status',1)->get()->take(6);
+        $recipes = Recipe::where('status',1)->where('type','recipe')->get()->take(6);
         $categories = Category::where('name','<>','Healthy')->get();
 
         return view('home', compact('recipes','categories'));
@@ -31,13 +31,11 @@ class HomeController extends Controller
         return view('recipes', compact('recipes'));
     }
 
-    //
     public function vegRecipes(){
 
         return view('vegrecipes');
     }
 
-    //
     public function contact(){
         $categories = Category::where('name','<>','Healthy')->get();
         return view('contact',compact('categories'));
@@ -45,8 +43,18 @@ class HomeController extends Controller
 
     public function healthy(){
 
-        $blogs = Recipe::where('type','blog')->where('status',1)->get();
+        $blogs = Recipe::where('type','blog')->where('status',1)->simplePaginate(2);
         $categories = Category::where('name','<>','Healthy')->get();
-        return view('healthyliving', compact('categories','blogs'));
+        return view('blogs.index', compact('categories','blogs'));
+    }
+
+    public function showBlog(Recipe $blog){
+        $categories = Category::where('name','<>','Healthy')->get();
+        if($blog->type !== 'blog' || $blog->status !== 1){
+            abort(404);
+        }
+
+        $otherBlogs = Recipe::where('type','blog')->where('id','<>',$blog->id)->get();
+        return view('blogs.show', compact('categories','blog','otherBlogs'));
     }
 }

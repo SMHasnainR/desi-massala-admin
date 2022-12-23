@@ -20,7 +20,7 @@
     <section class="recepie_area">
         <div class="container">
             <div class="row recipe-list">
-                @foreach ($recipes as $recipe)
+                @forelse ($recipes as $recipe)
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="single_recepie text-center">
                             <div class="recepie_thumb recipe_img">
@@ -34,7 +34,11 @@
                             <a href="{{ route('recipes.show', $recipe->id) }}" class="line_btn">View Full Recipe</a>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <h2 class="w-100 text-center">
+                        Sorry, there are no recipes to show.
+                    </h2>
+                @endforelse
             </div>
         </div>
 
@@ -66,14 +70,12 @@
         var page = 1;
         function loadData(page){
             let url = "{{ route($routeName) }}" ;
-            console.log(url);
 
             $.ajax({
                 url: url+'?page='+page,
                 method: "GET",
                 dataType: 'JSON',
                 success: function(response) {
-                    console.log(response);
                     let route = '{{route("recipes.show",[":id"])}}';
 
                     // Append data to the recipe list
@@ -107,7 +109,7 @@
 
         $('#load-more-btn').on('click',function(){
             page++;
-            console.log('btn clicked');
+            // console.log('btn clicked');
             loadData(page);
 
         });
@@ -116,7 +118,7 @@
         $(document).on('click','.recipe-modal-open', function() {
             let id = $(this).data('id');
 
-            // Ajax Call to delete the recipe
+            // Ajax Call to show the recipe
             let url = "{{ route('recipes.modal.details', ':id') }}";
             url = url.replace(':id', id);
 

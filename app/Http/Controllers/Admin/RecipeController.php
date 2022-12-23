@@ -91,10 +91,10 @@ class RecipeController extends Controller
             $recipe->update($extraData + $request->all());
             $recipe->save();
         } catch(Exception $e){
-            return redirect()->route('recipes.index')->with('error','Error updating recipe :'.$e->getMessage());
+            return redirect()->back()->with('error','Error updating recipe :'.$e->getMessage());
         }
 
-        return redirect()->route('recipes.index')->with('success','Recipe has been updated successfully');
+        return redirect()->back()->with('success','Recipe has been updated successfully');
     }
 
     public function updateStatus(Recipe $recipe){
