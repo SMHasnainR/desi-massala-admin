@@ -5831,8 +5831,8 @@ h6 {
     transition: 0.5s;
 }
 
-.blog_area a:hover,
-.blog_area a :hover {
+/* .blog_area a:,
+.blog_area a : {
     background: -webkit-linear-gradient(
         131deg,
         var(--primary-color) 0%,
@@ -5843,7 +5843,7 @@ h6 {
     text-decoration: none;
     -webkit-transition: 0.5s;
     transition: 0.5s;
-}
+} */
 
 .single-blog {
     overflow: hidden;
