@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use App\Models\Category;
 use App\Models\Recipe;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -38,12 +37,10 @@ class RecipeController extends Controller
             return $recipes;
         }
 
-        $categories = Category::where('name','<>','Healthy')->get();
-        return view('recipes.index', compact('recipes','categories','title','routeName'));
+        return view('recipes.index', compact('recipes','title','routeName'));
     }
 
     public function loadRecipe(Request $request){
-        // dd()
 
     }
 
@@ -51,8 +48,7 @@ class RecipeController extends Controller
         if($recipe->status == 0){
             // Return 404 Not Found
         }
-        $categories = Category::where('name','<>','Healthy')->get();
-        return view('recipes.show', compact('recipe','categories'));
+        return view('recipes.show', compact('recipe'));
     }
 
     public function getModalDetails(Recipe $recipe){
