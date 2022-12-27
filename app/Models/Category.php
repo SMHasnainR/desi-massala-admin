@@ -12,8 +12,24 @@ class Category extends Model
     /**
      * Get the comments for the blog post.
      */
-    public function recipes()
+    public function articles()
     {
         return $this->hasMany(Recipe::class);
+    }
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function blogs()
+    {
+        return $this->articles()->where('type','blog');
+    }
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function recipes()
+    {
+        return $this->articles()->where('type','recipe');
     }
 }

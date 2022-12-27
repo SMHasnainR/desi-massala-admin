@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recipe;
 use App\Models\Category;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,16 +12,14 @@ class HomeController extends Controller
     public function home(){
 
         $recipes = Recipe::where('status',1)->where('type','recipe')->get()->take(6);
-        $categories = Category::where('name','<>','Healthy')->get();
 
-        return view('home', compact('recipes','categories'));
+        return view('home', compact('recipes'));
     }
 
     //
     public function about(){
-        $categories = Category::where('name','<>','Healthy')->get();
 
-        return view('about', compact('categories'));
+        return view('about');
     }
     //
     public function recipes(){
@@ -37,24 +35,23 @@ class HomeController extends Controller
     }
 
     public function contact(){
-        $categories = Category::where('name','<>','Healthy')->get();
-        return view('contact',compact('categories'));
+
+        return view('contact');
     }
 
     public function healthy(){
 
-        $blogs = Recipe::where('type','blog')->where('status',1)->simplePaginate(2);
-        $categories = Category::where('name','<>','Healthy')->get();
-        return view('blogs.index', compact('categories','blogs'));
+        // $blogs = Recipe::where('type','blog')->where('status',1)->simplePaginate(2);
+        $blogCategories = Category::where('type','blog')->get();
+        return view('blogs.index', compact('blogCategories'));
     }
 
     public function showBlog(Recipe $blog){
-        $categories = Category::where('name','<>','Healthy')->get();
         if($blog->type !== 'blog' || $blog->status !== 1){
             abort(404);
         }
 
         $otherBlogs = Recipe::where('type','blog')->where('id','<>',$blog->id)->get();
-        return view('blogs.show', compact('categories','blog','otherBlogs'));
+        return view('blogs.show', compact('blog','otherBlogs'));
     }
 }
