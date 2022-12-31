@@ -82,24 +82,25 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xl-7 col-md-8 mr-3">
+                        <div class="col-xl-8 col-lg-9 col-md-8">
                             <div class="main-menu" id="mainMenu">
                                 <nav>
                                     <ul id="navigation" class="w-100  d-none d-lg-block">
                                         <li><a href="{{ route('home') }}">home</a></li>
                                         <li><a href="{{ route('about') }}">about</a></li>
+                                        <li><a href="{{ route('about') }}">Daily Recipes</a></li>
                                         <li><a href="{{ route('recipes') }}">Recipes</a></li>
                                         <li><a href="{{ route('recipes.vegetables') }}">Veg Recipes</i></a></li>
                                         <li><a href="{{ route('recipes.users') }}">User Recipe</a></li>
                                         <li><a href="{{ route('healthy') }}">Healthy Living</a></li>
-                                        <li><a href="{{ route('contact') }}">Contact</a></li>
+                                        {{-- <li><a href="{{ route('contact') }}">Contact</a></li> --}}
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                         <div class="flex-wrap">
                             <a href="#" class="line_btn btn-primary text-white d-none d-lg-block"
-                                data-toggle="modal" data-target="#addRecipeModal" role='button'>Add Your Recipe</a>
+                                data-toggle="modal" data-target="#addRecipeModal" role='button'>Add Recipe</a>
                         </div>
                         <div class="col-2 w-100 m-0 fa-2x text-white d-flex justify-content-center bar-icon ">
                             <i id="bar" class="fa fa-bars " aria-hidden="true" onclick="showMenu()" ></i>

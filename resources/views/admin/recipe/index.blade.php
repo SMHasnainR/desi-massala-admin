@@ -15,231 +15,26 @@
                                     <h5 class="mb-0">Recipe's table</h5>
                                 </div>
                                 {{-- <a href="#" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New User</a> --}}
-                                @if ($route !== "recipes.user")
-                                    <a href="{{ $route === 'recipes.index' ? route('recipes.create') : route('recipes.blog.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">
+                                @if ($routeName !== "recipes.user")
+                                    <a href="{{ route($routeName.'.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">
                                         +&nbsp; Add New Recipe
                                     </a>
                                 @endif
                             </div>
                         </div>
                         <div class="card-body pb-2">
-                                {{-- <table class="table align-items-center mb-0">
+                               
+                                <table class="table align-items-center mb-0 data-table">
                                     <thead>
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Recipes</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Author</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Time</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Status</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Category</th>
-                                            <th class="text-secondary opacity-7"></th>
+                                            @foreach ($columns as $column)
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    {{ $column['label'] }}</th>
+                                            @endforeach                  
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/recipe/recipe-1.png"
-                                                            class="avatar avatar-sm me-3" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Pasta </h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Admin</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs text-secondary text-center mb-0">10 -15 min</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-success">Active</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Vegetable</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
-                                                    data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/recipe/recipe-1.png"
-                                                            class="avatar avatar-sm me-3" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Pasta </h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Admin</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs text-secondary text-center mb-0">10 -15 min</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-success">Active</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Vegetable</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
-                                                    data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/recipe/recipe-1.png"
-                                                            class="avatar avatar-sm me-3" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Pasta </h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Admin</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs text-secondary text-center mb-0">10 -15 min</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-success">Active</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Vegetable</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
-                                                    data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/recipe/recipe-1.png"
-                                                            class="avatar avatar-sm me-3" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Pasta </h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Admin</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs text-secondary text-center mb-0">10 -15 min</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-success">Active</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Vegetable</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
-                                                    data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/team-4.jpg" class="avatar avatar-sm me-3"
-                                                            alt="user6">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Arroz Con Pollo</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">User</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs text-secondary text-center mb-0">25 - 30 min</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-secondary">Un-Active</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Healthy</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
-                                                    data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-
                                     </tbody>
-                                </table> --}}
-                                <table class="table align-items-center mb-0 data-table">
-                                <thead>
-                                    <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            No</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Image</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Name</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Author</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Time</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Category</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Status</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Action</th>
-                                        {{-- <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Category</th> --}}
-                                        {{-- <th class="text-secondary opacity-7"></th> --}}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
                                 </table>
                         </div>
                     </div>
@@ -259,16 +54,24 @@
                 processing: true,
                 // scrollX: true,
                 serverSide: true,
-                ajax: "{{ route($route) }}",
+                ajax: "{{ route($routeName) }}",
+                
                 columns:[
-                    {data: 'id', name: 'id'},
-                    {data: 'image', name: 'image', orderable: false, searchable: false},
-                    {data: 'name', name: 'name'},
-                    {data: 'author', name: 'author'},
-                    {data: 'time', name: 'time',orderable: false, searchable: false },
-                    {data: 'category', name: 'category', orderable: false, searchable: false},
-                    {data: 'status', name: 'status'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                        // {data: 'id', name: 'id'},
+                        // {data: 'image', name: 'image', orderable: false, searchable: false},
+                        // {data: 'name', name: 'name'},
+                        // {data: 'author', name: 'author'},
+                        // {data: 'time', name: 'time',orderable: false, searchable: false },
+                        // {data: 'category', name: 'category', orderable: false, searchable: false},
+                        // {data: 'status', name: 'status'},
+                        // {data: 'action', name: 'action', orderable: false, searchable: false},
+                    @foreach($columns as $column)
+                    {
+                        data: '{{ $column['index'] }}',
+                        sortable: {{ $column['sortable'] ? "true" : "false" }},
+                        name: '{{ $column['name'] }}',
+                    },
+                    @endforeach
                 ],
                 drawCallback: function (settings) {
                     var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));

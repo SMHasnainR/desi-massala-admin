@@ -7530,7 +7530,7 @@ footer a {
     display: none !important;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
     .bar-icon {
         padding-right: 30px;
         aspect-ratio: 1;

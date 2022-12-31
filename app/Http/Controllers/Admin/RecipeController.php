@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\DailyRecipe;
 use App\Models\Recipe;
 use Exception;
 use Illuminate\Http\Request;
@@ -15,12 +16,34 @@ class RecipeController extends Controller
 
     public function index(Request $request)
     {
-
         // Load Data through Ajax
+        $routeName = $request->route()->getName();
+
         if ($request->ajax()) {
 
-            $routeName = $request->route()->getName();
-            $data = $routeName == 'recipes.user' ? Recipe::where('type','recipe')->where('from','user') : ($routeName == 'recipes.index' ? Recipe::where('type','recipe') : Recipe::where('type','blog') ) ;
+            // Handle Daily Recipe Menu
+            if($routeName === 'daily-recipes'){
+                $data = DailyRecipe::query();
+
+                return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->editColumn('image','<img src="{{ url("") }}/assets/img/recipe/{{ !empty($image_url) ? $image_url : `sample.jpg` }}" class="avatar avatar-sm me-3" alt="xd">')
+                    // ->editColumn('status', function($query){
+                    //     return $query->status == 1 ?
+                    //     '<input type="checkbox" data-id="'.$query->id.'" class="js-switch" checked />' :
+                    //     '<input type="checkbox" data-id="'.$query->id.'" class="js-switch" />';
+                    // })
+                    ->addColumn('action', function($row){
+                            $editBtn = '<a href="'.route('recipes.edit',$row->id).'" class="edit btn btn-primary btn-sm mx-1">Edit </a>';
+                            $delBtn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="delete btn btn-danger btn-sm mx-1">Delete </a>';
+                            return $editBtn .$delBtn;
+                    })
+                    ->rawColumns(['image','name','author','type','category','status',"time",'action'])
+                    ->make(true);
+            }
+
+            $data = $routeName === 'recipes.user' ? Recipe::where('type','recipe')->where('from','user') 
+            : ($routeName == 'recipes' ? Recipe::where('type','recipe') : Recipe::where('type','blog') ) ;
 
             return DataTables::of($data)
                     ->addIndexColumn()
@@ -46,15 +69,86 @@ class RecipeController extends Controller
                     ->make(true);
         }
 
-        $route = $request->route()->getName();
-        return view('admin.recipe.index',compact('route'));
+        $columns = $routeName === 'daily-recipes' ? 
+        [
+            [
+                "index" => "id",
+                "name" => "id",
+                "label" => "No",
+                "sortable" => true,
+            ],
+            [
+                "index" => "image",
+                "name" => "image",
+                "label" => "Image",
+                "sortable" => true,
+            ],
+            [
+                "index" => "action",
+                "name" => "action",
+                "label" => "Action",
+                "sortable" => true,
+            ],
+        ] : 
+        [
+            [
+                "index" => "id",
+                "name" => "id",
+                "label" => "No",
+                "sortable" => true,
+            ],
+            [
+                "index" => "image",
+                "name" => "image",
+                "label" => "Image",
+                "sortable" => true,
+            ],
+            [
+                "index" => "name",
+                "name" => "name",
+                "label" => "Name",
+                "sortable" => true,
+            ],
+            [
+                "index" => "author",
+                "name" => "author",
+                "label" => "Author",
+                "sortable" => true,
+            ],
+            [
+                "index" => "time",
+                "name" => "time",
+                "label" => "Time",
+                "sortable" => true,
+            ],
+            [
+                "index" => "category",
+                "name" => "category",
+                "label" => "Category",
+                "sortable" => true,
+            ],
+            [
+                "index" => "status",
+                "name" => "status",
+                "label" => "Status",
+                "sortable" => true,
+            ],
+            [
+                "index" => "action",
+                "name" => "action",
+                "label" => "Action",
+                "sortable" => true,
+            ],
+        ];
+        
+        return view('admin.recipe.index',compact('routeName','columns'));
     }
 
     public function create(Request $request)
     {
         $routeName = $request->route()->getName();
-        $categories = $routeName == 'recipes.blog.create' ? Category::where('id',3)->get() : Category::where('name','<>','Healthy')->get();
-
+        $categories = $routeName == 'recipes.blog.create' ? Category::where('type','blog')->get() : Category::where('type','recipe')->get();
+        
         return view('admin.recipe.add',compact('categories','routeName'));
     }
 
@@ -123,9 +217,10 @@ class RecipeController extends Controller
         return $response;
     }
 
-    // public function userRecipe()
-    // {
-    //     return view('tables');
-    // }
+    public function dailyRecipes()
+    {
+
+        return view('admin.recipe.index',compact('route'));
+    }
 
 }

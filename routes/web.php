@@ -35,15 +35,21 @@ Route::prefix('admin')->group(function(){
 		Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
         // Recipe's Contorller
-        Route::get('recipes', [AdminRecipeController::class, 'index'])->name('recipes.index');
+        Route::get('recipes', [AdminRecipeController::class, 'index'])->name('recipes');
         Route::get('recipes/user', [AdminRecipeController::class, 'index'])->name('recipes.user');
-        Route::get('recipes/blog/healthy', [AdminRecipeController::class, 'index'])->name('recipes.blog.healthy');
         Route::get('recipes/create', [AdminRecipeController::class, 'create'])->name('recipes.create');
-        Route::get('recipes/blog/create', [AdminRecipeController::class, 'create'])->name('recipes.blog.create');
+        Route::get('recipes/blog/healthy', [AdminRecipeController::class, 'index'])->name('recipes.blogs');
+        Route::get('recipes/blog/create', [AdminRecipeController::class, 'create'])->name('recipes.blogs.create');
+		Route::get('daily-recipes', [AdminRecipeController::class, 'index'])->name('daily-recipes');
+        Route::get('daily-recipes/create', [AdminRecipeController::class, 'createDailyRecipe'])->name('daily-recipes.create');
+		
 		Route::get('recipes/{recipe}/edit', [AdminRecipeController::class, 'edit'])->name('recipes.edit');
 		Route::post('recipe/{recipe}/update', [AdminRecipeController::class, 'update'])->name('recipes.update');
 		Route::post('recipe/{recipe}/delete', [AdminRecipeController::class, 'destroy'])->name('recipe.destroy');
 		Route::post('recipe/{recipe}/status', [AdminRecipeController::class, 'updateStatus'])->name('recipe.status');
+        
+		
+		
 		// Route::get('banners', [AdminController::class, 'banners'])->name('banners');
 		// Route::get('user-management', function () {
 		// 	return view('laravel-examples/user-management');

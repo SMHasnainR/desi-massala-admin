@@ -76,8 +76,8 @@ $routeName = request()->route()->getName();
 
 
       <li class="nav-item">
-        <a class="nav-link {{ (( $routeName == 'recipes.index' ||  $routeName == 'recipes.create' ) ? 'active' : '') }}"
-          href="{{ route('recipes.index') }}">
+        <a class="nav-link {{ (( $routeName == 'recipes' ||  $routeName == 'recipes.create' ) ? 'active' : '') }}"
+          href="{{ route('recipes') }}">
           <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             {{-- <i class="fas fa-cutlery"></i> --}}
             <i class="fas fa-utensils"></i>
@@ -97,12 +97,22 @@ $routeName = request()->route()->getName();
       </li>
 
       <li class="nav-item">
-        <a class="nav-link {{ ( in_array($routeName, ['recipes.blog.healthy', 'recipes.blog.create'])  ) ? 'active' : '' }}"
-        href="{{ route('recipes.blog.healthy') }}">
+        <a class="nav-link {{ ( in_array($routeName, ['recipes.blogs', 'recipes.blog.create'])  ) ? 'active' : '' }}"
+        href="{{ route('recipes.blogs') }}">
           <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-utensils"></i>
           </div>
           <span class="nav-link-text ms-1">Healthy Blog</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link {{ ( in_array($routeName, ['daily-recipes', 'daily-recipes.create'])  ) ? 'active' : '' }}"
+        href="{{ route('daily-recipes') }}">
+          <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <span class="nav-link-text ms-1">Daily Recipe</span>
         </a>
       </li>
 
