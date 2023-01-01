@@ -76,8 +76,8 @@ $routeName = request()->route()->getName();
 
 
       <li class="nav-item">
-        <a class="nav-link {{ (( $routeName == 'recipes' ||  $routeName == 'recipes.create' ) ? 'active' : '') }}"
-          href="{{ route('recipes') }}">
+        <a class="nav-link {{ (( $routeName == 'admin.recipes' ||  $routeName == 'admin.recipes.create' ) ? 'active' : '') }}"
+          href="{{ route('admin.recipes') }}">
           <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             {{-- <i class="fas fa-cutlery"></i> --}}
             <i class="fas fa-utensils"></i>
@@ -87,8 +87,8 @@ $routeName = request()->route()->getName();
       </li>
 
       <li class="nav-item">
-        <a class="nav-link {{ (( $routeName == 'recipes.user') ? 'active' : '') }}"
-        href="{{ route('recipes.user') }}">
+        <a class="nav-link {{ (( $routeName == 'admin.recipes.user') ? 'active' : '') }}"
+        href="{{ route('admin.recipes.user') }}">
           <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-utensils"></i>
           </div>
@@ -97,8 +97,8 @@ $routeName = request()->route()->getName();
       </li>
 
       <li class="nav-item">
-        <a class="nav-link {{ ( in_array($routeName, ['recipes.blogs', 'recipes.blog.create'])  ) ? 'active' : '' }}"
-        href="{{ route('recipes.blogs') }}">
+        <a class="nav-link {{ ( in_array($routeName, ['admin.recipes.blogs', 'admin.recipes.blog.create'])  ) ? 'active' : '' }}"
+        href="{{ route('admin.recipes.blogs') }}">
           <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-utensils"></i>
           </div>
@@ -107,8 +107,8 @@ $routeName = request()->route()->getName();
       </li>
 
       <li class="nav-item">
-        <a class="nav-link {{ ( in_array($routeName, ['daily-recipes', 'daily-recipes.create'])  ) ? 'active' : '' }}"
-        href="{{ route('daily-recipes') }}">
+        <a class="nav-link {{ ( in_array($routeName, ['admin.daily-recipes', 'admin.daily-recipes.create'])  ) ? 'active' : '' }}"
+        href="{{ route('admin.daily-recipes') }}">
           <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-utensils"></i>
           </div>

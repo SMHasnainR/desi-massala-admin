@@ -8,7 +8,7 @@
                     <h4 class="mb-0">{{ __('Add Recipe') }}</h4>
                 </div>
                 <div class="card-body pt-4 p-3">
-                    <form action="{{ isset($recipe) ? route('recipes.update',$recipe->id) : route('recipes.store') }}" method="POST" role="form text-left" enctype="multipart/form-data">
+                    <form action="{{ isset($recipe) ? route('admin.recipes.update',$recipe->id) : route('recipes.store') }}" method="POST" role="form text-left" enctype="multipart/form-data">
                         @csrf
                         @if ($errors->any())
                             <div class="mt-3  alert alert-danger alert-dismissible fade show" role="alert">

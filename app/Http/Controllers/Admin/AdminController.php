@@ -41,7 +41,7 @@ class AdminController extends Controller
                         return '<span class="text-sm font-weight-bold">'.$category->name.'</span>';
                     })
                     ->addColumn('action', function($row){
-                            $editBtn = '<a href="'.route('recipes.edit',$row->id).'" class="edit btn btn-primary btn-sm mx-1">Edit </a>';
+                            $editBtn = '<a href="'.route('admin.recipes.edit',$row->id).'" class="edit btn btn-primary btn-sm mx-1">Edit </a>';
                             $delBtn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="delete btn btn-danger btn-sm mx-1">Delete </a>';
                             return $editBtn .$delBtn;
                     })

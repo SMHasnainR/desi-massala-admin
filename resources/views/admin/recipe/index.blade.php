@@ -23,14 +23,14 @@
                             </div>
                         </div>
                         <div class="card-body pb-2">
-                               
+
                                 <table class="table align-items-center mb-0 data-table">
                                     <thead>
                                         <tr>
                                             @foreach ($columns as $column)
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                     {{ $column['label'] }}</th>
-                                            @endforeach                  
+                                            @endforeach
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -55,16 +55,8 @@
                 // scrollX: true,
                 serverSide: true,
                 ajax: "{{ route($routeName) }}",
-                
+
                 columns:[
-                        // {data: 'id', name: 'id'},
-                        // {data: 'image', name: 'image', orderable: false, searchable: false},
-                        // {data: 'name', name: 'name'},
-                        // {data: 'author', name: 'author'},
-                        // {data: 'time', name: 'time',orderable: false, searchable: false },
-                        // {data: 'category', name: 'category', orderable: false, searchable: false},
-                        // {data: 'status', name: 'status'},
-                        // {data: 'action', name: 'action', orderable: false, searchable: false},
                     @foreach($columns as $column)
                     {
                         data: '{{ $column['index'] }}',
@@ -98,8 +90,8 @@
                         let id = $(this).data('id');
                         console.log(id);
 
-                        // Ajax Call to delete the recipe
-                        let url = "{{ route('recipe.status',':id') }}";
+                        // Ajax Call to Update Status the recipe
+                        let url = "{{ route('admin.recipe.status',':id') }}";
                         url = url.replace(':id',id);
 
                         $.ajax({
@@ -147,8 +139,9 @@
                         let id = $(this).data('id');
 
                         // Ajax Call to delete the recipe
-                        let url = "{{ route('recipe.destroy',':id') }}";
+                        let url = "{{ $routeName === 'admin.daily-recipe.index' ? route('admin.daily-recipe.destroy',':id') : route('admin.recipe.destroy',':id') }}";
                         url = url.replace(':id',id);
+                        console.log(url);
 
                         $.ajax({
                             url:url ,

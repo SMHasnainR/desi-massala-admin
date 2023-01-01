@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\DailyRecipe;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 
@@ -21,18 +22,13 @@ class HomeController extends Controller
 
         return view('about');
     }
-    //
-    public function recipes(){
-
-        $recipes =  Recipe::where('status', 1)->get()->take(9);
-
-        return view('recipes', compact('recipes'));
-    }
-
-    public function vegRecipes(){
-
-        return view('vegrecipes');
-    }
+//    //
+//    public function recipes(){
+//
+//        $recipes =  Recipe::where('status', 1)->get()->take(9);
+//
+//        return view('recipes', compact('recipes'));
+//    }
 
     public function contact(){
 
@@ -44,6 +40,12 @@ class HomeController extends Controller
         // $blogs = Recipe::where('type','blog')->where('status',1)->simplePaginate(2);
         $blogCategories = Category::where('type','blog')->get();
         return view('blogs.index', compact('blogCategories'));
+    }
+
+    public function dailyRecipe(){
+        $recipes =  DailyRecipe::simplePaginate(6);
+
+        return view('daily-recipe.index', compact('recipes'));
     }
 
     public function showBlog(Recipe $blog){

@@ -88,7 +88,7 @@
                                     <ul id="navigation" class="w-100  d-none d-lg-block">
                                         <li><a href="{{ route('home') }}">home</a></li>
                                         <li><a href="{{ route('about') }}">about</a></li>
-                                        <li><a href="{{ route('about') }}">Daily Recipes</a></li>
+                                        <li><a href="{{ route('daily-recipes') }}">Daily Recipes</a></li>
                                         <li><a href="{{ route('recipes') }}">Recipes</a></li>
                                         <li><a href="{{ route('recipes.vegetables') }}">Veg Recipes</i></a></li>
                                         <li><a href="{{ route('recipes.users') }}">User Recipe</a></li>

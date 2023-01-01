@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class DailyRecipe extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * **/
+    protected $fillable = ['image_slug'];
+
 }

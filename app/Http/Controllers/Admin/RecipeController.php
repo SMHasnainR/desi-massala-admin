@@ -16,34 +16,34 @@ class RecipeController extends Controller
 
     public function index(Request $request)
     {
-        // Load Data through Ajax
         $routeName = $request->route()->getName();
 
+        // Load Data through Ajax
         if ($request->ajax()) {
 
             // Handle Daily Recipe Menu
-            if($routeName === 'daily-recipes'){
+            if($routeName === 'admin.daily-recipes'){
                 $data = DailyRecipe::query();
 
                 return DataTables::of($data)
                     ->addIndexColumn()
-                    ->editColumn('image','<img src="{{ url("") }}/assets/img/recipe/{{ !empty($image_url) ? $image_url : `sample.jpg` }}" class="avatar avatar-sm me-3" alt="xd">')
+                    ->editColumn('image','<img alt="" src="{{ url("") }}/assets/img/daily-recipes/{{ !empty($image_slug) ? $image_slug : `sample.jpg` }}" class="avatar avatar-sm me-3" alt="xd">')
                     // ->editColumn('status', function($query){
                     //     return $query->status == 1 ?
                     //     '<input type="checkbox" data-id="'.$query->id.'" class="js-switch" checked />' :
                     //     '<input type="checkbox" data-id="'.$query->id.'" class="js-switch" />';
                     // })
                     ->addColumn('action', function($row){
-                            $editBtn = '<a href="'.route('recipes.edit',$row->id).'" class="edit btn btn-primary btn-sm mx-1">Edit </a>';
+//                            $editBtn = '<a href="'.route('admin.recipes.edit',$row->id).'" class="edit btn btn-primary btn-sm mx-1">Edit </a>';
                             $delBtn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="delete btn btn-danger btn-sm mx-1">Delete </a>';
-                            return $editBtn .$delBtn;
+                            return $delBtn;
                     })
                     ->rawColumns(['image','name','author','type','category','status',"time",'action'])
                     ->make(true);
             }
 
-            $data = $routeName === 'recipes.user' ? Recipe::where('type','recipe')->where('from','user') 
-            : ($routeName == 'recipes' ? Recipe::where('type','recipe') : Recipe::where('type','blog') ) ;
+            $data = $routeName === 'admin.recipes.user' ? Recipe::where('type','recipe')->where('from','user')
+            : ($routeName == 'admin.recipes' ? Recipe::where('type','recipe') : Recipe::where('type','blog') ) ;
 
             return DataTables::of($data)
                     ->addIndexColumn()
@@ -61,7 +61,7 @@ class RecipeController extends Controller
                         return '<span class="text-sm font-weight-bold">'.$category->name.'</span>';
                     })
                     ->addColumn('action', function($row){
-                            $editBtn = '<a href="'.route('recipes.edit',$row->id).'" class="edit btn btn-primary btn-sm mx-1">Edit </a>';
+                            $editBtn = '<a href="'.route('admin.recipes.edit',$row->id).'" class="edit btn btn-primary btn-sm mx-1">Edit </a>';
                             $delBtn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="delete btn btn-danger btn-sm mx-1">Delete </a>';
                             return $editBtn .$delBtn;
                     })
@@ -69,7 +69,7 @@ class RecipeController extends Controller
                     ->make(true);
         }
 
-        $columns = $routeName === 'daily-recipes' ? 
+        $columns = $routeName === 'admin.daily-recipes' ?
         [
             [
                 "index" => "id",
@@ -89,7 +89,7 @@ class RecipeController extends Controller
                 "label" => "Action",
                 "sortable" => true,
             ],
-        ] : 
+        ] :
         [
             [
                 "index" => "id",
@@ -140,15 +140,15 @@ class RecipeController extends Controller
                 "sortable" => true,
             ],
         ];
-        
+
         return view('admin.recipe.index',compact('routeName','columns'));
     }
 
     public function create(Request $request)
     {
         $routeName = $request->route()->getName();
-        $categories = $routeName == 'recipes.blog.create' ? Category::where('type','blog')->get() : Category::where('type','recipe')->get();
-        
+        $categories = $routeName == 'admin.recipes.blog.create' ? Category::where('type','blog')->get() : Category::where('type','recipe')->get();
+
         return view('admin.recipe.add',compact('categories','routeName'));
     }
 
@@ -217,10 +217,43 @@ class RecipeController extends Controller
         return $response;
     }
 
-    public function dailyRecipes()
-    {
+    public function destroyDailyRecipe(DailyRecipe $recipe){
+        $response = [];
+        try{
+            $recipe->delete();
+            $response['success'] = 'Recipe has been deleted successfully;';
 
-        return view('admin.recipe.index',compact('route'));
+        }catch(Exception $e){
+            $response['error'] = $e->getMessage();
+        }
+        return $response;
+    }
+    public function createDailyRecipe()
+    {
+        return view('admin.daily-recipe.add');
+    }
+
+    public function storeDailyRecipe(Request $request)
+    {
+//        dd($request->all());
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120|dimensions:max_width=1480,max_height=2000',
+        ]);
+
+        // Uploading file
+        $imageSlug = time().'.'.$request->image->extension();
+        $request->image->move(public_path('assets/img/daily-recipes'), $imageSlug);
+
+        // Storing Image data into DB
+        try{
+            DailyRecipe::create([
+               'image_slug' => $imageSlug
+            ]);
+        } catch(Exception $e){
+            return redirect()->back()->with('error','Error creating recipe:'.$e->getMessage());
+        }
+
+        return redirect()->back()->with('success','Recipe has been created successfully');
     }
 
 }

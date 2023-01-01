@@ -34,22 +34,23 @@ Route::prefix('admin')->group(function(){
 		Route::get('/', [AdminController::class, 'home']);
 		Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
-        // Recipe's Contorller
-        Route::get('recipes', [AdminRecipeController::class, 'index'])->name('recipes');
-        Route::get('recipes/user', [AdminRecipeController::class, 'index'])->name('recipes.user');
-        Route::get('recipes/create', [AdminRecipeController::class, 'create'])->name('recipes.create');
-        Route::get('recipes/blog/healthy', [AdminRecipeController::class, 'index'])->name('recipes.blogs');
-        Route::get('recipes/blog/create', [AdminRecipeController::class, 'create'])->name('recipes.blogs.create');
-		Route::get('daily-recipes', [AdminRecipeController::class, 'index'])->name('daily-recipes');
-        Route::get('daily-recipes/create', [AdminRecipeController::class, 'createDailyRecipe'])->name('daily-recipes.create');
-		
-		Route::get('recipes/{recipe}/edit', [AdminRecipeController::class, 'edit'])->name('recipes.edit');
-		Route::post('recipe/{recipe}/update', [AdminRecipeController::class, 'update'])->name('recipes.update');
-		Route::post('recipe/{recipe}/delete', [AdminRecipeController::class, 'destroy'])->name('recipe.destroy');
-		Route::post('recipe/{recipe}/status', [AdminRecipeController::class, 'updateStatus'])->name('recipe.status');
-        
-		
-		
+        // Recipe's Controller
+        Route::get('recipes', [AdminRecipeController::class, 'index'])->name('admin.recipes');
+        Route::get('recipes/user', [AdminRecipeController::class, 'index'])->name('admin.recipes.user');
+        Route::get('recipes/create', [AdminRecipeController::class, 'create'])->name('admin.recipes.create');
+        Route::get('recipes/create', [AdminRecipeController::class, 'create'])->name('admin.recipes.user.create');
+        Route::get('recipes/blog/healthy', [AdminRecipeController::class, 'index'])->name('admin.recipes.blogs');
+        Route::get('recipes/blog/create', [AdminRecipeController::class, 'create'])->name('admin.recipes.blogs.create');
+		Route::get('daily-recipes', [AdminRecipeController::class, 'index'])->name('admin.daily-recipes');
+        Route::get('daily-recipes/create', [AdminRecipeController::class, 'createDailyRecipe'])->name('admin.daily-recipes.create');
+        Route::post('daily-recipes', [AdminRecipeController::class, 'storeDailyRecipe'])->name('admin.daily-recipes.store');
+
+		Route::get('recipes/{recipe}/edit', [AdminRecipeController::class, 'edit'])->name('admin.recipes.edit');
+		Route::post('recipe/{recipe}/update', [AdminRecipeController::class, 'update'])->name('admin.recipes.update');
+		Route::post('recipe/{recipe}/delete', [AdminRecipeController::class, 'destroy'])->name('admin.recipe.destroy');
+		Route::post('recipe/{recipe}/status', [AdminRecipeController::class, 'updateStatus'])->name('admin.recipe.status');
+        Route::post('daily-recipe/{recipe}/delete', [AdminRecipeController::class, 'destroyDailyRecipe'])->name('admin.daily-recipe.destroy');
+
 		// Route::get('banners', [AdminController::class, 'banners'])->name('banners');
 		// Route::get('user-management', function () {
 		// 	return view('laravel-examples/user-management');
@@ -91,6 +92,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('', [HomeController::class, 'home'])->name('home');
     Route::get('about', [HomeController::class, 'about'])->name('about');
     Route::get('recipes', [RecipeController::class, 'index'])->name('recipes');
+    Route::get('daily-recipes', [HomeController::class, 'dailyRecipe'])->name('daily-recipes');
     Route::get('recipes/vegetables', [RecipeController::class, 'index'])->name('recipes.vegetables');
     Route::get('recipes/users', [RecipeController::class, 'index'])->name('recipes.users');
     Route::get('recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
