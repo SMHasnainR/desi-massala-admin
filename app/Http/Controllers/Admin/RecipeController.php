@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\DailyRecipe;
+use App\Models\HealthyVideo;
 use App\Models\Recipe;
 use Exception;
 use Illuminate\Http\Request;
@@ -40,10 +41,28 @@ class RecipeController extends Controller
                     })
                     ->rawColumns(['image','name','author','type','category','status',"time",'action'])
                     ->make(true);
+            }elseif($routeName === 'admin.healthy-video'){
+                $data = HealthyVideo::query();
+
+                return DataTables::of($data)
+                    ->addIndexColumn()
+//                    ->editColumn('image','<img alt="" src="{{ url("") }}/assets/img/daily-recipes/{{ !empty($image_slug) ? $image_slug : `sample.jpg` }}" class="avatar avatar-sm me-3" alt="xd">')
+                    // ->editColumn('status', function($query){
+                    //     return $query->status == 1 ?
+                    //     '<input type="checkbox" data-id="'.$query->id.'" class="js-switch" checked />' :
+                    //     '<input type="checkbox" data-id="'.$query->id.'" class="js-switch" />';
+                    // })
+                    ->addColumn('action', function($row){
+//                            $editBtn = '<a href="'.route('admin.recipes.edit',$row->id).'" class="edit btn btn-primary btn-sm mx-1">Edit </a>';
+                        $delBtn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="delete btn btn-danger btn-sm mx-1">Delete </a>';
+                        return $delBtn;
+                    })
+                    ->rawColumns(['image','action'])
+                    ->make(true);
             }
 
             $data = $routeName === 'admin.recipes.user' ? Recipe::where('type','recipe')->where('from','user')
-            : ($routeName == 'admin.recipes' ? Recipe::where('type','recipe') : Recipe::where('type','blog') ) ;
+            : ($routeName == 'admin.recipes' ? Recipe::where('type','recipe')->where('from','admin') : Recipe::where('type','blog') ) ;
 
             return DataTables::of($data)
                     ->addIndexColumn()
@@ -81,6 +100,21 @@ class RecipeController extends Controller
                 "index" => "image",
                 "name" => "image",
                 "label" => "Image",
+                "sortable" => true,
+            ],
+            [
+                "index" => "action",
+                "name" => "action",
+                "label" => "Action",
+                "sortable" => true,
+            ],
+        ] :
+        ( $routeName === 'admin.healthy-video' ?
+        [
+            [
+                "index" => "id",
+                "name" => "id",
+                "label" => "No",
                 "sortable" => true,
             ],
             [
@@ -139,7 +173,7 @@ class RecipeController extends Controller
                 "label" => "Action",
                 "sortable" => true,
             ],
-        ];
+        ] );
 
         return view('admin.recipe.index',compact('routeName','columns'));
     }

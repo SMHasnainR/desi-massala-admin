@@ -38,12 +38,19 @@ Route::prefix('admin')->group(function(){
         Route::get('recipes', [AdminRecipeController::class, 'index'])->name('admin.recipes');
         Route::get('recipes/user', [AdminRecipeController::class, 'index'])->name('admin.recipes.user');
         Route::get('recipes/create', [AdminRecipeController::class, 'create'])->name('admin.recipes.create');
-        Route::get('recipes/create', [AdminRecipeController::class, 'create'])->name('admin.recipes.user.create');
+//        Route::get('recipes/create', [AdminRecipeController::class, 'create'])->name('admin.recipes.user.create');
         Route::get('recipes/blog/healthy', [AdminRecipeController::class, 'index'])->name('admin.recipes.blogs');
         Route::get('recipes/blog/create', [AdminRecipeController::class, 'create'])->name('admin.recipes.blogs.create');
-		Route::get('daily-recipes', [AdminRecipeController::class, 'index'])->name('admin.daily-recipes');
+
+        // Daily Recipe
+        Route::get('daily-recipes', [AdminRecipeController::class, 'index'])->name('admin.daily-recipes');
         Route::get('daily-recipes/create', [AdminRecipeController::class, 'createDailyRecipe'])->name('admin.daily-recipes.create');
         Route::post('daily-recipes', [AdminRecipeController::class, 'storeDailyRecipe'])->name('admin.daily-recipes.store');
+
+        // Healthy Video
+        Route::get('healthy-video', [AdminRecipeController::class, 'index'])->name('admin.healthy-video');
+        Route::get('healthy-video/create', [AdminRecipeController::class, 'createHealthyVideo'])->name('admin.healthy-video.create');
+        Route::post('healthy-video', [AdminRecipeController::class, 'storeHealthyVideo'])->name('admin.healthy-video.store');
 
 		Route::get('recipes/{recipe}/edit', [AdminRecipeController::class, 'edit'])->name('admin.recipes.edit');
 		Route::post('recipe/{recipe}/update', [AdminRecipeController::class, 'update'])->name('admin.recipes.update');

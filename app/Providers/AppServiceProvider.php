@@ -25,8 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $categories = Category::where('name','<>','Healthy')->get();
-        
+        $categories = Category::where('type','recipe')->get();
+
         View::share('categories',$categories);
     }
 }

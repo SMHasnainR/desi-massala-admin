@@ -15,7 +15,7 @@
                                     <h5 class="mb-0">Recipe's table</h5>
                                 </div>
                                 {{-- <a href="#" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New User</a> --}}
-                                @if ($routeName !== "recipes.user")
+                                @if ($routeName !== "admin.recipes.user")
                                     <a href="{{ route($routeName.'.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">
                                         +&nbsp; Add New Recipe
                                     </a>
@@ -139,7 +139,7 @@
                         let id = $(this).data('id');
 
                         // Ajax Call to delete the recipe
-                        let url = "{{ $routeName === 'admin.daily-recipe.index' ? route('admin.daily-recipe.destroy',':id') : route('admin.recipe.destroy',':id') }}";
+                        let url = "{{ $routeName === 'admin.daily-recipes' ? route('admin.daily-recipe.destroy',':id') : route('admin.recipe.destroy',':id') }}";
                         url = url.replace(':id',id);
                         console.log(url);
 

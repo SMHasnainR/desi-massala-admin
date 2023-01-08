@@ -116,6 +116,16 @@ $routeName = request()->route()->getName();
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link {{ ( in_array($routeName, ['admin.healthy-video', 'admin.healthy-video.create'])  ) ? 'active' : '' }}"
+        href="{{ route('admin.healthy-video') }}">
+          <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <span class="nav-link-text ms-1">Healthy Video</span>
+        </a>
+      </li>
+
       {{-- <li class="nav-item">
         <a class="nav-link {{ (Request::is('virtual-reality') ? 'active' : '') }}" href="{{ url('virtual-reality') }}">
           <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">

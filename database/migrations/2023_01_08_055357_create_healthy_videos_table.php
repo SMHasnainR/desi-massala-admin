@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('daily_recipes', function (Blueprint $table) {
+        Schema::create('healthy_videos', function (Blueprint $table) {
             $table->id();
-            $table->string('image_slug');
+            $table->string('video_slug');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('daily_recipes');
+        Schema::dropIfExists('healthy_videos');
     }
 };

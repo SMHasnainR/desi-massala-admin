@@ -47,6 +47,7 @@ class RecipeController extends Controller
     public function show(Recipe $recipe){
         if($recipe->status == 0){
             // Return 404 Not Found
+            abort(404, 'Page not found');
         }
         return view('recipes.show', compact('recipe'));
     }
