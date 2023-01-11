@@ -22,7 +22,7 @@
                 <div class="col-lg-8 posts-list">
                     <div class="single-post">
                         <div class="feature-img">
-                            <img class="img-fluid" src="{{ url('') }}/assets/img/recipe/{{ $blog->image_url ?: 'sample.jpg'}}" alt="">
+                            <img class="img-fluid" width="100%" src="{{ url('') }}/assets/img/recipe/{{ $blog->image_url ?: 'sample.jpg'}}" alt="">
                         </div>
                         <div class="blog_details">
                             {!! $blog->details !!}
@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
-                        
+
                         {{-- <aside class="single_sidebar_widget post_category_widget">
                             <h4 class="widget_title">Category</h4>
                             <ul class="list cat-list">

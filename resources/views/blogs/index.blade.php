@@ -3,10 +3,13 @@
 @section('content')
 
     {{-- Start Video --}}
-    <div id="light">
-{{--        <a class="boxclose" id="boxclose" onclick="lightbox_close();"></a>--}}
-        <video id="video"  muted autoplay src="{{url('')}}/assets/video/{{$video->video_slug}}" width="800"></video>
+    <div class="w-100 d-flex justify-content-center align-items-center">
+        <div id="light">
+            <video id="video"src="{{url('')}}/assets/video/{{$video->video_slug}}"
+                   width="100%" muted autoplay controls></video>
+        </div>
     </div>
+
     <div id="fade" onClick="vidPopupClose();"></div>
 
     <!-- bradcam_area  -->
@@ -33,7 +36,7 @@
             </h1>
             <div class="row ">
                     @forelse($blogCategory->blogs as $blog)
-                        <article class="blog_item">
+                        <article class="blog_item col-12 col-md-6">
                             <div class="blog_item_img">
                                 <img class="card-img" src="{{url('')}}/assets/img/recipe/{{$blog->image_url}}" alt="">
                                 <a href="#" class="blog_item_date">

@@ -6258,7 +6258,7 @@ h6 {
 /*============ blog_left_sidebar css ==============*/
 .blog_item {
     margin-bottom: 50px;
-    max-width: 50%;
+    /*max-width: 50%;*/
     padding-inline: 30px;
     /* box-shadow: 0px 10px 20px 0px rgb(221 221 221 / 30%) */
 }
@@ -7744,17 +7744,20 @@ to {
 #light {
     /*display: none;*/
     position: absolute;
-    top: 42%;
-    left: 42%;
-    max-width: 600px;
+    top: 15%;
+    /*left: 50%;*/
+    max-width: 850px;
     max-height: 360px;
-    margin-left: -300px;
-    margin-top: -180px;
-    /*border: 2px solid #FFF;*/
+    display: flex;
+    align-items: center;
+    /*margin-left: -300px;*/
+    /*margin-top: -180px;*/
+    width: 100%;
     background: #000;
     z-index: 1002;
     overflow: visible;
 }
+
 #fade {
     position: fixed;
     top: 0%;
