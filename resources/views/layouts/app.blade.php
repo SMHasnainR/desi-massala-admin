@@ -72,7 +72,7 @@
         <div class="header-area ">
             <div id="sticky-header" class="main-header-area">
                 <div class="container">
-                    <div class="row  align-items-center flex-nowrap flex-md-wrap">
+                    <div class="row justify-content-between align-items-center flex-nowrap flex-md-wrap">
                         <div class="col-xl-2 col-md-1 col-2">
                             <div class="logo">
                                 <a href="{{ route('home') }}">
@@ -82,7 +82,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xl-8 col-lg-9 col-md-8">
+                        <div id="nav" class="col-xl-8 col-lg-9 col-md-8">
                             <div class="main-menu" id="mainMenu">
                                 <nav>
                                     <ul id="navigation" class="w-100  d-none d-lg-block">
@@ -98,8 +98,8 @@
                                 </nav>
                             </div>
                         </div>
-                        <div class="flex-wrap">
-                            <a href="#" class="line_btn btn-primary text-white d-none d-lg-block"
+                        <div id="add-recipe-div" class="flex-wrap">
+                            <a href="#" class="line_btn btn-primary text-white d-lg-block"
                                 data-toggle="modal" data-target="#addRecipeModal" role='button'>Add Recipe</a>
                         </div>
                         <div class="col-2 w-100 m-0 fa-2x text-white d-flex justify-content-center bar-icon ">

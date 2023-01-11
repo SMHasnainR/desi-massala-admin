@@ -1431,7 +1431,7 @@ h3 {
     text-transform: capitalize;
 }
 
-@media (min-width:482px ) and (max-width: 992px) {
+@media (min-width:482px ) and (max-width: 991px) {
     .slider_text h3{
         font-size: 63px !important;
     }
@@ -7532,14 +7532,14 @@ footer a {
 
 @media (max-width: 991px) {
     .bar-icon {
-        padding-right: 30px;
+        padding-right: 12px;
         aspect-ratio: 1;
         top: 2rem;
         right: 2rem;
         display:block !important;
     }
 }
-@media (max-width: 992px) {
+@media (max-width: 991px) {
     .mob-nav {
         position:fixed;
         inset: 0% 0% 0% 0%;
@@ -7560,7 +7560,7 @@ footer a {
 }
 
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
     .mob-nav li{
         padding: 12px 25px;
         font-size: 30px;
@@ -7569,7 +7569,7 @@ footer a {
     }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
     .mob-nav li a{
         padding: 12px 25px;
         font-size: 30px;
@@ -7770,7 +7770,25 @@ to {
     opacity: .80;
     filter: alpha(opacity=80);
 }
+@media (max-width: 991px) {
+    #nav{
+        max-width: 0px;
+    }
 
+    #add-recipe-div{
+        align-self: start;
+        margin-top: 20px;
+        margin-inline: auto;
+    }
+}
+
+@media (max-width: 425px){
+    .bar-icon{
+        padding-left: 25px !important;
+        margin-left: auto !important;
+        margin-bottom: auto !important;
+    }
+}
 /*body{*/
 /*    overflow: hidden;*/
 /*}*/
