@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\DailyRecipe;
+use App\Models\HealthyVideo;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,9 @@ class HomeController extends Controller
 
         // $blogs = Recipe::where('type','blog')->where('status',1)->simplePaginate(2);
         $blogCategories = Category::where('type','blog')->get();
-        return view('blogs.index', compact('blogCategories'));
+        $video = HealthyVideo::first();
+
+        return view('blogs.index', compact('blogCategories','video'));
     }
 
     public function dailyRecipe(){

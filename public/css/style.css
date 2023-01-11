@@ -7740,3 +7740,34 @@ to {
       width: 460px;
       height: 500px;
   }
+
+#light {
+    /*display: none;*/
+    position: absolute;
+    top: 42%;
+    left: 42%;
+    max-width: 600px;
+    max-height: 360px;
+    margin-left: -300px;
+    margin-top: -180px;
+    /*border: 2px solid #FFF;*/
+    background: #000;
+    z-index: 1002;
+    overflow: visible;
+}
+#fade {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .80;
+    filter: alpha(opacity=80);
+}
+
+/*body{*/
+/*    overflow: hidden;*/
+/*}*/

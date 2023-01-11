@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+
+    {{-- Start Video --}}
+    <div id="light">
+{{--        <a class="boxclose" id="boxclose" onclick="lightbox_close();"></a>--}}
+        <video id="video"  muted autoplay src="{{url('')}}/assets/video/{{$video->video_slug}}" width="800"></video>
+    </div>
+    <div id="fade" onClick="vidPopupClose();"></div>
+
     <!-- bradcam_area  -->
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">
@@ -55,7 +63,7 @@
                 </div>
             @endforeach
         </div>
-{{-- 
+{{--
         @if ($blogs->hasMorePages())
             <div>
                 <div class="text-center">
@@ -65,4 +73,40 @@
         @endif --}}
     </section>
     <!--================Blog Area =================-->
+@endsection
+
+@section('end-script')
+    <script>
+
+        {{--  Function to close Video Popup  --}}
+        function vidPopupClose(){
+            $('body').css('overflow','scroll')
+            $('#fade, #light').addClass('d-none');
+        }
+
+        $(document).ready(function(){
+
+            // If video is muted then unmute it
+            $("#video").prop("muted", false);
+            $("#video").click(function(){
+                $('#video').get(0).play();
+            });
+
+
+            // Scroll always on top
+            $("html, body").animate({
+                scrollTop: 0
+            }, 600);
+
+            $('body').css('overflow','hidden');
+
+            // Close video auto when finished
+            $('#video').on('ended', function(){
+                vidPopupClose();
+            });
+
+
+        });
+
+    </script>
 @endsection

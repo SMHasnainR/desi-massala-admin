@@ -348,8 +348,6 @@
 
     </script>
 
-
-
     @yield('end-script')
     <!-- JS here -->
     <!-- <script src="js/vendor/modernizr-3.5.0.min.js"></script>

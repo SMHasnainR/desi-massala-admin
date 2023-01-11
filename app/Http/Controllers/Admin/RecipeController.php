@@ -46,12 +46,6 @@ class RecipeController extends Controller
 
                 return DataTables::of($data)
                     ->addIndexColumn()
-//                    ->editColumn('image','<img alt="" src="{{ url("") }}/assets/img/daily-recipes/{{ !empty($image_slug) ? $image_slug : `sample.jpg` }}" class="avatar avatar-sm me-3" alt="xd">')
-                    // ->editColumn('status', function($query){
-                    //     return $query->status == 1 ?
-                    //     '<input type="checkbox" data-id="'.$query->id.'" class="js-switch" checked />' :
-                    //     '<input type="checkbox" data-id="'.$query->id.'" class="js-switch" />';
-                    // })
                     ->addColumn('action', function($row){
 //                            $editBtn = '<a href="'.route('admin.recipes.edit',$row->id).'" class="edit btn btn-primary btn-sm mx-1">Edit </a>';
                         $delBtn = '<a href="javascript:void(0)" data-id="'.$row->id.'" class="delete btn btn-danger btn-sm mx-1">Delete </a>';
@@ -262,6 +256,7 @@ class RecipeController extends Controller
         }
         return $response;
     }
+
     public function createDailyRecipe()
     {
         return view('admin.daily-recipe.add');
@@ -269,7 +264,6 @@ class RecipeController extends Controller
 
     public function storeDailyRecipe(Request $request)
     {
-//        dd($request->all());
         $request->validate([
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120|dimensions:max_width=1480,max_height=2000',
         ]);
@@ -289,5 +283,43 @@ class RecipeController extends Controller
 
         return redirect()->back()->with('success','Recipe has been created successfully');
     }
+
+    public function createHealthyVideo()
+    {
+        return view('admin.healthy-video.add');
+    }
+
+    public function storeHealthyVideo(Request $request)
+    {
+
+        $request->validate([
+            'video' => 'required|file|mimetypes:video/mp4',
+        ]);
+
+        try{
+
+            // Check If video exists already then replace it othrewise create new
+            if(HealthyVideo::exists()){
+                 $video = HealthyVideo::first();
+                 $videoSlug = $video->pluck('video_slug')->first();
+                 $video->delete(); // deleting slug
+                 unlink(public_path('assets/video/'.$videoSlug)); // deleting file
+            };
+
+            // Uploading file
+            $videoSlug = time().'.'.$request->video->extension();
+            $request->video->move(public_path('assets/video'), $videoSlug);
+
+            // Storing Video data into DB
+            HealthyVideo::create([
+               'video_slug' => $videoSlug
+            ]);
+        } catch(Exception $e){
+            return redirect()->back()->with('error','Error creating video:'.$e->getMessage());
+        }
+
+        return redirect()->back()->with('success','Video has been created successfully');
+    }
+
 
 }
