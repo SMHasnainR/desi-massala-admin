@@ -22,7 +22,7 @@
             <div class="row recipe-list">
 
                 @forelse ($recipes as $recipe)
-                    <div class="single_recepie text-center col-6">
+                    <div class="single_recepie text-center col-12 col-md-6 ">
                             <img src="{{ url('') }}/assets/img/daily-recipes/{{ $recipe->image_slug ?: 'sample.jpg' }}"
                                  class='daily-recipe-img' alt="Daily Recipe ">
                     </div>
