@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RecipeCreatedMail;
 use Exception;
 use App\Models\Recipe;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class RecipeController extends Controller
 {
@@ -68,11 +70,13 @@ class RecipeController extends Controller
         $request->validate([
             'name' =>'required',
             'category_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120|dimensions:max_width=1280,max_height=1000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120|dimensions:max_width=2000,max_height=1200,min_width=500,min_height=200',
             'time_from' => 'required|max:300',
             'time_to' => 'required|max:300',
             'excerpt' => 'required|min:10|max:255',
             'details' => 'required|min:20'
+        ],[
+            'image.dimensions' => 'Image Dimensions should be between 2000 x 1200 - 500 x 200'
         ]);
 
         if(!$isAdmin){
@@ -101,6 +105,12 @@ class RecipeController extends Controller
         // Storing Image data into DB
         try{
             Recipe::create($extraData + $request->all());
+
+            // If Not Admin then send email ot Admin
+            if(!$isAdmin) {
+                Mail::to('hasnainmohammad145@gmail.com')->send(new RecipeCreatedMail());
+            }
+
         } catch(Exception $e){
             return redirect()->back()->with('error','Error creating recipe:'.$e->getMessage());
         }

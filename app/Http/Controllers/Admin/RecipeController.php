@@ -293,7 +293,7 @@ class RecipeController extends Controller
     {
 
         $request->validate([
-            'video' => 'required|file|mimetypes:video/mp4',
+            'video' => 'required|file|mimetypes:video/mp4|size:10000',// Max size 10 MB
         ]);
 
         try{

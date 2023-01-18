@@ -185,7 +185,8 @@
                                         <select class="form-control" id="category" name="category_id" required>
                                             <option disabled selected>-- Select Category --</option>
                                             @foreach ($categories as $category)
-                                                <option class='' value="{{ $category->id }}">
+                                                <option class='' value="{{ $category->id }}"
+                                                    {{ old('category_id') === $category->id ? 'selected' : '' }} >
                                                     {{ $category->name }}</option>
                                             @endforeach
                                         </select>
@@ -239,9 +240,7 @@
                         <div class="form-group">
                             <label for="summernote">Recipe: </label>
                             <div class="@error('details')border border-danger rounded-3 @enderror">
-                                <textarea class="form-control" id="summernote" rows="4" placeholder="Recipe Details..." name="details">
-                                    {{ old('details') ?: '' }}
-                                </textarea>
+                                <textarea class="form-control" id="summernote" rows="4" placeholder="Recipe Details..." name="details">{{ old('details') ?: '' }}</textarea>
                                 @error('details')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                 @enderror

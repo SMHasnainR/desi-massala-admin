@@ -56,81 +56,53 @@
 @endsection
 
 @section('end-script')
-    <script>
+<script>
 
-        // Loading Recipe Data
-        var page = 1;
-        function loadData(page){
-            let url = "{{ route('daily-recipes') }}" ;
+    // Loading Recipe Data
+    var page = 1;
+    function loadData(page){
+        let url = "{{ route('daily-recipes') }}" ;
+        console.log(url);
 
-            $.ajax({
-                url: url+'?page='+page,
-                method: "GET",
-                dataType: 'JSON',
-                success: function(response) {
-                    let route = '{{route("recipes.show",[":id"])}}';
+        console.log(page);
+        $.ajax({
+            url: url+'?page='+page,
+            method: "GET",
+            dataType: 'JSON',
+            success: function(response) {
+                {{--let route = '{{route("recipes.show",[":id"])}}';--}}
+                console.log(response);
+                // Append data to the recipe list
+                response.data.forEach(function(recipe){
 
-                    // Append data to the recipe list
-                    response.data.forEach(function(recipe){
-                        route = route.replace(':id',recipe.id);
-
-                        $('.recipe-list').append(`
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="single_recepie text-center">
-                                <div class="recepie_thumb recipe_img">
-                                    <img src="{{url('')}}/assets/img/recipe/${ recipe.image_url ?? 'sample.jpg' }"
-                                        class='recepie_thumb' alt="">
-                                </div>
-                                <h3 class="title pointer recipe-modal-open" data-id="${ recipe.id }" role='button'>
-                                        ${ recipe.name }</h3>
-                                <span>${ recipe.category.name }</span>
-                                <p>Time Needs: ${ recipe.time_from } - ${ recipe.time_to } mins</p>
-                                <a href="${route}" class="line_btn">View Full Recipe</a>
-                            </div>
+                    $('.recipe-list').append(`
+                        <div class="single_recepie text-center col-12 col-md-6 ">
+                            <img src="{{ url('') }}/assets/img/daily-recipes/${ recipe.image_slug ?? 'sample.jpg' }"
+                                 class='daily-recipe-img' alt="Daily Recipe ">
                         </div>
                         `);
-                    });
+                });
 
-                    // If there are no more data available then hide load more btn
-                    if(!response.next_page_url){
-                        $('#load-more-btn').hide();
-                    }
+                // If there are no more data available then hide load more btn
+                if(!response.next_page_url){
+                    $('#load-more-btn').hide();
                 }
-            });
-        }
-
-        $('#load-more-btn').on('click',function(){
-            page++;
-            // console.log('btn clicked');
-            loadData(page);
-
+            },
+            error: function(error) {
+                // console.log(error.);
+            },
+            complete: function(){
+                console.log("dd");
+            }
         });
+    }
 
-        // Show Recipes Details on Modal when click on recipe title
-        $(document).on('click','.recipe-modal-open', function() {
-            let id = $(this).data('id');
+    $('#load-more-btn').on('click',function(){
+        page++;
+        console.log('btn clicked');
+        loadData(page);
 
-            // Ajax Call to show the recipe
-            let url = "{{ route('recipes.modal.details', ':id') }}";
-            url = url.replace(':id', id);
+    });
 
-            $.ajax({
-                url: url,
-                method: "GET",
-                dataType: 'JSON',
-                success: function(data) {
-                    if (data.success) {
-                        $('#recipeModal .modal-content').html(data.modal);
-                        $('#recipeModal').modal('show');
-                    }
-                    if (data.error) {
-                        console.log(data.error);
-                    }
-
-                }
-            });
-
-        });
-
-    </script>
+</script>
 @endsection

@@ -113,3 +113,8 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::post('recipes', [RecipeController::class, 'store'])->name('recipes.store');
+//
+//Route::get('email', function(){
+//    \Illuminate\Support\Facades\Mail::to('hasnainmohammad145@gmail.com')->send(new \App\Mail\RecipeCreatedMail());
+//    return new \App\Mail\RecipeCreatedMail();
+//});

@@ -23,13 +23,6 @@ class HomeController extends Controller
 
         return view('about');
     }
-//    //
-//    public function recipes(){
-//
-//        $recipes =  Recipe::where('status', 1)->get()->take(9);
-//
-//        return view('recipes', compact('recipes'));
-//    }
 
     public function contact(){
 
@@ -45,9 +38,13 @@ class HomeController extends Controller
         return view('blogs.index', compact('blogCategories','video'));
     }
 
-    public function dailyRecipe(){
+    public function dailyRecipe(Request $request){
         $recipes =  DailyRecipe::simplePaginate(6);
 
+        // If Load More button is clicked then return recipes only
+        if($request->ajax()){
+            return $recipes;
+        }
         return view('daily-recipe.index', compact('recipes'));
     }
 
