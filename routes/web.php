@@ -106,6 +106,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('healthy-living', [HomeController::class, 'healthy'])->name('healthy');
     Route::get('healthy-living/{blog}', [HomeController::class, 'showBlog'])->name('healthy.show');
     Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+    Route::post('contact/store',[HomeController::class, 'storeContact'])->name('contact.store');
 
     // Ajax Routes
     Route::get('modal/recipes/{recipe}', [RecipeController::class, 'getModalDetails'])->name('recipes.modal.details');

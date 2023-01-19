@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use App\Models\Category;
 use App\Models\DailyRecipe;
 use App\Models\HealthyVideo;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -55,5 +57,21 @@ class HomeController extends Controller
 
         $otherBlogs = Recipe::where('type','blog')->where('id','<>',$blog->id)->get();
         return view('blogs.show', compact('blog','otherBlogs'));
+    }
+
+    public function storeContact(Request $request){
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'message' => 'required|min:16'
+        ]);
+
+        try{
+            Mail::to('hasnainmohammad145@gmail.com')->send(new ContactMail($request->name, $request->email,$request->message));
+            return redirect()->back()->with('success','Message has been successfully send.');
+        } catch(\Exception $e){
+            return redirect()->back()->with('error',$e->getMessage());
+        }
     }
 }
