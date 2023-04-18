@@ -1088,7 +1088,7 @@ h3 {
     }
 }
 
-@media (min-width: 1200px) and (max-width: 1500px) {
+@media (min-width: 1200px)  {
     .header-area .main-header-area .main-menu ul li a {
         font-size: 15px;
         display: block !important;
