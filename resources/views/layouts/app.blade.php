@@ -67,6 +67,21 @@
         </div> --}}
     @endif
 
+    @if (session('error'))
+    
+    <div class='flash_message'>
+        <div class='container'>
+            <div class='flash-danger alert p-0 d-flex justify-content-between align-items-center' >
+                <div class='icon ion-happy-outline h-100'>
+                    <i class='fa fa-check'></i>
+                </div>
+                <div class='message mx-2'> {{ session('error') }}</div>
+                <button type="button" class="close text-danger mx-2" data-dismiss="alert">x</button>
+            </div>
+        </div>
+    </div>
+    @endif
+
     <!-- header-start -->
     <header>
         <div class="header-area ">

@@ -3882,7 +3882,7 @@ h3 {
     }
 }
 
-@media (min-width: 1200px) and (max-width: 1500px) {
+@media (min-width: 1200px) {
     .recepie_area .single_recepie .recepie_thumb {
         width: 200px;
         height: 200px;
@@ -7647,9 +7647,9 @@ to {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
-    -webkit-box-shadow: 5px 5px 15px rgba(73, 73, 73, 0.6);
-    -moz-box-shadow: 5px 5px 15px rgba(73, 73, 73, 0.6);
-    box-shadow: 5px 5px 15px rgba(202, 202, 202, 0.6);
+    -webkit-box-shadow: 5px 5px 15px rgba(73, 73, 73, 0.2);
+    -moz-box-shadow: 5px 5px 15px rgba(73, 73, 73, 0.2);
+    box-shadow: 5px 5px 15px rgba(202, 202, 202, 0.2);
     -webkit-transition: all 0.6s ease;
     -moz-transition: all 0.6s ease;
     -ms-transition: all 0.6s ease;

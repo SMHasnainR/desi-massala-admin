@@ -62,9 +62,9 @@
                             </div>
                         </article>
                     @empty
-                        {{-- <h2 class="w-100 text-center">
-                                Sorry, there are no blogs to show.
-                            </h2> --}}
+                        <h2 class="w-100 text-center">
+                            Sorry, there are no blogs to show.
+                        </h2>
                     @endforelse
                 </div>
             @empty
