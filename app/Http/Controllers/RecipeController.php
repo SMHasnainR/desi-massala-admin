@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmail;
 use App\Mail\RecipeCreatedMail;
 use Exception;
 use App\Models\Recipe;
@@ -108,7 +109,7 @@ class RecipeController extends Controller
 
             // If Not Admin then send email ot Admin
             if(!$isAdmin) {
-                Mail::to('hasnainmohammad145@gmail.com')->send(new RecipeCreatedMail());
+                dispatch(new SendEmail(['email' => 'hasnainmohammad145@gmail.com']));
             }
 
         } catch(Exception $e){
