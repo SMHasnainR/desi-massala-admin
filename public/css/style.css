@@ -1418,10 +1418,11 @@ h3 {
 
 .slider_text {
     position: absolute;
-    z-index: 10;
-    justify-content: center;
+    height: 100vh;
     display: flex;
-    top: 220px;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
 }
 
 .slider_text h3 {
@@ -4273,7 +4274,7 @@ h3 {
 
 @media (max-width: 767px) {
     .latest_trand_area .trand_info h3 {
-        color: #000000;
+        color: var(--secondary-color);
         font-size: 40px;
         margin-top: 14px;
         margin-bottom: 35px;
@@ -7782,13 +7783,28 @@ to {
     }
 }
 
-@media (max-width: 425px){
+@media (max-width: 426px){
     .bar-icon{
         padding-left: 25px !important;
         margin-left: auto !important;
         margin-bottom: auto !important;
     }
+    
+    .carousel-item img, .nav-overlay{
+        height: 350px !important;
+    }
+
+    .slider_text{
+        top: 50px;
+        height: 300px ;
+    }
+
+    h3{
+        font-size: 30px !important;
+    }
+
+    h5{
+        font-size: 16px !important;
+    }
+
 }
-/*body{*/
-/*    overflow: hidden;*/
-/*}*/
