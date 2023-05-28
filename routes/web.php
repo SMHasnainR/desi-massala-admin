@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::prefix('admin')->group(function(){
+Route::prefix('supermasala581')->group(function(){
 
 	Route::group(['middleware' => 'auth'], function () {
 

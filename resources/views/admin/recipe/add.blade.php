@@ -5,7 +5,7 @@
         <div class="container-fluid py-4">
             <div class="card">
                 <div class="card-header pb-0 px-3">
-                    <h4 class="mb-0">{{ __('Add Recipe') }}</h4>
+                    <h4 class="mb-0">{{ __('Add '. ($routeName == 'admin.recipes.blogs.create' ? 'Blog' : 'Recipe') ) }}</h4>
                 </div>
                 <div class="card-body pt-4 p-3">
                     <form action="{{ isset($recipe) ? route('admin.recipes.update',$recipe->id) : route('recipes.store') }}" method="POST" role="form text-left" enctype="multipart/form-data">
@@ -29,15 +29,16 @@
                                 </button>
                             </div>
                         @endif --}}
-                        @if (in_array($routeName, ['recipes.blog.create','recipes.create']))
-                            <input type="hidden" name="type" value='{{ $routeName == 'recipes.blog.create' ? 'blog' : 'recipe' }}'>
+
+                        
+                        @if (in_array($routeName, ['admin.recipes.blogs.create','admin.recipes.create']))
+                            <input type="hidden" name="type" value='{{ $routeName == 'admin.recipes.blogs.create' ? 'blog' : 'recipe' }}'>
                         @endif
 
-                        {{-- <input type="hidden" name="type" value='{{ in_array($routeName,['recipes.blog.create', 'recipes.blog.update']) ? 'blog' : 'recipe' }}'> --}}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name" class="form-control-label"> Recipe Name: </label>
+                                    <label for="name" class="form-control-label"> Name: </label>
                                     <div class="@error('name')border border-danger rounded-3 @enderror">
                                         <input class="form-control" value="{{ old('name') ?: (isset($recipe) ? $recipe->name : '' )}}" type="text" placeholder="Recipe Name"
                                             id="name" name="name" required>
@@ -91,13 +92,13 @@
 
                         <div class="row">
                             <div class="form-group">
-                                <label for="summernote">Recipe Excerpt: </label>
+                                <label for="summernote">Excerpt: </label>
                                 {{-- <input type="text" class="form-control" name='excerpt' value='{{ isset($recipe) ? $recipe->excerpt : ''}}'> --}}
                                 <textarea class='form-control' name="excerpt" >{{ old('excerpt') ?: (isset($recipe) ? $recipe->excerpt : '') }}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="summernote">Recipe: </label>
+                            <label for="summernote">Recipe/Details: </label>
                             <div class="@error('details')border border-danger rounded-3 @enderror">
                                 <textarea class="form-control" id="summernote" rows="4" placeholder="Recipe Details..." name="details">{!! old('details') ?: (isset($recipe) ? $recipe->details : '') !!}</textarea>
                             </div>

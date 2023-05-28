@@ -67,7 +67,6 @@ class RecipeController extends Controller
 
     public function store(Request $request){
         $isAdmin = Auth::check();
-
         $request->validate([
             'name' =>'required',
             'category_id' => 'required',
@@ -89,7 +88,7 @@ class RecipeController extends Controller
         $extraData = [
             'author' =>  $isAdmin ? auth()->user()->name : $request->author_name,
             'from' =>  $isAdmin ? 'admin' : 'user',
-            'status' => $isAdmin ? '1' : '0'
+            'status' => $isAdmin ? '1' : '0',
         ];
 
         if(!$isAdmin){

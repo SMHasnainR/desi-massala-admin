@@ -97,7 +97,7 @@ $routeName = request()->route()->getName();
       </li>
 
       <li class="nav-item">
-        <a class="nav-link {{ ( in_array($routeName, ['admin.recipes.blogs', 'admin.recipes.blog.create'])  ) ? 'active' : '' }}"
+        <a class="nav-link {{ ( in_array($routeName, ['admin.recipes.blogs', 'admin.recipes.blogs.create'])  ) ? 'active' : '' }}"
         href="{{ route('admin.recipes.blogs') }}">
           <div class="icon  icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-utensils"></i>

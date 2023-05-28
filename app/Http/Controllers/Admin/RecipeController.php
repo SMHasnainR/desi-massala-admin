@@ -29,7 +29,6 @@ class RecipeController extends Controller
                 return DataTables::of($data)
                     ->addIndexColumn()
                     ->editColumn('image','<img alt="" src="{{ url("") }}/assets/img/daily-recipes/{{ !empty($image_slug) ? $image_slug : `sample.jpg` }}" class="avatar avatar-sm me-3" alt="xd">')
-                    // ->editColumn('status', function($query){
                     //     return $query->status == 1 ?
                     //     '<input type="checkbox" data-id="'.$query->id.'" class="js-switch" checked />' :
                     //     '<input type="checkbox" data-id="'.$query->id.'" class="js-switch" />';
@@ -174,8 +173,10 @@ class RecipeController extends Controller
 
     public function create(Request $request)
     {
+
         $routeName = $request->route()->getName();
-        $categories = $routeName == 'admin.recipes.blog.create' ? Category::where('type','blog')->get() : Category::where('type','recipe')->get();
+        // dd($routeName);
+        $categories = $routeName == 'admin.recipes.blogs.create' ? Category::where('type','blog')->get() : Category::where('type','recipe')->get();
 
         return view('admin.recipe.add',compact('categories','routeName'));
     }
