@@ -53,6 +53,10 @@ section {
     transition: 0.3s;
 }
 
+.text-primary{
+    color: var(--primary-color) !important;
+}
+
 a,
 .button {
     -webkit-transition: 0.3s;
@@ -4677,7 +4681,7 @@ del {
 }
 
 h1 {
-    font-size: 36px;
+    font-size: 44px;
 }
 
 h2 {
@@ -5813,7 +5817,7 @@ h6 {
 }
 
 .blog_area a {
-    color: #666666 !important;
+    color: var(--secondary-color) !important;
     text-decoration: none;
     -webkit-transition: 0.5s;
     transition: 0.5s;
@@ -6643,7 +6647,7 @@ h3.widget_title {
 
 .single-post-area .blog_details p {
     margin-bottom: 20px;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .single-post-area .quote-wrapper {
@@ -7762,6 +7766,7 @@ to {
 .no-recipe-text{
     width: 100%;
     text-align: center;
+    margin: 200px 0px;
 }
 
 @media (max-width: 991px) {

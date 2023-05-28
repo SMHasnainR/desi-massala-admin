@@ -39,7 +39,7 @@
                     @forelse($blogCategory->blogs as $blog)
                         <article class="blog_item col-12 col-md-6">
                             <div class="blog_item_img">
-                                <img class="card-img" src="{{ url('') }}/assets/img/recipe/{{ $blog->image_url }}"
+                                <img class="card-img" src="{{ url('') }}/assets/img/recipe/{{ $blog->image_url ?? 'sample-yoga.jpeg' }}"
                                     alt="">
                                 <a href="#" class="blog_item_date">
                                     <h3>{{ date('d', strtotime($blog->created_at)) }}</h3>
@@ -62,13 +62,13 @@
                             </div>
                         </article>
                     @empty
-                        <h2 class="w-100 text-center">
+                        <h2 class="w-100 text-center my-5">
                             Sorry, there are no blogs to show.
                         </h2>
                     @endforelse
                 </div>
             @empty
-                <h2 class="w-100 text-center ">
+                <h2 class="w-100 text-center my-5">
                     Sorry, there are no Blogs to show.
                 </h2>
             @endforelse
