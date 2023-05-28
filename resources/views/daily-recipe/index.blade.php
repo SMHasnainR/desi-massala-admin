@@ -27,7 +27,7 @@
                                  class='daily-recipe-img' alt="Daily Recipe ">
                     </div>
                 @empty
-                    <h2 class="w-100 text-center">
+                    <h2 class="no-recipe-text">
                         Sorry, there are no recipes to show.
                     </h2>
                 @endforelse

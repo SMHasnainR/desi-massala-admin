@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 @empty
-                    <h2 class="w-100 text-center">
+                    <h2 class="no-recipe-text">
                         Sorry, there are no recipes to show.
                     </h2>
                 @endforelse
@@ -65,7 +65,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="trand_info text-center">
-                        <h5>Thousands of recipes are waiting to be watched</h5>
+                        <h4>Thousands of recipes are waiting to be watched</h4>
                         <h3>Discover latest trending recipes</h3>
                         <a href="{{ route('recipes') }}" class="boxed-btn3 latest-btn">View all Recipes</a>
                     </div>

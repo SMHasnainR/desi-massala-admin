@@ -1434,7 +1434,7 @@ h3 {
 
 @media (min-width:482px ) and (max-width: 991px) {
     .slider_text h3{
-        font-size: 63px !important;
+        font-size: 64px !important;
     }
 }
 
@@ -3753,18 +3753,6 @@ h3 {
     box-shadow: none;
 }
 
-.recepie_area {
-    /* padding-top: 140px; */
-    /* padding-bottom: 50px; */
-}
-
-@media (max-width: 767px) {
-    .recepie_area {
-        padding-top: 50px;
-        padding-bottom: 0px;
-    }
-}
-
 @media (min-width: 768px) and (max-width: 991px) {
     .recepie_area {
         padding-top: 100px;
@@ -4268,8 +4256,7 @@ h3 {
 .latest_trand_area .trand_info h3 {
     color: var(--secondary-color);
     font-size: 60px;
-    margin-top: 14px;
-    margin-bottom: 75px;
+    margin: 50px 0px;
 }
 
 @media (max-width: 767px) {
@@ -4702,7 +4689,7 @@ h3 {
 }
 
 h4 {
-    font-size: 18px;
+    font-size: 22px;
 }
 
 h5 {
@@ -7771,6 +7758,12 @@ to {
     opacity: .80;
     filter: alpha(opacity=80);
 }
+
+.no-recipe-text{
+    width: 100%;
+    text-align: center;
+}
+
 @media (max-width: 991px) {
     #nav{
         max-width: 0px;
@@ -7800,11 +7793,15 @@ to {
     }
 
     h3{
-        font-size: 30px !important;
+        font-size: 32px !important;
     }
 
-    h5{
+    h4{
         font-size: 16px !important;
     }
 
+    .no-recipe-text{
+        font-size: 22px;
+        margin: 60px 0px;
+    }
 }
