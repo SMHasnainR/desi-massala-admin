@@ -62,7 +62,7 @@
                     </form>
                 </div>
                 <div class="col-lg-4">
-                    <div class="media contact-info">
+                    {{-- <div class="media contact-info">
                         <span class="contact-info__icon"><i class="ti-home"></i></span>
                         <div class="media-body">
                             <h3>Buttonwood, California.</h3>
@@ -82,7 +82,7 @@
                             <h3>support@colorlib.com</h3>
                             <p>Send us your query anytime!</p>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

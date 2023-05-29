@@ -4273,7 +4273,7 @@ h3 {
 }
 
 .recepie_header_area {
-    padding-top: 195px;
+    padding-top: 95px;
     padding-bottom: 96px;
 }
 
@@ -7809,4 +7809,9 @@ to {
         font-size: 22px;
         margin: 60px 0px;
     }
+}
+
+.about-description p{
+    font-size: 16px;
+    margin-top: 50px ;
 }
