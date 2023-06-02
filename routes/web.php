@@ -119,3 +119,18 @@ Route::post('recipes', [RecipeController::class, 'store'])->name('recipes.store'
 //    \Illuminate\Support\Facades\Mail::to('hasnainmohammad145@gmail.com')->send(new \App\Mail\RecipeCreatedMail());
 //    return new \App\Mail\RecipeCreatedMail();
 //});
+
+
+Route::get('clear-everything', function(){
+    $clearcache = Artisan::call('cache:clear');
+    echo "Cache cleared<br>";
+
+    $clearview = Artisan::call('view:clear');
+    echo "View cleared<br>";
+
+    $clearconfig = Artisan::call('config:cache');
+    echo "Config cleared<br>";
+
+    $cleardebugbar = Artisan::call('debugbar:clear');
+    echo "Debug Bar cleared<br>"; 
+});
