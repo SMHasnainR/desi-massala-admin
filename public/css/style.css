@@ -301,7 +301,7 @@ h3 {
 }
 
 .section-padding {
-    padding-top: 120px;
+    padding-top: 100px;
     padding-bottom: 120px;
 }
 
@@ -4238,7 +4238,7 @@ h3 {
 }
 
 .latest_trand_area {
-    background-image: url(../assets/img/banner/13.jpg);
+    background-image: url(../assets/img/banner/13.avif);
     padding: 150px 0;
     background-size: cover;
     background-position: center;
@@ -7338,7 +7338,7 @@ h3.widget_title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 25px;
+    padding: 0px 25px 25px;
 }
 .footer-items a {
     padding: 10px;
@@ -7378,19 +7378,19 @@ select {
 
 
 .text-primary {
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
 }
 
 .text-secondary {
-    color: var(--secondary-color);
+    color: var(--secondary-color) !important;
 }
 
 .bg-primary {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color) !important;
 }
 
 .bg-secondary {
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color) !important;
 }
 
 .btn-primary {
@@ -7399,8 +7399,9 @@ select {
     color: var(--primary-color);
 }
 .btn-primary:hover {
-    color: var(--light-primary-color);
+    color: var(--secondary-color);
     background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .btn-primary:not(:disabled):not(.disabled).active,
@@ -7421,10 +7422,11 @@ select {
     border-color: var(--secondary-color);
     color: var(--secondary-color) !important;
 }
+
 .btn-secondary:hover {
-    color: var(--light-secondary-color);
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color) !important;
+    color: var(--primary-color) !important;
+    background-color: transparent;
+    border-color: var(--primary-color) !important;
 }
 
 .btn-secondary:not(:disabled):not(.disabled).active,
@@ -7454,6 +7456,10 @@ select {
 .recepies_text {
     color: var(--secondary-color);
     margin-block: 40px;
+}
+
+.recepies_text *{
+    color: var(--secondary-color);
 }
 
 .recipe-main-img img {
@@ -7734,22 +7740,16 @@ to {
   }
 
 #light {
-    /*display: none;*/
     position: absolute;
-    top: 15%;
-    /*left: 50%;*/
-    max-width: 850px;
-    max-height: 360px;
-    display: flex;
-    align-items: center;
-    /*margin-left: -300px;*/
-    /*margin-top: -180px;*/
-    width: 100%;
+    top: 10px;
+    max-width: 660px;
     background: #000;
     z-index: 1002;
     overflow: visible;
 }
-
+#video{
+    height: 100%;
+}
 #fade {
     position: fixed;
     top: 0%;
@@ -7766,7 +7766,7 @@ to {
 .no-recipe-text{
     width: 100%;
     text-align: center;
-    margin: 200px 0px;
+    margin: 120px 0px;
 }
 
 @media (max-width: 991px) {
@@ -7814,4 +7814,12 @@ to {
 .about-description p{
     font-size: 16px;
     margin-top: 50px ;
+}
+
+.form-control option{
+    color: var(--secondary-color);
+}
+
+.form-control{
+    color: var(--secondary-color);
 }

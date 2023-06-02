@@ -6,7 +6,7 @@
         {{-- Start Video --}}
         <div class="w-100 d-flex justify-content-center align-items-center">
             <div id="light">
-                <video id="video"src="{{ url('') }}/assets/video/{{ $video->video_slug ?? '' }}" width="100%" muted
+                <video id="video"src="{{ url('') }}/assets/video/{{ $video->video_slug ?? '' }}" width="100%"  muted
                     autoplay controls></video>
             </div>
         </div>
@@ -41,7 +41,7 @@
                             <div class="blog_item_img">
                                 <img class="card-img" src="{{ url('') }}/assets/img/recipe/{{ $blog->image_url ?? 'sample-yoga.jpeg' }}"
                                     alt="">
-                                <a href="#" class="blog_item_date">
+                                <a href="{{ route('healthy.show', $blog->id) }}" class="blog_item_date">
                                     <h3>{{ date('d', strtotime($blog->created_at)) }}</h3>
                                     <p>{{ date('M', strtotime($blog->created_at)) }}</p>
                                 </a>

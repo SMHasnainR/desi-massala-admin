@@ -213,7 +213,7 @@
                                 <div class="form-group">
                                     <label for="time" class="form-control-label">Time: </label>
                                     <div
-                                        class="d-flex justify-content-between align-items-center @error('time_from', 'time_to') border border-danger rounded-3 @enderror">
+                                        class="d-flex justify-content-between align-items-center @error('time_from', 'time_to') border border-danger rounded-3 @enderror text-secondary">
                                         <input class="form-control w-25" type="number" id="time_from"
                                             name="time_from" value="{{ old('time_from') ?: '' }}" required>
                                             @error('time_from')
@@ -247,7 +247,7 @@
                         <div class="form-group">
                             <label for="excerpt">Recipe Excerpt: </label>
                             {{-- <input type="text" class="form-control" name='excerpt' value='{{ isset($recipe) ? $recipe->excerpt : ''}}'> --}}
-                            <textarea class='@error('excerpt')border border-danger rounded-3 @enderror form-control' id="excerpt" name="excerpt">{{ old('excerpt') ?: '' }}</textarea>
+                            <textarea class='@error('excerpt')border border-danger rounded-3 @enderror form-control' placeholder="Recipe Excerpt..." id="excerpt" name="excerpt">{{ old('excerpt') ?: '' }}</textarea>
                             @error('excerpt')
                                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
                             @enderror
@@ -291,7 +291,7 @@
 
             </div>
             <div class="">
-                <p>&#169; Copyright 2022 Dallas Desi Masala</p>
+                <p>&#169; Copyright 2023 Dallas Desi Masala</p>
             </div>
         </div>
     </footer>

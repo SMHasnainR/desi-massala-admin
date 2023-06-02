@@ -8,7 +8,7 @@
     <div class="slider_text text-center w-100">
         <div class="col-8">
             <h3>
-                Chicken dish with per boiled egg
+                Spice Up Your Taste Buds with Dessi Masala!
             </h3>
         </div>
     </div>
