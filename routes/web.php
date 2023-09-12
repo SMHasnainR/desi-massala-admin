@@ -10,6 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 
@@ -97,7 +98,7 @@ Route::group(['middleware' => 'guest'], function () {
 
     // Routes Pages
     Route::get('', [HomeController::class, 'home'])->name('home');
-    Route::get('about', [HomeController::class, 'about'])->name('about');
+    Route::get('about' ,[HomeController::class, 'about'])->name('about');
     Route::get('recipes', [RecipeController::class, 'index'])->name('recipes');
     Route::get('daily-recipes', [HomeController::class, 'dailyRecipe'])->name('daily-recipes');
     Route::get('recipes/vegetables', [RecipeController::class, 'index'])->name('recipes.vegetables');
@@ -127,6 +128,13 @@ Route::get('clear-everything', function(){
 
     $clearview = Artisan::call('view:clear');
     echo "View cleared<br>";
+    Hash::make('password');
+    Hash::make('password');
+    
+    'Hjfhshfahsfhsdfjhfjkhsdfshdfkj';
+
+
+
 
     $clearconfig = Artisan::call('config:cache');
     echo "Config cleared<br>";

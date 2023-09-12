@@ -1866,7 +1866,7 @@ h3 {
     font-size: 14px;
     color: var(--);
     line-height: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .recepie_details_area .recepies_text p:last-child {
@@ -7455,7 +7455,8 @@ select {
 
 .recepies_text {
     color: var(--secondary-color);
-    margin-block: 40px;
+    margin-block: 10px;
+    white-space: pre-line;
 }
 
 .recepies_text *{
