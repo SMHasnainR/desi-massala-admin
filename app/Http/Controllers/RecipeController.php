@@ -108,7 +108,7 @@ class RecipeController extends Controller
 
             // If Not Admin then send email ot Admin
             if(!$isAdmin) {
-                dispatch(new SendEmail(['email' => 'hasnainmohammad145@gmail.com']));
+                dispatch(new SendEmail(['email' => env('MAIL_TO_ADDRESS')]));
             }
 
         } catch(Exception $e){
